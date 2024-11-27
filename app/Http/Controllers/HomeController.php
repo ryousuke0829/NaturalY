@@ -23,6 +23,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('auth.register_role');
     }
+
+    public function registerConsumer()
+    {
+        return view('auth.register_consumer');
+    }
+
+    public function registerFarm()
+    {
+        return view('auth.register_farm');
+    }
+
 }

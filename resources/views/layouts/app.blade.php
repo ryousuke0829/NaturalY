@@ -160,7 +160,7 @@
             @yield('content')
         </main>
 
-        <footer class="container-fluid mt-4 text-center">
+        <footer class="container-fluid mt-4 text-center" style="position: absolute; bottom: 0;">
             <div class="row py-2" style="background-color: #cecdcd">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
