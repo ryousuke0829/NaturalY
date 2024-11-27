@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/register-role';
 
     /**
      * Create a new controller instance.
@@ -69,4 +69,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function registerRole()
+    {
+        return view('auth.register_role');
+    }
 }
+

@@ -11,6 +11,14 @@ font-weight: 400;
 line-height: 100%; /* 40px */
 /* text-shadow: 1px 1px 3px rgb(81, 81, 81); */
 }
+.title{
+  font-family: Impact;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 40px */
+
+  }
 
 .text-yellowgreen{
     color: #70B563;
