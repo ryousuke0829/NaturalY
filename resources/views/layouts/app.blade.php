@@ -26,6 +26,28 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     <style>
+    html, body {
+        height: 100%; /* ページ全体の高さを100%に設定 */
+        margin: 0; /* デフォルトの余白を削除 */
+    }
+    
+
+    #app {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%; /* コンテンツが少ない場合でもページ全体を覆う */
+    }
+
+    main {
+        flex: 1; /* メインコンテンツを拡張してフッターを下に押し出す */
+    }
+
+    footer {
+        background-color: #cecdcd;
+        text-align: center;
+        padding: 10px 0; /* フッターの余白 */
+    }
+
     .brand-text {
         text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
         -webkit-text-stroke-width: 1;
@@ -160,23 +182,25 @@
             @yield('content')
         </main>
 
-        <footer class="container-fluid mt-4 text-center" style="position: absolute; bottom: 0;">
-            <div class="row py-2" style="background-color: #cecdcd">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-instagram"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-facebook"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-youtube"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-line"></i></a>
-                    </li>
-                </ul>
-                <small>&copy; 2024 Natural Yield Market</small>
+        <footer class="mt-4">
+            <div class="container-fluid text-center">
+                <div class="row">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-youtube"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-line"></i></a>
+                        </li>
+                    </ul>
+                    <small class="text-muted">&copy; 2024 Natural Yield Market</small>
+                </div>
             </div>
         </footer>
 

@@ -27,7 +27,6 @@
                         <i class="fa-solid fa-tractor fs-1 text-white mb-3"></i>
                         <p class="text-center title text-white" style="text-shadow: 1px 1px 3px rgb(81, 81, 81);">Organic Fermer</p>
                     </a>
-
                 </div>
 
             </div>

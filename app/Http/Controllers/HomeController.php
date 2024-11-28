@@ -35,5 +35,9 @@ class HomeController extends Controller
     {
         return view('auth.register_farm');
     }
+    public function registerHome()
+    {
+        return view('home');
+    }
 
 }
