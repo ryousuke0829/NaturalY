@@ -35,7 +35,6 @@
                             <input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="000-0000" pattern="\d{3}-\d{4}" 
                                 maxlength="8" aria-describedby="zipcode-info">
                         </div>
-                        <span class="text-muted">Enter your postal code in the format 000-0000.</span>
                         @error('zipcode')
                             <p class="text-danger small">{{$message}}</p>
                         @enderror
