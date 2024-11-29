@@ -122,7 +122,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -155,23 +155,80 @@
                             </li>
                             @endif
                         @else
+                        <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold">{{ Auth::user()->name }}</span> san!!</li>
+
+                        {{-- Cart --}}
+                        <li class="nav-item  me-2">
+                            <a class="nav-link mx-auto text-center" href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fa-solid fa-cart-shopping fs-3 nav-item nav-icon"></i><br>
+                                <span class="nav-text">Cart</span>
+                            </a>
+                        </li>
+                        
+                        
+                        {{-- Hamburger --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link mx-auto text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fa-solid fa-burger fs-3 nav-item nav-icon"></i><br>
+                                    <span class="nav-text">Menu</span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                            
+                                <div class="dropdown-menu dropdown-menu-end py-3 px-4" aria-labelledby="navbarDropdown">
+                                    <!-- User Icon and Name (Centered Horizontally) -->
+                                    <a class="dropdown-item d-flex align-items-center justify-content-center py-1" href="#" style="gap: 10px;">
+                                        <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
+                                        <span class="fs-5 text-secondary">{{ Auth::user()->name }}</span>
                                     </a>
-
+                                    <hr>
+                            
+                                    <!-- Menu Items -->
+                                    <div class="row text-center">
+                                        {{-- Purchase History --}}
+                                        <div class="col-6 d-flex flex-column align-items-center">
+                                            <a class="dropdown-item p-0" href="#">
+                                                <i class="fa-solid fa-receipt text-secondary icon-sm"></i>
+                                                <p class="text-secondary mt-1 mb-0">History</p>
+                                            </a>
+                                        </div>
+                                        {{-- Favorite --}}
+                                        <div class="col-6 d-flex flex-column align-items-center">
+                                            <a class="dropdown-item p-0" href="#">
+                                                <i class="fa-regular fa-heart text-secondary icon-sm"></i>
+                                                <p class="text-secondary mt-1 mb-0">Favorite</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row text-center mt-3">
+                                        {{-- Update Profile --}}
+                                        <div class="col-6 d-flex flex-column align-items-center">
+                                            <a class="dropdown-item p-0" href="#">
+                                                <i class="fa-regular fa-address-card text-secondary icon-sm"></i>
+                                                <p class="text-secondary mt-1 mb-0">UPD Profile</p>
+                                            </a>
+                                        </div>
+                                        {{-- Following --}}
+                                        <div class="col-6 d-flex flex-column align-items-center">
+                                            <a class="dropdown-item p-0" href="#">
+                                                <i class="fa-solid fa-user-plus text-secondary icon-sm"></i>
+                                                <p class="text-secondary mt-1 mb-0">Following</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <hr>
+                            
+                                    <!-- Logout -->
+                                    <a class="dropdown-item d-flex align-items-center justify-content-center" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fa-solid fa-right-from-bracket text-secondary icon-sm"></i>
+                                            <span class="text-secondary mt-1 mb-0 ms-2">{{ __('Logout') }}</span>
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
+                            </li>                            
                         @endguest
                     </ul>
                 </div>
