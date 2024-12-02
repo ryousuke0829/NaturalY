@@ -105,7 +105,10 @@
     animation: shake 0.4s ease-in-out;
     /* animationの設定 (0.5秒間、ease-in-outでアニメーション) */
     }  
-
+    main.py-4 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    }
     </style>
 
     <!-- Scripts -->
@@ -159,24 +162,23 @@
 
                         {{-- Cart --}}
                         <li class="nav-item  me-2">
-                            <a class="nav-link mx-auto text-center" href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa-solid fa-cart-shopping fs-3 nav-item nav-icon"></i><br>
+                            <a class="nav-link mx-auto text-center nav-link right-item" href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fa-solid fa-cart-shopping fs-3 nav-item nav-icon"></i>
                                 <span class="nav-text">Cart</span>
                             </a>
                         </li>
                         
-                        
                         {{-- Hamburger --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link mx-auto text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fa-solid fa-burger fs-3 nav-item nav-icon"></i><br>
+                                <a id="navbarDropdown" class="nav-link mx-auto text-center nav-link right-item" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fa-solid fa-burger fs-3 nav-item nav-icon"></i>
                                     <span class="nav-text">Menu</span>
                                 </a>
 
                             
-                                <div class="dropdown-menu dropdown-menu-end py-3 px-4" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end py-3 px-2" style="width: 180px" aria-labelledby="navbarDropdown">
                                     <!-- User Icon and Name (Centered Horizontally) -->
-                                    <a class="dropdown-item d-flex align-items-center justify-content-center py-1" href="#" style="gap: 10px;">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-center py-1" href="#" style="gap: 5px;">
                                         <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
                                         <span class="fs-5 text-secondary">{{ Auth::user()->name }}</span>
                                     </a>

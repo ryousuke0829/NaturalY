@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+/**
+ * Controller for regular users
+ */
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,7 +13,29 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/register_consumer', [App\Http\Controllers\HomeController::class, 'registerConsumer'])->name('registerConsumer');
-Route::get('/register_Farm', [App\Http\Controllers\HomeController::class, 'registerFarm'])->name('registerFarm');
-Route::get('/register_home', [App\Http\Controllers\HomeController::class, 'registerHome'])->name('registerHome');
+Route::group(['middleware'=>'auth'], function(){
+
+    /**
+     * Routes related to CONSUMER
+     */
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/register-role', [HomeController::class, 'registerRole'])->name('home');
+    Route::get('/register-consumer', [HomeController::class, 'registerConsumer'])->name('registerConsumer');
+    Route::get('/register-farm', [HomeController::class, 'registerFarm'])->name('registerFarm');
+    Route::get('/register-home', [HomeController::class, 'registerHome'])->name('registerHome');
+
+    /**
+     * Routes related to FARM
+     */
+    Route::group(['prefix'=>'farm', 'as'=>'farm.', 'middleware'=>'farm'],function(){
+
+    });
+
+    /**
+     * Routes related to ADMIN
+     */
+    Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'],function(){
+
+    });
+
+});
