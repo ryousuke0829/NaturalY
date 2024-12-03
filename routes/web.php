@@ -1,11 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
-/**
- * Controller for regular users
- */
-use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,7 +32,7 @@ Route::group(['middleware'=>'auth'], function(){
      * Routes related to ADMIN
      */
     Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'],function(){
-
+        Route::get('/', [HomeController::class, 'index'])->name('index');
     });
 
 });
