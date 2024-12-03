@@ -14,7 +14,6 @@
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <!-- Email -->
                     <div class="row ms-5 mt-3">
                             <label for="email" class="col-form-label text-md-start fw-bold">

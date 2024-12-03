@@ -23,6 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return view('home');
+    }
+
+    public function registerRole()
+    {
         return view('auth.register_role');
     }
 
