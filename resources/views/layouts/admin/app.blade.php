@@ -229,7 +229,7 @@
                                                 <p class="text-secondary mt-1 mb-0">Consumer <br> Management</p>
                                             </a>
                                         </div>
-                                        {{-- Favorite --}}
+                                        {{-- Farm Management --}}
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a class="dropdown-item p-0" href="#">
                                                 <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -260,14 +260,14 @@
                                     </div>
                                     
                                     <div class="row text-center mt-3">
-                                        {{-- Update Profile --}}
+                                        {{-- Item Management --}}
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a class="dropdown-item p-0" href="#">
                                                 <i class="fa-regular fa-lemon icon-sm text-warning"></i>
                                                 <p class="text-secondary mt-1 mb-0">Item <br> Management</p>
                                             </a>
                                         </div>
-                                        {{-- Following --}}
+                                        {{-- Analysis --}}
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a class="dropdown-item p-0" href="#">
                                                 <i class="fa-solid fa-chart-line icon-sm text-danger"></i>
@@ -327,5 +327,8 @@
         </footer>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/chart/number-of-user.js') }}"></script>
 </body>
 </html>
