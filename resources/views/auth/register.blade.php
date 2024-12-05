@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card mt-4 shadow-lg">
+        <div class="card shadow-lg">
             <div class="card-body">
                 <!-- タイトル行 -->
                 <div class="row">

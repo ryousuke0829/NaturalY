@@ -40,12 +40,29 @@ class HomeController extends Controller
     {
         return view('auth.register_farm');
     }
+
     public function registerHome()
     {
         return view('home');
     }
-    public function allitems()
+
+    public function allItems()
     {
-        return view('allitems');
+        return view('all_items');
+    }
+
+    public function allFarms()
+    {
+        return view('all_farms');
+    }
+
+    public function farmProfile()
+    {
+        return view('farm_profile');
+    }
+
+    public function showItem()
+    {
+        return view('show_item');
     }
 }
