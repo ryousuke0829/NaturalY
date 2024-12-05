@@ -5,10 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdminHomeController extends Controller
 {
     public function index()
     {
         return view('admin.index');
+    }
+
+    public function consumerManagement()
+    {
+        return view('admin.consumer-management');
     }
 }
