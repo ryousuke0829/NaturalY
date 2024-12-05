@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,8 @@ Route::group(['middleware'=>'auth'], function(){
      * Routes related to ADMIN
      */
     Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'],function(){
-        Route::get('/', [HomeController::class, 'index'])->name('index');
+        Route::get('/', [AdminHomeController::class, 'index'])->name('index');
+        Route::get('/consumer-management', [AdminHomeController::class, 'consumerManagement'])->name('consumer.management');
     });
 
 });
