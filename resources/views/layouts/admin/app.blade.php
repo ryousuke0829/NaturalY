@@ -297,7 +297,7 @@
         <main class="py-4" style="background:#f6e5e5;">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-9" style="background:#fff;">
+                    <div class="col-9">
                         @yield('content')
                     </div>
                 </div>

@@ -11,4 +11,9 @@ class AdminHomeController extends Controller
     {
         return view('admin.index');
     }
+
+    public function consumerManagement()
+    {
+        return view('admin.consumer-management');
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -39,6 +40,7 @@ Route::group(['middleware'=>'auth'], function(){
      */
     Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'],function(){
         Route::get('/', [AdminHomeController::class, 'index'])->name('index');
+        Route::get('/consumer-management', [AdminHomeController::class, 'consumerManagement'])->name('consumer.management');
     });
 
 });
