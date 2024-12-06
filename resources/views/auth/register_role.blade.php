@@ -6,7 +6,7 @@
 
             <!-- Title -->
             <div class="row">
-                <p class="title text-yellowgreen text-start mt-4 ps-3">
+                <p class="title text-yellowgreen text-start ps-3">
                     {{ __('Are You an Organic Enthusiast or Farmer?') }}
                 </p>
             </div>

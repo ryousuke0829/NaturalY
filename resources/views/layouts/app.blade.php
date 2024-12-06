@@ -42,12 +42,6 @@
         flex: 1; /* メインコンテンツを拡張してフッターを下に押し出す */
     }
 
-    footer {
-        background-color: #cecdcd;
-        text-align: center;
-        padding: 10px 0; /* フッターの余白 */
-    }
-
     .brand-text {
         text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
         -webkit-text-stroke-width: 1;
@@ -109,6 +103,7 @@
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     }
+
     </style>
 
     <!-- Scripts -->
@@ -116,7 +111,7 @@
 </head>
 <body class="bg-consumer">
     <div id="app" >
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background:#FFF5E8;">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-5" style="background:#FFF5E8;">
             <div class="container">
                 <a class="navbar-brand logo" href="{{ url('/') }}" style="display: flex; align-items:center;">
                     <img src="{{ asset('storage/images/logo.png') }}" alt="NaturalY Logo" style="height: 55px; margin-right: 10px; filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));">
@@ -241,10 +236,22 @@
             @yield('content')
         </main>
 
-        <footer class="mt-4">
-            <div class="container-fluid text-center">
-                <div class="row">
-                    <ul class="nav justify-content-center">
+        <footer class="mt-5">
+            @if(View::hasSection('footer-custom'))
+                <div class="container position-relative">
+                    <div 
+                        class="py-3" 
+                        style="
+                            position: fixed; 
+                            bottom: 0; 
+                            right: 10%; 
+                        ">
+                        @yield('footer-custom')
+                    </div>
+                </div>
+            @else
+                <div class="container-fluid text-center py-2" style="background-color: #cecdcd;">
+                    <ul class="nav justify-content-center" >
                         <li class="nav-item">
                             <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-instagram"></i></a>
                         </li>
@@ -260,7 +267,7 @@
                     </ul>
                     <small class="text-muted">&copy; 2024 Natural Yield Market</small>
                 </div>
-            </div>
+            @endif
         </footer>
 
     </div>

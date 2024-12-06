@@ -113,3 +113,8 @@ line-height: 100%; /* 40px */
 .fa-heart{
   font-size: 1.5rem;
 }
+
+.custom-footer {
+  z-index: 9999; /* 他の要素の上に表示されるように */
+  padding-bottom: 50px; /* フッター分の余白を確保 */
+  }

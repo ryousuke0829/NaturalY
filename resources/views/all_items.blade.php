@@ -9,7 +9,7 @@
 <div class="container">
 
     {{-- Title --}}
-    <p class="title my-3">LET'S BITE ORGANIC</p>
+    <p class="title mb-3">LET'S BITE ORGANIC</p>
     <div class="row g-3">
     
     {{-- Search bar --}}
