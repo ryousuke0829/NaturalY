@@ -21,4 +21,9 @@ class AdminHomeController extends Controller
     {
         return view('admin.farm-management');
     }
+
+    public function itemManagement()
+    {
+        return view('admin.item-management');
+    }
 }
