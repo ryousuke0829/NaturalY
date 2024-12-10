@@ -24,7 +24,7 @@
         <div class="row mx-5 mb-3">
             <h5 class="fw-bold">ADMIN PANEL</h5>
             <div class="col">
-                <a href="#" class="text-decoration-none">
+                <a href="{{ route('admin.consumer.management') }}" class="text-decoration-none">
                     <div class="card border border-primary border-4 rounded-5 text-center p-3">
                         <div class="mx-auto text-dark">
                             <svg width="56" height="55" viewBox="0 0 56 55" fill="#000000" xmlns="http://www.w3.org/2000/svg">
