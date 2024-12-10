@@ -42,6 +42,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/', [AdminHomeController::class, 'index'])->name('index');
         Route::get('/consumer-management', [AdminHomeController::class, 'consumerManagement'])->name('consumer.management');
         Route::get('/farm-management', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
+        Route::get('/item-management', [AdminHomeController::class, 'itemManagement'])->name('item.management');
     });
 
 });
