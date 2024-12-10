@@ -146,9 +146,12 @@ line-height: 100%; /* 40px */
 
  /* Caroucel */
  #carouselExampleIndicators {
-  border: 2px solid #ddd; /* 枠線を追加 */
-  border-radius: 8px; /* 角を丸くしたい場合 */
+  border: 2px solid #ddd;
+  border-radius: 8px;
 }
+
+
+
 
 
 

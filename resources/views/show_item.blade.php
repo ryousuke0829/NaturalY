@@ -177,8 +177,8 @@
 </div>
 
 {{-- Buying Button --}}
-<button class="fixed-follow-button bg-warning">
+<a href="{{route('consumer.cart')}}" class="fixed-follow-button bg-warning text-decoration-none">
     <i class="fa-solid fa-cart-shopping fs-4">+</i>
-</button>
+</a>
 
 @endsection
