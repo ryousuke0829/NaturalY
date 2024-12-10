@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/all-farms', [HomeController::class, 'allFarms'])->name('allFarms');
 Route::get('/farm-profile', [HomeController::class, 'farmProfile'])->name('farmProfile');
 Route::get('/show-item', [HomeController::class, 'showItem'])->name('showItem');
+Route::get('/all-items', [HomeController::class, 'allItems'])->name('allItems');
 
 Auth::routes();
 
@@ -19,14 +20,20 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware'=>'auth'], function(){
 
-    /**
-     * Routes related to CONSUMER
-     */
     Route::get('/register-role', [HomeController::class, 'registerRole'])->name('home');
     Route::get('/register-consumer', [HomeController::class, 'registerConsumer'])->name('registerConsumer');
     Route::get('/register-farm', [HomeController::class, 'registerFarm'])->name('registerFarm');
     Route::get('/register-home', [HomeController::class, 'registerHome'])->name('registerHome');
-    Route::get('/all-items', [HomeController::class, 'allItems'])->name('allItems');
+    /**
+     * Routes related to CONSUMER
+     */
+    Route::group(['prefix'=>'consumer', 'as'=>'consumer.'],function(){
+        Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+        Route::get('/order', [HomeController::class, 'order'])->name('order');
+        Route::get('/order-confirm', [HomeController::class, 'orderConfirm'])->name('orderConfirm');
+        Route::get('/order-success', [HomeController::class, 'orderSuccess'])->name('orderSuccess');
+    });
+
 
     /**
      * Routes related to FARM

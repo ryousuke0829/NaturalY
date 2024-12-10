@@ -24,7 +24,6 @@
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     {{-- css --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-
     <style>
     html, body {
         height: 100%; /* ページ全体の高さを100%に設定 */
@@ -162,7 +161,7 @@
 
                         {{-- Cart --}}
                         <li class="nav-item  me-2">
-                            <a class="nav-link mx-auto text-center nav-link right-item" href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a class="nav-link mx-auto text-center nav-link right-item" href="{{route('consumer.cart')}}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa-solid fa-cart-shopping fs-3 nav-item nav-icon"></i>
                                 <span class="nav-text">Cart</span>
                             </a>

@@ -65,4 +65,20 @@ class HomeController extends Controller
     {
         return view('show_item');
     }
+    public function cart()
+    {
+        return view('consumer.cart');
+    }
+    public function order()
+    {
+        return view('consumer.order');
+    }
+    public function orderConfirm()
+    {
+        return view('consumer.order_confirm');
+    }
+    public function orderSuccess()
+    {
+        return view('consumer.order_success');
+    }
 }
