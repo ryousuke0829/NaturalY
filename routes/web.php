@@ -51,6 +51,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/consumer/profile', [AdminHomeController::class, 'consumerProfile'])->name('consumer.profile');
         Route::get('/farm-management', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
         Route::get('/item-management', [AdminHomeController::class, 'itemManagement'])->name('item.management');
+        Route::get('/item/show', [AdminHomeController::class, 'showItem'])->name('item.show');
     });
 
 });
