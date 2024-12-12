@@ -69,7 +69,7 @@
                 </a>
             </div>
             <div class="col">
-                <a href="#" class="text-decoration-none">
+                <a href="{{ route('admin.farm.management') }}" class="text-decoration-none">
                     <div class="card border border-success border-4 rounded-5 text-center p-3">
                         <div class="mx-auto text-dark">
                             <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,7 +101,7 @@
                 </a>
             </div>
             <div class="col">
-                <a href="#" class="text-decoration-none">
+                <a href="{{ route('admin.item.management') }}" class="text-decoration-none">
                     <div class="card border border-warning border-4 rounded-5 text-center p-3">
                         <div class="mx-auto text-dark">
                             <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
