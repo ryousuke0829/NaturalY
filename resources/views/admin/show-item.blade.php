@@ -170,12 +170,16 @@
         <hr class="mt-0">
 
         <a href="#" class="btn btn-outline-secondary w-100 mt-3 ">Let's See More Reviews</a>
+    
+        <div class="row mx-5 mb-3 mt-5 ps-3">
+            <div class="col-5">
+                <a href="#" class="btn btn-secondary w-50">Cancel</a>
+            </div>
+        
+            <div class="col">
+                <a href="#" class="btn btn-outline-danger w-100">Active</a>
+            </div>
+        </div>
     </div>
 </div>
-
-{{-- Buying Button --}}
-<a href="{{route('consumer.cart')}}" class="fixed-follow-button bg-warning text-decoration-none">
-    <i class="fa-solid fa-cart-shopping fs-4">+</i>
-</a>
-
 @endsection
