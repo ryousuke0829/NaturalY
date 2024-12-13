@@ -37,6 +37,11 @@ class AdminHomeController extends Controller
         return view('admin.item-management');
     }
 
+    public function showItem()
+    {
+        return view('admin.show-item');
+    }
+
     public function analysis()
     {
         return view('admin.analysis');
