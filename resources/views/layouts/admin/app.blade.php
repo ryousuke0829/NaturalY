@@ -330,5 +330,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/chart/number-of-user.js') }}"></script>
+    <script src="{{ asset('js/chart/number-of-customers-and-farmers.js') }}"></script>
+    <script src="{{ asset('js/chart/number-of-purchase.js') }}"></script>
+    <script src="{{ asset('js/chart/number-of-sales.js') }}"></script>
+    <script src="{{ asset('js/chart/number-of-user-bys.js') }}"></script>
 </body>
 </html>

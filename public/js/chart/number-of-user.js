@@ -1,20 +1,20 @@
-const ctx = document.getElementById('myChart');
+const numUsers = document.getElementById('annualNumberOfUsersChart');
       
-new Chart(ctx, {
+new Chart(numUsers, {
     type: 'bar',
     data: {
-    labels: ['Jan', 'Feb', 'March', 'April', 'May', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-    datasets: [{
-        label: 'Annual Numbers of User',
-        data: [6, 11, 12, 20, 23, 27, 36, 39, 45, 49, 50, 55],
-        borderWidth: 1
-    }]
+        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Annual Numbers of User',
+            data: [6, 11, 12, 20, 23, 27, 36, 39, 45, 49, 50, 55],
+            borderWidth: 1
+        }]
     },
     options: {
-    scales: {
-        y: {
-        beginAtZero: true
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         }
-    }
     }
 });

@@ -36,4 +36,9 @@ class AdminHomeController extends Controller
     {
         return view('admin.item-management');
     }
+
+    public function analysis()
+    {
+        return view('admin.analysis');
+    }
 }
