@@ -12,19 +12,9 @@ line-height: 100%; /* 40px */
 }
 
 
-/* TEXT COLOR */
-.text-yellowgreen{
-    color: #70B563;
-}
-
-.text-orange{
-  color: #FF8B4A;
-}
-
-
-/* THUMBNAIL */
+/* Typography */
 .icon-sm{
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 .icon-md{
   font-size: 3rem;
@@ -32,24 +22,44 @@ line-height: 100%; /* 40px */
 .icon-lg{
   font-size: 9rem;
 }
-
-.grid-img{
-  width: 100%;
-  height: 300px;
-  /* Hight is not dynaic. Optimized for widescreen */
-  object-fit: cover;
+.text-yellowgreen{
+    color: #70B563;
+}
+.text-orange{
+  color: #FF8B4A;
+  background-color: #FF8B4A !important;
+}
+.text-shadow{
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5)
 }
 
+
+/* Images */
+.img-cover{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .avatar-sm{
   width: 2rem;
   height: 2rem;
   object-fit: cover;
 }
-
+.avatar-md{
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+}
 .avatar-lg{
   width: 9rem;
   height: 9rem;
   object-fit: cover;
+}
+.avatar-xl{
+  width:20rem;
+  height:20rem;
+  border-radius:50%;
+  object-fit:cover;
 }
 
 
@@ -114,7 +124,18 @@ line-height: 100%; /* 40px */
   font-size: 1.7rem;
 }
 
-.fixed-follow-button {
+/* Button for role */
+.btn-consumer-role{
+  height: 30vh;
+  background-image: linear-gradient(180deg, #f6b13b 0%, #ffda9b 80%, #fff8ec 100%);
+}
+.btn-farm-role {
+height: 30vh;
+background-image: linear-gradient(180deg, #70B563 0%, #c6ffbb 80%, #f1ffee 100%);
+}
+
+/* Fixed Button */
+.fixed-button {
   position: fixed;
   bottom: 10%;
   right: 5%;
@@ -135,7 +156,7 @@ line-height: 100%; /* 40px */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.515);
   cursor: pointer; 
 }
-.fixed-follow-button:hover {
+.fixed-button:hover {
   animation: shake 0.5s ease-in-out; 
 }
 
@@ -148,6 +169,11 @@ line-height: 100%; /* 40px */
  #carouselExampleIndicators {
   border: 2px solid #ddd;
   border-radius: 8px;
+}
+
+/* Button */
+.top-25{
+  top: 25%;
 }
 
 

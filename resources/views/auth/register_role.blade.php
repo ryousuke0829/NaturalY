@@ -14,18 +14,16 @@
             <div class="row mt-5">
 
                 <div class="col-6">
-                    <a href="{{route('registerConsumer')}}" class="btn w-100 shadow-lg text-decoration-none py-5 d-flex flex-column justify-content-center align-items-center" 
-                        style="height: 30vh; background-image: linear-gradient(180deg, #f6b13b 0%, #ffda9b 80%, #fff8ec 100%); color: #ffff;">
+                    <a href="{{route('registerConsumer')}}" class="btn w-100 shadow-lg text-decoration-none py-5 d-flex flex-column justify-content-center align-items-center text-shadow btn-consumer-role">
                         <i class="fa-solid fa-cart-shopping fs-1 text-white mb-3"></i>
-                        <p class="text-center title text-white" style="text-shadow: 1px 1px 3px rgb(81, 81, 81);">Want to buy Organics</p>
+                        <p class="text-center title text-white">Want to buy Organics</p>
                     </a>
                 </div>                
 
                 <div class="col-6">
-                    <a href="{{route('registerFarm')}}" class="btn w-100 shadow-lg text-decoration-none py-5 d-flex flex-column justify-content-center align-items-center" 
-                        style="height: 30vh; background-image: linear-gradient(180deg, #70B563 0%, #c6ffbb 80%, #f1ffee 100%); color: #ffff;">
+                    <a href="{{route('registerFarm')}}" class="btn w-100 shadow-lg text-decoration-none py-5 d-flex flex-column justify-content-center align-items-center text-shadow btn-farm-role">
                         <i class="fa-solid fa-tractor fs-1 text-white mb-3"></i>
-                        <p class="text-center title text-white" style="text-shadow: 1px 1px 3px rgb(81, 81, 81);">Organic Fermer</p>
+                        <p class="text-center title text-white">Organic Fermer</p>
                     </a>
                 </div>
 

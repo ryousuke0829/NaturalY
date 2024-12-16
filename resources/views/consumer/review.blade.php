@@ -34,7 +34,7 @@
             </div>
             <div class="row g-0">
                 <div class="col-md-3">
-                    <img src="/storage/images/banana.jpg" class="img-fluid rounded-start" alt="Farm Image" style="width: 100%; height:100%; object-fit: cover;">
+                    <img src="/storage/images/banana.jpg" class="img-fluid rounded-start img-cover" alt="Farm Image">
                 </div>
                 <div class="col-md-9">
                     <div class="card-body mx-4">
@@ -42,7 +42,7 @@
                             <div class="col-9">
                                 <div class="d-flex align-items-center">
                                     <a href="{{route('farmProfile')}}" class="text-decoration-none text-dark">
-                                        <img src="/storage/images/topbanner.jpg" alt="Farm Image" class="img-thumbnail rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                        <img src="/storage/images/topbanner.jpg" alt="Farm Image" class="rounded-circle avatar-sm">
                                         <span class="mb-0 ms-1 fw-bold">SASAKI NATURAL FARM</span>
                                     </a>            
                                 </div>

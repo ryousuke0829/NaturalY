@@ -1,6 +1,3 @@
-<style>
-
-</style>
 @extends('layouts.app')
     
 @section('content')
@@ -9,7 +6,7 @@
 
     <div class="card shadow-sm px-5 pb-4 w-75 mx-auto">
         <div class="mt-4 d-flex align-items-center justify-content-center">
-            <img src="/storage/images/topbanner.jpg" alt="Farm Image" class="img-thumbnail rounded-circle me-3" style="width: 120px; height: 120px; object-fit: cover;">
+            <img src="/storage/images/topbanner.jpg" alt="Farm Image" class="rounded-circle me-3 avatar-md">
             <span class="card-title mb-0 title text-uppercase">Sasaki Ryosuke</span>
         </div>        
         <div class="row">
@@ -30,8 +27,8 @@
         </div>
     </div>
 
-    <a href="{{route('consumer.profileUpdate')}}" class="btn fixed-follow-button text-decoration-none" style="line-height: 1; background-color: #FF8B4A !important;">
-        <i class="fa-solid fa-pen-nib fs-2 text-white mb-0" style="position: relative; top: 22%;"></i>
+    <a href="{{route('consumer.profileUpdate')}}" class="btn fixed-button text-decoration-none text-orange">
+        <i class="fa-solid fa-pen-nib fs-2 text-white mb-0 position-relative top-25"></i>
     </a>
     
     

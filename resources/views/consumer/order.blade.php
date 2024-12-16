@@ -15,67 +15,74 @@
     <ol>
         {{-- Items for purchase --}}
         <li class="h3">Items for purchase</li>
-        <div class="card mb-3 w-100">
+        <div class="card mb-3 w-100 shadow">
             <div class="row g-0">
-                <div class="col-md-4 d-flex align-items-stretch">
+                <div class="col-md-3 d-flex align-items-stretch">
                     <img src="/storage/images/banana.jpg" class="img-fluid rounded-start" alt="Banana Image">
                 </div>
-                <div class="col-md-8 d-flex flex-column">
-                    <div class="card-body d-flex flex-column">
+                <div class="col-md-9 d-flex flex-column ">
+                    <div class="card-body d-flex flex-column px-5">
                         <div class="d-flex justify-content-between">
-                            <h5 class="card-title">GOOD BANANA <span class="text-muted h6">(Contents：10bananas)</span></h5>
+                            <h4 class="card-title">GOOD BANANA <span class="text-muted h6">(Contents：10bananas)</span></h4>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="card-text">Unit fee</span>
                             <strong class="ms-auto">$3.00</strong>
                         </div>
-                        <div class="d-flex justify-content-between mt-4">
+                        <div class="d-flex justify-content-between mt-2">
                             <span class="card-text">Expected Delivery Date</span>
                             <strong class="ms-auto">4~7days</strong>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mt-2">
                             <span class="card-text">Shipping Fee</span>
                             <strong class="ms-auto">$2.00</strong>
                         </div>
-                        <div class="text-end mt-5">
-                            <button type="button" class="btn btn-outline-primary btn-sm">ー</button>
-                            <span class="mx-2">3</span>
-                            <button type="button" class="btn btn-outline-danger btn-sm">＋</button>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="card-text">Quantity</span>
+                            <strong class="ms-auto text-end">
+                                <input type="number" name="quantity" id="quantity" class="form-control-sm  px-1 w-25" value="3" aria-describedby="quantity" >
+                            </strong>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card mb-3 w-100">
+        <div class="card mb-3 w-100 shadow">
             <div class="row g-0">
-                <div class="col-md-4 d-flex align-items-stretch">
+                <div class="col-md-3 d-flex align-items-stretch">
                     <img src="/storage/images/banana.jpg" class="img-fluid rounded-start" alt="Banana Image">
                 </div>
-                <div class="col-md-8 d-flex flex-column">
-                    <div class="card-body d-flex flex-column">
+                <div class="col-md-9 d-flex flex-column ">
+                    <div class="card-body d-flex flex-column px-5">
                         <div class="d-flex justify-content-between">
-                            <h5 class="card-title">GOOD BANANA <span class="text-muted h6">(Contents：10bananas)</span></h5>
+                            <h4 class="card-title">GOOD BANANA <span class="text-muted h6">(Contents：10bananas)</span></h4>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="card-text">Unit fee</span>
                             <strong class="ms-auto">$3.00</strong>
                         </div>
-                        <div class="d-flex justify-content-between mt-4">
+                        <div class="d-flex justify-content-between mt-2">
                             <span class="card-text">Expected Delivery Date</span>
                             <strong class="ms-auto">4~7days</strong>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mt-2">
                             <span class="card-text">Shipping Fee</span>
                             <strong class="ms-auto">$2.00</strong>
                         </div>
-                        <div class="text-end mt-5">
-                            <button type="button" class="btn btn-outline-primary btn-sm">ー</button>
-                            <span class="mx-2">3</span>
-                            <button type="button" class="btn btn-outline-danger btn-sm">＋</button>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="card-text">Quantity</span>
+                            <strong class="ms-auto text-end">
+                                <input type="number" name="quantity" id="quantity" class="form-control-sm  px-1 w-25" value="3" aria-describedby="quantity" >
+                            </strong>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h3 class="text-end text-secondary">Subtotal：$22.00</h3>
 
         {{-- Shipping Info --}}
         <li class="h3 mt-5">Shipping Information</li>
-        <div class="card p-4">
+        <div class="card shadow p-4">
             <div class="card-body">
                 {{-- Name --}}
                 <div class="col-auto align-center-end">
@@ -261,7 +268,7 @@
 
 
     {{-- Buying Button --}}
-    <a href="{{route('consumer.orderConfirm')}}" class="fixed-follow-button bg-warning text-decoration-none">
+    <a href="{{route('consumer.orderConfirm')}}" class="fixed-button bg-warning text-decoration-none">
         Confirm
     </a>
 </div>

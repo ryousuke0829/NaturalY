@@ -30,7 +30,6 @@
         margin: 0; 
     }
     
-
     #app {
         display: flex;
         flex-direction: column;
@@ -55,12 +54,17 @@
         font-size: 3rem;
         font-style: normal;
         font-weight: 700;
-        line-height: 100%; /* 80px */
+        line-height: 100%;
         letter-spacing: 4px;
         background-image: linear-gradient(180deg, #6cc859 0%, #cecdcd 70%, #965500 100%);
         -webkit-background-clip: text; 
         -webkit-text-fill-color: transparent; 
         -webkit-text-stroke: 0.5px black;
+    }
+    .logo-style {
+    height: 55px;
+    margin-right: 10px;
+    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
     }
 
     .nav-text{
@@ -112,7 +116,7 @@
     padding-top: 80px;
     }
     
-    </style>
+</style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -121,8 +125,8 @@
     <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100" style="background:#FFF5E8; z-index: 1050;">
             <div class="container">
-                <a class="navbar-brand logo" href="{{ url('/') }}" style="display: flex; align-items:center;">
-                    <img src="{{ asset('storage/images/logo.png') }}" alt="NaturalY Logo" style="height: 55px; margin-right: 10px; filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));">
+                <a class="navbar-brand logo d-flex align-items-center" href="{{ url('/') }}">
+                    <img src="{{ asset('storage/images/logo.png') }}" alt="NaturalY Logo" class="logo-style">
                     <span class="brand-text">NaturalY</span>
                 </a>                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -178,9 +182,9 @@
                                     <span class="nav-text">Menu</span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end py-3 px-3" style="width: 200px" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
                                 <!-- User Icon and Name -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-center" href="{{route('consumer.profile')}}" style="gap: 5px;">
+                                <a class="dropdown-item d-flex align-items-center justify-content-center gap-1" href="{{route('consumer.profile')}}">
                                     <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
                                             <strong class="text-secondary">{{ Auth::user()->name }}</strong>
                                 </a>
@@ -212,7 +216,7 @@
 
                                     {{-- Purchase History --}}
                                     <div class="col-6 d-flex flex-column align-items-center mt-3">
-                                        <a class="dropdown-item p-0" href="{{route('consumer.purchaceHistory')}}">
+                                        <a class="dropdown-item p-0" href="{{route('consumer.purchaseHistory')}}">
                                             <i class="fa-solid fa-receipt text-secondary icon-sm"></i>
                                             <p class="text-secondary mt-1 mb-0 text-sm">History</p>
                                         </a>

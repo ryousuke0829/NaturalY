@@ -83,11 +83,9 @@
             </div>
         </div>
     </ol>
-    
-
 
     {{-- Buying Button --}}
-    <a href="{{route('consumer.orderSuccess')}}" class="fixed-follow-button bg-warning text-decoration-none fw-boldr">
+    <a href="{{route('consumer.orderSuccess')}}" class="fixed-button bg-warning text-decoration-none fw-boldr">
         Submit
     </a>
 </div>

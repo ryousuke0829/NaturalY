@@ -4,10 +4,10 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="card shadow-lg px-5">
+        <div class="card shadow-lg px-5 py-3">
             <div class="card-body">
                 {{-- Title --}}
-                <div class="text-center my-4">
+                <div class="text-center mb-5">
                     <i class="fa-solid fa-pen-nib fs-1"></i>
                     <span class="title mx-1">Update Profile</span>
                     <i class="fa-solid fa-pen-nib fs-1"></i>
