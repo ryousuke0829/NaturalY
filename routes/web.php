@@ -60,6 +60,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/farm/profile', [AdminHomeController::class, 'farmProfile'])->name('farm.profile');
         Route::get('/item-management', [AdminHomeController::class, 'itemManagement'])->name('item.management');
         Route::get('/item/show', [AdminHomeController::class, 'showItem'])->name('item.show');
+        Route::get('/analysis', [AdminHomeController::class, 'analysis'])->name('analysis');
     });
 
 });

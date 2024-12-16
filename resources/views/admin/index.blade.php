@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="row mx-5 mb-3">
-            <a href="#" class="text-decoration-none">
+            <a href="{{ route('admin.analysis') }}" class="text-decoration-none">
                 <div class="card border border-danger border-4 rounded-5 text-center p-3">
                     <div class="mx-auto text-dark">
                         <svg width="59" height="56" viewBox="0 0 59 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -164,7 +164,7 @@
             </a>
         </div>
         <div class="row mx-5 mb-3">
-            <canvas id="myChart"></canvas>
+            <canvas id="annualNumberOfUsersChart"></canvas>
         </div>
     </div>
 @endsection
