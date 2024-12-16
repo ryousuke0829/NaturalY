@@ -1,6 +1,3 @@
-<style>
-
-</style>
 @extends('layouts.app')
     
 @section('content')
@@ -103,81 +100,21 @@
     {{-- Reviews --}}
     <div class="card shadow-sm px-5 pb-3 mt-5">
         <h5 class="card-title mb-0 fs-2 text-center mt-4 mb-5">Review</h5>
-
-        {{-- User Info --}}
-        <div class="row d-flex align-items-center ">
-            <div class="col-auto">
-                <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-            </div>
-            <div class="col">
-                <p class="mb-0 h5">Sasaki Ryosuke</p>
-            </div>
-            <div class="col">
-                <p class="mb-0 text-end h5">☆4.5</p>
-            </div>
-        </div>
-        {{-- Review Comment --}}
-        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique vel, blanditiis dolorum inventore ad voluptate, architecto mollitia deleniti, tempore quaerat asperiores eius soluta earum et harum ducimus quo tempora dolores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, mollitia!</p>
-        <p class="text-end text-muted text-sm my-0">12/24/2024</p>
-        <hr class="mt-0">
-        
-        {{-- User Info --}}
-        <div class="row d-flex align-items-center ">
-            <div class="col-auto">
-                <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-            </div>
-            <div class="col">
-                <p class="mb-0 h5">Sasaki Ryosuke</p>
-            </div>
-            <div class="col">
-                <p class="mb-0 text-end h5">☆4.5</p>
-            </div>
-        </div>
-        {{-- Review Comment --}}
-        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique vel, blanditiis dolorum inventore ad voluptate, architecto mollitia deleniti, tempore quaerat asperiores eius soluta earum et harum ducimus quo tempora dolores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, mollitia!</p>
-        <p class="text-end text-muted text-sm my-0">12/24/2024</p>
-        <hr class="mt-0">
-
-        {{-- User Info --}}
-        <div class="row d-flex align-items-center ">
-            <div class="col-auto">
-                <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-            </div>
-            <div class="col">
-                <p class="mb-0 h5">Sasaki Ryosuke</p>
-            </div>
-            <div class="col">
-                <p class="mb-0 text-end h5">☆4.5</p>
-            </div>
-        </div>
-        {{-- Review Comment --}}
-        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique vel, blanditiis dolorum inventore ad voluptate, architecto mollitia deleniti, tempore quaerat asperiores eius soluta earum et harum ducimus quo tempora dolores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, mollitia!</p>
-        <p class="text-end text-muted text-sm my-0">12/24/2024</p>
-        <hr class="mt-0">
-
-        {{-- User Info --}}
-        <div class="row d-flex align-items-center ">
-            <div class="col-auto">
-                <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-            </div>
-            <div class="col">
-                <p class="mb-0 h5">Sasaki Ryosuke</p>
-            </div>
-            <div class="col">
-                <p class="mb-0 text-end h5">☆4.5</p>
-            </div>
-        </div>
-        {{-- Review Comment --}}
-        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique vel, blanditiis dolorum inventore ad voluptate, architecto mollitia deleniti, tempore quaerat asperiores eius soluta earum et harum ducimus quo tempora dolores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, mollitia!</p>
-        <p class="text-end text-muted text-sm my-0">12/24/2024</p>
-        <hr class="mt-0">
-
-        <a href="#" class="btn btn-outline-secondary w-100 mt-3 ">Let's See More Reviews</a>
+    
+        @foreach ($reviews as $review)
+            @for ($i = 0; $i < 4; $i++)
+                @include('partials.review', ['review' => $review])
+            @endfor
+        @endforeach
+    
+        <a href="#" class="btn btn-outline-secondary w-100 mt-3">Let's See More Reviews</a>
     </div>
+    
+
 </div>
 
 {{-- Buying Button --}}
-<a href="{{route('consumer.cart')}}" class="fixed-follow-button bg-warning text-decoration-none">
+<a href="{{route('consumer.cart')}}" class="fixed-button bg-warning text-decoration-none">
     <i class="fa-solid fa-cart-shopping fs-4">+</i>
 </a>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHomeController;
+// use App\Http\Controllers\Farm\FarmHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,12 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/order', [HomeController::class, 'order'])->name('order');
         Route::get('/order-confirm', [HomeController::class, 'orderConfirm'])->name('orderConfirm');
         Route::get('/order-success', [HomeController::class, 'orderSuccess'])->name('orderSuccess');
+        Route::get('/favorites', [HomeController::class, 'favorites'])->name('favorites');
+        Route::get('/purchase-history', [HomeController::class, 'purchaseHistory'])->name('purchaseHistory');
+        Route::get('/review', [HomeController::class, 'review'])->name('review');
+        Route::get('/followings', [HomeController::class, 'followings'])->name('followings');
+        Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+        Route::get('/profile-update', [HomeController::class, 'profileUpdate'])->name('profileUpdate');
     });
 
 

@@ -12,19 +12,9 @@ line-height: 100%; /* 40px */
 }
 
 
-/* TEXT COLOR */
-.text-yellowgreen{
-    color: #70B563;
-}
-
-.text-orange{
-  color: #FF8B4A;
-}
-
-
-/* THUMBNAIL */
+/* Typography */
 .icon-sm{
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 .icon-md{
   font-size: 3rem;
@@ -32,81 +22,101 @@ line-height: 100%; /* 40px */
 .icon-lg{
   font-size: 9rem;
 }
-
-.grid-img{
-  width: 100%;
-  height: 300px;
-  /* Hight is not dynaic. Optimized for widescreen */
-  object-fit: cover;
+.text-yellowgreen{
+    color: #70B563;
+}
+.text-orange{
+  color: #FF8B4A;
+  background-color: #FF8B4A !important;
+}
+.text-shadow{
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5)
 }
 
+
+/* Images */
+.img-cover{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .avatar-sm{
   width: 2rem;
   height: 2rem;
   object-fit: cover;
 }
-
+.avatar-md{
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+}
 .avatar-lg{
   width: 9rem;
   height: 9rem;
   object-fit: cover;
 }
+.avatar-xl{
+  width:20rem;
+  height:20rem;
+  border-radius:50%;
+  object-fit:cover;
+}
 
 
 /* Animation Bottun for GREEN */
 .btn-yellowgreen {
-  background-color: #70B563 !important; /* デフォルトの背景色 */
-  border-color: #5da44f !important; /* ボーダー色 */
-  color: #fff !important; /* テキストカラー */
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.3s ease; /* なめらかな変化 */
+  background-color: #70B563 !important; 
+  border-color: #5da44f !important; 
+  color: #fff !important; 
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.8s ease;
 }
 .btn-yellowgreen:hover {
-  background-color: #5da44f !important; /* 少し暗い色 */
-  border-color: #4d9042 !important; /* ボーダー色を暗く */
-  transform: translateY(-3px) scale(1.05); /* 軽く持ち上がる＆拡大 */
+  background-color: #5da44f !important; 
+  border-color: #4d9042 !important;
+  transform: translateY(-3px) scale(0.98); 
 }
 .btn-yellowgreen:focus {
-  box-shadow: 0 0 0 0.25rem rgba(112, 181, 99, 0.5) !important; /* フォーカス時の枠線色 */
-  transform: scale(1.1); /* 少し拡大 */
+  box-shadow: 0 0 0 0.25rem rgba(112, 181, 99, 0.5) !important;
+  transform: scale(1.0); 
 }
 .btn-yellowgreen:active {
-  transform: translateY(2px) scale(0.95); /* 押し込むような動き */
-  background-color: #4d9042 !important; /* 色をさらに暗く */
+  transform: translateY(2px) scale(0.95);
+  background-color: #4d9042 !important; 
 }
 .btn-yellowgreen:disabled {
-  background-color: #cde6d3 !important; /* 薄い緑色 */
-  border-color: #bcd9c5 !important; /* ボーダーも淡く */
-  color: #6c757d !important; /* テキストをグレー調に */
-  transform: none; /* 動きなし */
-  cursor: not-allowed; /* カーソルを無効状態に */
+  background-color: #cde6d3 !important;
+  border-color: #bcd9c5 !important;
+  color: #6c757d !important;
+  transform: none;
+  cursor: not-allowed; 
 }  
 
 /* Animation for Button for ORANGE */
 .btn-orange {
-  background-color: #FF8B4A !important; /* デフォルトの背景色 */
-  border-color: #E77A3F !important; /* ボーダー色 */
-  color: #fff !important; /* テキストカラー */
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.3s ease; /* なめらかな変化 */
+  background-color: #FF8B4A !important;
+  border-color: #E77A3F !important;
+  color: #fff !important; 
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.8s ease;
 }
 .btn-orange:hover {
-  background-color: #E77A3F !important; /* 少し暗い色 */
-  border-color: #CF6936 !important; /* ボーダー色を暗く */
-  transform: translateY(-3px) scale(1.05); /* 軽く持ち上がる＆拡大 */
+  background-color: #E77A3F !important;
+  border-color: #CF6936 !important;
+  transform: translateY(-3px) scale(0.98);
 }
 .btn-orange:focus {
-  box-shadow: 0 0 0 0.25rem rgba(255, 139, 74, 0.5) !important; /* フォーカス時の枠線色 */
-  transform: scale(1.1); /* 少し拡大 */
+  box-shadow: 0 0 0 0.25rem rgba(255, 94, 0, 0.458) !important; 
+  transform: scale(0.98);
 }
 .btn-orange:active {
-  transform: translateY(2px) scale(0.95); /* 押し込むような動き */
-  background-color: #CF6936 !important; /* 色をさらに暗く */
+  transform: translateY(1px) scale(0.95);
+  background-color: #bc5f30 !important;
 }
 .btn-orange:disabled {
-  background-color: #F7D5C4 !important; /* 薄いオレンジ色 */
-  border-color: #EAC3B1 !important; /* ボーダーも淡く */
-  color: #6c757d !important; /* テキストをグレー調に */
-  transform: none; /* 動きなし */
-  cursor: not-allowed; /* カーソルを無効状態に */
+  background-color: #F7D5C4 !important;
+  border-color: #EAC3B1 !important; 
+  color: #6c757d !important; 
+  transform: none; 
+  cursor: not-allowed; 
 }
 
 /* Favorite Heart */
@@ -114,7 +124,18 @@ line-height: 100%; /* 40px */
   font-size: 1.7rem;
 }
 
-.fixed-follow-button {
+/* Button for role */
+.btn-consumer-role{
+  height: 30vh;
+  background-image: linear-gradient(180deg, #f6b13b 0%, #ffda9b 80%, #fff8ec 100%);
+}
+.btn-farm-role {
+height: 30vh;
+background-image: linear-gradient(180deg, #70B563 0%, #c6ffbb 80%, #f1ffee 100%);
+}
+
+/* Fixed Button */
+.fixed-button {
   position: fixed;
   bottom: 10%;
   right: 5%;
@@ -135,7 +156,7 @@ line-height: 100%; /* 40px */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.515);
   cursor: pointer; 
 }
-.fixed-follow-button:hover {
+.fixed-button:hover {
   animation: shake 0.5s ease-in-out; 
 }
 
@@ -148,6 +169,11 @@ line-height: 100%; /* 40px */
  #carouselExampleIndicators {
   border: 2px solid #ddd;
   border-radius: 8px;
+}
+
+/* Button */
+.top-25{
+  top: 25%;
 }
 
 

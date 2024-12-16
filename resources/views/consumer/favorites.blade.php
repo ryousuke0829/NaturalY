@@ -6,27 +6,23 @@
 <div class="container">
 
     {{-- Title --}}
-    <div class="text-center">
-        <i class="fa-solid fa-cart-shopping fs-1"></i>
-        <span class="title mx-1">Your Cart</span>
-        <i class="fa-solid fa-cart-shopping fs-1"></i>
+    <div class="text-center mb-5">
+        <i class="fa-regular fa-thumbs-up fs-1"></i>
+        <span class="title mx-1">My Favorites</span>
+        <i class="fa-regular fa-thumbs-up fs-1"></i>
     </div>
-    {{-- Total Price --}}
-    <h2 class="mt-5">Total：$12.00</h2>
 
     {{-- Item Card --}}
     <div class="row g-3">
-        <div class="row g-3">
-            @for ($i = 0; $i < 3; $i++)
-                @foreach ($cartItems as $item)
-                    @include('partials.cart-item', ['item' => $item])
-                @endforeach
+        @foreach ($items as $item)
+            @for ($i = 0; $i < 5; $i++)
+                @include('partials.item-card', ['item' => $item])
             @endfor
-        </div>
+        @endforeach
     </div>
     
     {{-- Pagination --}}
-    <nav aria-label="Page navigation" class=" mt-3">
+    <nav aria-label="Page navigation" class="mt-5">
         <ul class="pagination justify-content-center">
         <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -39,10 +35,5 @@
         </li>
         </ul>
     </nav>
-
-    {{-- Buying Button --}}
-    <a href="{{route('consumer.order')}}" class="fixed-button bg-warning text-decoration-none">
-        Buy!!
-    </a>
 </div>
 @endsection
