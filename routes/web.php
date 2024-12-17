@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 // use App\Http\Controllers\Farm\FarmHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FarmController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,8 +46,8 @@ Route::group(['middleware'=>'auth'], function(){
     /**
      * Routes related to FARM
      */
-    Route::group(['prefix'=>'farm', 'as'=>'farm.', 'middleware'=>'farm'],function(){
-
+    Route::group(['prefix'=>'farm', 'as'=>'farm.'],function(){
+        Route::get('/analysis', [FarmController::class, 'analysis'])->name('analysis');
     });
 
     /**
