@@ -1,7 +1,3 @@
-@extends('layouts.app')
-    
-@section('content')
-
 <div class="container">
 
     <div class="card shadow-sm px-5 pb-5">
@@ -45,16 +41,6 @@
             @endforeach
         </div>
 
-        
     </div>
 
-    <button class="btn btn-success btn-shadow fixed-button">
-        <i class="fa-solid fa-user-plus fs-4"></i>
-        <span class="text-sm">Follow</span>
-    </button>
-
-</div>
-
-
-@endsection
 

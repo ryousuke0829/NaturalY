@@ -61,17 +61,17 @@ class HomeController extends Controller
 
     public function registerRole()
     {
-        return view('auth.register_role');
+        return view('auth.register-role');
     }
 
     public function registerConsumer()
     {
-        return view('auth.register_consumer');
+        return view('auth.register-consumer');
     }
 
     public function registerFarm()
     {
-        return view('auth.register_farm');
+        return view('auth.register-farm');
     }
 
     public function registerHome()
@@ -82,13 +82,13 @@ class HomeController extends Controller
     public function allItems()
     {   
         $items = $this->getItems(); 
-        return view('all_items', compact('items'));
+        return view('all-items', compact('items'));
     }
 
     public function allFarms()
     {   
         $farms = $this->getFarms(); 
-        return view('all_farms', compact('farms'));
+        return view('all-farms', compact('farms'));
     }
     public function showItem()
     {   
@@ -100,7 +100,7 @@ class HomeController extends Controller
                 'date' => '12/24/2024',
             ],
         ];
-        return view('show_item', compact('reviews'));
+        return view('show-item', compact('reviews'));
     }
     public function cart()
     {   
@@ -126,11 +126,11 @@ class HomeController extends Controller
     }
     public function orderConfirm()
     {
-        return view('consumer.order_confirm');
+        return view('consumer.order-confirm');
     }
     public function orderSuccess()
     {
-        return view('consumer.order_success');
+        return view('consumer.order-success');
     }
     public function favorites()
     {   
@@ -144,7 +144,7 @@ class HomeController extends Controller
     }
     public function purchaseHistory()
     {
-        return view('consumer.purchase_history');
+        return view('consumer.purchase-history');
     }
     public function review()
     {   
@@ -156,11 +156,11 @@ class HomeController extends Controller
     }
     public function profileUpdate()
     {
-        return view('consumer.profile_update');
+        return view('consumer.profile-update');
     }
     public function farmProfile()
     {   
         $items = $this->getItems(); 
-        return view('farm_profile', compact('items'));
+        return view('farm-profile', compact('items'));
     }
 }

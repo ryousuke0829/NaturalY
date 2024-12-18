@@ -33,7 +33,7 @@
                     {{-- Zipcode --}}
 
                     <div class="mb-4">
-                        <label for="zipcode" class="form-label">Zip Code</label>
+                        <label for="zipcode" class="form-label">Zip Code</label><span class="text-danger">*</span>
                         <input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="000-0000" pattern="\d{3}-\d{4}" maxlength="8">
                         @error('zipcode')
                             <p class="text-danger small">{{ $message }}</p>
@@ -42,7 +42,7 @@
 
                     {{-- Prefecture --}}
                     <div class="mb-4">
-                        <label for="prefecture" class="form-label">Prefecture</label>
+                        <label for="prefecture" class="form-label">Prefecture</label><span class="text-danger">*</span>
                         <div class="input-group">
                             <select name="prefecture" id="prefecture" class="form-select" aria-describedby="prefecture-info">
                                 <option value="" selected disabled>Select your prefecture</option>
@@ -103,7 +103,7 @@
 
                     {{-- Address --}}
                     <div class="mb-4">
-                        <label for="address" class="form-label">Address</label>
+                        <label for="address" class="form-label">Address</label><span class="text-danger">*</span>
                         <input type="text" name="address" id="address" class="form-control" placeholder="Enter your full address" maxlength="255">
                         @error('address')
                             <p class="text-danger small">{{ $message }}</p>
@@ -112,7 +112,7 @@
 
                     {{-- Phone Number --}}
                     <div class="mb-4">
-                        <label for="phone" class="form-label">Phone Number</label>
+                        <label for="phone" class="form-label">Phone Number</label><span class="text-danger">*</span>
                         <input type="tel" name="phone" id="phone" class="form-control" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}" maxlength="13">
                         @error('phone')
                             <p class="text-danger small">{{ $message }}</p>
