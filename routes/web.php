@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Farm\FarmController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\FarmController;
 use Illuminate\Support\Facades\Route;
 
 
