@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHomeController;
-// use App\Http\Controllers\Farm\FarmHomeController;
+use App\Http\Controllers\Farm\FarmController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +17,7 @@ Route::get('/all-items', [HomeController::class, 'allItems'])->name('allItems');
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['middleware'=>'auth'], function(){
 
@@ -29,6 +29,8 @@ Route::group(['middleware'=>'auth'], function(){
      * Routes related to CONSUMER
      */
     Route::group(['prefix'=>'consumer', 'as'=>'consumer.'],function(){
+        Route::get('/', [HomeController::class, 'profile'])->name('profile');
+        Route::get('/profile-update', [HomeController::class, 'profileUpdate'])->name('profileUpdate');
         Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
         Route::get('/order', [HomeController::class, 'order'])->name('order');
         Route::get('/order-confirm', [HomeController::class, 'orderConfirm'])->name('orderConfirm');
@@ -37,16 +39,18 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/purchase-history', [HomeController::class, 'purchaseHistory'])->name('purchaseHistory');
         Route::get('/review', [HomeController::class, 'review'])->name('review');
         Route::get('/followings', [HomeController::class, 'followings'])->name('followings');
-        Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-        Route::get('/profile-update', [HomeController::class, 'profileUpdate'])->name('profileUpdate');
     });
 
 
     /**
      * Routes related to FARM
      */
-    Route::group(['prefix'=>'farm', 'as'=>'farm.', 'middleware'=>'farm'],function(){
-
+    Route::group(['prefix'=>'farm', 'as'=>'farm.', 'middleware'=>'auth'],function(){
+        Route::get('/', [FarmController::class, 'index'])->name('index');
+        Route::get('/profile-update', [FarmController::class, 'profileUpdate'])->name('profileUpdate');
+        Route::get('/list-item', [FarmController::class, 'itemList'])->name('itemList');
+        Route::get('/item-update', [FarmController::class, 'itemUpdate'])->name('itemUpdate');
+        Route::get('/order-management', [FarmController::class, 'orderMng'])->name('orderMng');
     });
 
     /**

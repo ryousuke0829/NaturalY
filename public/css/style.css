@@ -51,8 +51,8 @@ line-height: 100%; /* 40px */
   object-fit: cover;
 }
 .avatar-lg{
-  width: 9rem;
-  height: 9rem;
+  width: 10rem;
+  height: 10rem;
   object-fit: cover;
 }
 .avatar-xl{
@@ -60,6 +60,9 @@ line-height: 100%; /* 40px */
   height:20rem;
   border-radius:50%;
   object-fit:cover;
+}
+.rounded-bottom-left {
+  border-bottom-left-radius: 2.5%; 
 }
 
 
