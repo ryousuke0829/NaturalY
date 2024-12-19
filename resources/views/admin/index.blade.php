@@ -167,4 +167,26 @@
             <canvas id="annualNumberOfUsersChart"></canvas>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        const data = {
+            labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            
+            datasets: [{
+                label: 'Annual Numbers of User',
+                data: @json($userMonthlyCounts),
+            }]
+        };
+        const config = {
+            type: 'bar',
+            data: data
+        };
+        
+        new Chart(
+            document.getElementById('annualNumberOfUsersChart'),
+            config
+        );
+    </script>
+    @endpush
 @endsection
