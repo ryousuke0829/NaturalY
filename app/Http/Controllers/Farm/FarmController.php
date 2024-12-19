@@ -57,4 +57,9 @@ class FarmController extends Controller
         return view('farm.order-mng');
     }
 
+    public function analysis()
+    {
+        return view('farm-analysis');
+    }
+
 }

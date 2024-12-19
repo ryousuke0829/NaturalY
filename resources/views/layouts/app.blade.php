@@ -277,5 +277,9 @@
         </footer>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/chart/farm-monthly-sales.js') }}"></script>
+    <script src="{{ asset('js/chart/farm-follower-report.js') }}"></script>
 </body>
 </html>

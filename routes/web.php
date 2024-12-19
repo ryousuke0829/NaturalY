@@ -51,6 +51,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/list-item', [FarmController::class, 'itemList'])->name('itemList');
         Route::get('/item-update', [FarmController::class, 'itemUpdate'])->name('itemUpdate');
         Route::get('/order-management', [FarmController::class, 'orderMng'])->name('orderMng');
+        Route::get('/analysis', [FarmController::class, 'analysis'])->name('analysis');
     });
 
     /**
