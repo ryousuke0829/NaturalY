@@ -12,7 +12,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-auto">
-                        <h1 class="display-4 mb-0">John Doe</h1>
+                        <h1 class="display-4 mb-0">{{ Auth::user()->name }}</h1>
                     </div>
                 </div>
             </div>
