@@ -1,19 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
-{
+{   
+    private $user;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    
+    public function __construct(User $user)
     {
         $this->middleware('auth');
+        $user = $user;
+
     }
 
     /**
@@ -21,6 +26,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
 
     public function getItems()
     {
@@ -51,20 +57,20 @@ class HomeController extends Controller
     }
 
     public function index()
-    {
+    {   
+        $user = Auth::user();
         $items = $this->getItems(); 
         $farms = $this->getFarms(); 
-    
-        return view('home', compact('items','farms'));
+        if ($user->role_id == 2) {
+            return view('home', compact('items','farms'))->with('user', $user);
+        } elseif ($user->role_id == 3) {
+            return view('farm.index', compact('items','farms'))->with('user', $user);
+        } elseif (is_null($user->role_id)) {
+            return view('home', compact('items', 'farms'));
+        }
     }
-    
 
-    public function registerRole()
-    {
-        return view('auth.register-role');
-    }
-
-    public function registerConsumer()
+    public function storeRole()
     {
         return view('auth.register-consumer');
     }
@@ -150,14 +156,7 @@ class HomeController extends Controller
     {   
         return view('consumer.review');
     }
-    public function profile()
-    {
-        return view('consumer.profile');
-    }
-    public function profileUpdate()
-    {
-        return view('consumer.profile-update');
-    }
+
     public function farmProfile()
     {   
         $items = $this->getItems(); 
