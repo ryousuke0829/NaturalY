@@ -8,7 +8,7 @@
                     <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
                 </div>
                 <div class="col-8">
-                    <h2 class="display-5 mt-4">John Doe</h2>
+                    <h2 class="display-5 mt-4">{{ $consumer->name }}</h2>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
 
             <div class="row mx-5 mb-3 ps-3">
                 <div class="col-5">
-                    <a href="#" class="btn btn-secondary w-50">Cancel</a>
+                    <a href="{{ route('admin.consumer.management') }}" class="btn btn-secondary w-50">Cancel</a>
                 </div>
 
                 <div class="col">

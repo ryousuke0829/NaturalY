@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -14,12 +15,16 @@ class AdminHomeController extends Controller
 
     public function consumerManagement()
     {
-        return view('admin.consumer-management');
+        $consumers = User::paginate(10);
+
+        return view('admin.consumer-management')
+                ->with('consumers', $consumers);
     }
 
-    public function consumerProfile()
+    public function consumerProfile(User $user)
     {
-        return view('admin.consumer-profile');
+        return view('admin.consumer-profile')
+                ->with('consumer', $user);
     }
 
     public function farmManagement()
