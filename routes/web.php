@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Farm\FarmController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,16 +22,25 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['middleware'=>'auth'], function(){
 
-    Route::get('/register-role', [HomeController::class, 'registerRole'])->name('home');
-    Route::get('/register-consumer', [HomeController::class, 'registerConsumer'])->name('registerConsumer');
-    Route::get('/register-farm', [HomeController::class, 'registerFarm'])->name('registerFarm');
-    Route::get('/register-home', [HomeController::class, 'registerHome'])->name('registerHome');
+    Route::get('/select-role', [ProfileController::class, 'selectRole'])->name('registerRole'); 
+    Route::post('/register-form', [ProfileController::class, 'storeRole'])->name('storeRole');
+
+    Route::get('/register-consumer', [ProfileController::class, 'showRegiserConsumer'])->name('showRegiserConsumer');
+    Route::get('/register-farm', [ProfileController::class, 'showRegiserFarm'])->name('showRegiserFarm');
+    Route::post('/store-profile', [ProfileController::class, 'storeProfile'])->name('storeProfile');
+    Route::post('/register-farm', [ProfileController::class, 'registerFarm'])->name('registerFarm');
+
+    // Update Profile for cnsumer and farm
+    Route::patch('/profile-update/form', [ProfileController::class, 'UpdateProfile'])->name('UpdateProfile');
+    Route::get('/profile-update', [ProfileController::class, 'showUpdateProfile'])->name('showUpdateProfile');
+
     /**
      * Routes related to CONSUMER
      */
     Route::group(['prefix'=>'consumer', 'as'=>'consumer.'],function(){
-        Route::get('/', [HomeController::class, 'profile'])->name('profile');
-        Route::get('/profile-update', [HomeController::class, 'profileUpdate'])->name('profileUpdate');
+        Route::get('/profile', [ProfileController::class, 'showProfile'])->name('showProfile');
+
+        // Pending Route
         Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
         Route::get('/order', [HomeController::class, 'order'])->name('order');
         Route::get('/order-confirm', [HomeController::class, 'orderConfirm'])->name('orderConfirm');
@@ -41,12 +51,14 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/followings', [HomeController::class, 'followings'])->name('followings');
     });
 
-
     /**
      * Routes related to FARM
      */
     Route::group(['prefix'=>'farm', 'as'=>'farm.', 'middleware'=>'auth'],function(){
         Route::get('/', [FarmController::class, 'index'])->name('index');
+        Route::get('/farm-profile-update', [FarmController::class, 'showUpdateFarmProfile'])->name('showUpdateFarmProfile');
+        
+        // Pending Route
         Route::get('/profile-update', [FarmController::class, 'profileUpdate'])->name('profileUpdate');
         Route::get('/list-item', [FarmController::class, 'itemList'])->name('itemList');
         Route::get('/item-update', [FarmController::class, 'itemUpdate'])->name('itemUpdate');

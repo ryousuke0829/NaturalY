@@ -8,7 +8,7 @@
 @include('partials.farm.farm-profile')
 
 <div class="container">
-
+    
     <a href="{{route('farm.itemList')}}" class="w-100 btn btn-success mt-5 py-5 fs-2 rounded-pill text-shadow">
         <i class="fa-solid fa-apple-whole"></i>
         List More Organics
@@ -34,7 +34,7 @@
     </a>
 
         {{-- Fixed Button --}}
-        <a href="{{route('farm.profileUpdate')}}" class="fixed-button bg-warning text-decoration-none fs-3">
+        <a href="{{route('showUpdateProfile')}}" class="fixed-button bg-warning text-decoration-none fs-3">
             <i class="fa-solid fa-pen-nib"></i>
         </a>
         

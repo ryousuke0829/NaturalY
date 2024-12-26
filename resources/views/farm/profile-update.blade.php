@@ -8,19 +8,17 @@
             <p class="title nav-color text-start mx-5 mb-5 text-shadow">
                 UPDATE MY PROFILE
             </p>
-            <form method="GET" action="{{route('farm.index')}}">
+            <form method="POST" action="{{route('UpdateProfile')}}" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
+
                 @include('partials.farm.farm-form')
+
                 <!-- Submit Button -->
                 <div class="row mx-4 mt-5">
-                    <div class="col-3">
-                        <a href="javascript:history.back()" class="btn btn-outline-secondary w-100 fs-4 py-1">Cancel</a>
-                    </div>
-                    <div class="col-9">
-                        <button type="submit" class="btn btn-outline-success w-100 fs-4 py-1">
-                            Update
-                        </button>
-                    </div>
+                    <button type="submit" class="btn btn-outline-success w-100 fs-4 py-1">
+                        Update
+                    </button>
                 </div>
             </form>
         </div>
