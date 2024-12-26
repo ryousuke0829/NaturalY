@@ -11,8 +11,9 @@
         </div>
     </div>
     <div class="mx-5 mb-3">
-        <button type="button" class="btn btn-danger rounded-5 px-4">Active</button>
-        <button type="button" class="btn btn-primary rounded-5 px-4">Inactive</button>
+        <a href="{{ route('admin.consumer.management') }}" class="btn btn-light rounded-5 px-4">All</a>
+        <a href="{{ route('admin.consumer.management', 'active') }}" class="btn btn-danger rounded-5 px-4">Active</a>
+        <a href="{{ route('admin.consumer.management', 'inactive') }}" class="btn btn-secondary rounded-5 px-4">Inactive</a>
     </div>
     <div class="mx-5 mb-3">
         @forelse ($consumers as $consumer)
@@ -33,14 +34,20 @@
                             </div>
                             <div class="text-start text-secondary fw-bold">
                                 <span>Start Date: {{ date('M d, Y', strtotime($consumer->created_at)) }}</span><br>
-                                <span>Zip Code: 605-0001</span><br>
-                                <span>Address: 123 Sakura Street, Kyoto, Japan</span><br>
-                                <span>Phone Number: 0912-345-6789</span>
+                                <span>Zip Code: {{ $consumer->zip_code }}</span><br>
+                                <span>Address: {{ $consumer->address }}</span><br>
+                                <span>Phone Number: {{ $consumer->phone_number }}</span>
                             </div>
                         </div>
-                        <div class="col-2 fs-3 text-danger d-flex align-items-center">
-                            <i class="fa-solid fa-user-check"></i> Active
-                        </div>
+                        @if ($consumer->trashed())
+                            <div class="col-2 fs-3 text-secondary d-flex align-items-center">
+                                <i class="fa-solid fa-user-check"></i> Inactive
+                            </div>
+                        @else
+                            <div class="col-2 fs-3 text-danger d-flex align-items-center">
+                                <i class="fa-solid fa-user-check"></i> Active
+                            </div>
+                        @endif
                     </div>
                 </div>
             </a>

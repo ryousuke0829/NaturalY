@@ -32,16 +32,24 @@ class AdminHomeController extends Controller
         return view('admin.index', compact('userMonthlyCounts'));
     }
 
-    public function consumerManagement()
+    public function consumerManagement($status = '')
     {
-        $consumers = User::paginate(10);
+        if ($status == 'active') {
+            $consumers = User::paginate(10);
+        } elseif ($status == 'inactive') {
+            $consumers = User::onlyTrashed()->paginate(10);
+        } else {
+            $consumers = User::withTrashed()->paginate(10);
+        }
 
         return view('admin.consumer-management')
                 ->with('consumers', $consumers);
     }
 
-    public function consumerProfile(User $user)
+    public function consumerProfile($id)
     {
+        $user = User::withTrashed()->findOrFail($id);
+
         return view('admin.consumer-profile')
                 ->with('consumer', $user);
     }
@@ -69,5 +77,19 @@ class AdminHomeController extends Controller
     public function analysis()
     {
         return view('admin.analysis');
+    }
+
+    public function consumerDeactivate(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.consumer.management');
+    }
+
+    public function consumerActivate(User $user)
+    {
+        $user->restore();
+
+        return redirect()->route('admin.consumer.management');
     }
 }
