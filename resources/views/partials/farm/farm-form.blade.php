@@ -1,35 +1,40 @@
 <!-- Avatar -->
-<div class="d-flex justify-content-center">
-    <i class="fa-solid fa-circle-user text-secondary d-block icon-lg"></i>
+<div class="text-center mb-3">
+    @if ($user->avatar)
+    <img src="{{$user->avatar}}" alt="{{$user->id}}" class="rounded-circle avatar-lg">
+    @else
+    <i class="fa-solid fa-circle-user text-secondary icon-lg"></i>
+    @endif
 </div>
-<div class="col-auto align-center-end mx-5 mt-3">
-    <label for="file" class="form-label">Avatar</label>
+<div class="col-auto d-flex flex-column mx-5 mt-3">
+    <label for="avatar" class="form-label">Avatar</label>
     <input type="file" name="avatar" id="avatar" class="form-control" aria-describedby="avatar-info">
-    <span class="text-muted">Acceptable formats are jpeg, jpg, png, and gif only.Max file size is 1MB</span>
-    @error('file')
+    <span id="avatar-info" class="text-muted">Acceptable formats are jpeg, jpg, png, and gif only. Max file size is 1MB</span>
+    @error('avatar')
         <p class="text-danger small">{{$message}}</p>
     @enderror
 </div>
+
 
 {{-- Farm Name --}}
 <div class="col-auto align-center-end mx-5 mt-4">
     <label for="address" class="form-label">Farm Name</label><span class="text-danger">*</span>
     <div class="input-group">
-        <input type="text" name="farmname" id="farmname" class="form-control" placeholder="Enter your Farmname " maxlength="255" aria-describedby="farm-name-info">
+        <input type="text" name="farm_name" id="farm_name" value="{{old('farm_name',$user->farm_name)}}" class="form-control" maxlength="255" aria-describedby="farm-name-info">
     </div>
-    @error('farmname')
+    @error('farm_name')
         <p class="text-danger small">{{$message}}</p>
     @enderror
 </div>
 
-{{-- Zipcode --}}
+{{-- Zip_code --}}
 <div class="col-auto align-center-end mx-5 mt-4">
-    <label for="zipcode" class="form-label">Farm Zip Code</label><span class="text-danger">*</span>
+    <label for="zip_code" class="form-label">Farm Zip Code</label><span class="text-danger">*</span>
     <div class="input-group">
-        <input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="000-0000" pattern="\d{3}-\d{4}" 
-            maxlength="8" aria-describedby="zipcode-info">
+        <input type="text" name="zip_code" id="zip_code" value="{{old('zip_code',$user->zip_code)}}" class="form-control" placeholder="000-0000" pattern="\d{3}-\d{4}" 
+            maxlength="8" aria-describedby="zip_code-info">
     </div>
-    @error('zipcode')
+    @error('zip_code')
         <p class="text-danger small">{{$message}}</p>
     @enderror
 </div>
@@ -38,8 +43,8 @@
 <div class="col-auto align-center-end mx-5 mt-4">
     <label for="prefecture" class="form-label">Farm Prefecture</label><span class="text-danger">*</span>
     <div class="input-group">
-        <select name="prefecture" id="prefecture" class="form-select" aria-describedby="prefecture-info">
-            <option value="" selected disabled>Select your farm prefecture</option>
+        <select name="prefecture" class="form-select" aria-describedby="prefecture-info">
+            <option value="{{old('prefecture',$user->prefecture)}}" selected disabled>{{old('prefecture',$user->prefecture)}}</option>
             <option value="Hokkaido">Hokkaido / 北海道</option>
             <option value="Aomori">Aomori / 青森県</option>
             <option value="Iwate">Iwate / 岩手県</option>
@@ -99,7 +104,7 @@
 <div class="col-auto align-center-end mx-5 mt-4">
     <label for="address" class="form-label">Farm Address</label><span class="text-danger">*</span>
     <div class="input-group">
-        <input type="text" name="address" id="address" class="form-control" placeholder="Enter your full farm address (excluding prefecture)" maxlength="255" aria-describedby="address-info">
+        <input type="text" name="address" id="address" value="{{old('address',$user->address)}}" class="form-control" placeholder="Enter your full farm address (excluding prefecture)" maxlength="255" aria-describedby="address-info">
     </div>
     @error('address')
         <p class="text-danger small">{{$message}}</p>
@@ -108,11 +113,11 @@
 
 {{-- Phone Number --}}
 <div class="col-auto align-center-end mx-5 mt-4">
-        <label for="phone" class="form-label">Phone Number</label><span class="text-danger">*</span>
+        <label for="phone_number" class="form-label">Phone Number</label><span class="text-danger">*</span>
     <div class="input-group">
-        <input type="tel" name="phone" id="phone" class="form-control" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}" maxlength="13" aria-describedby="phone-info">
+        <input type="tel" name="phone_number" id="phone_number" value="{{old('phone_number',$user->phone_number)}}"  class="form-control" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}" maxlength="13" aria-describedby="phone_number-info">
     </div>
-    @error('phone')
+    @error('phone_number')
     <p class="text-danger small">{{$message}}</p>
     @enderror
 </div>
@@ -121,8 +126,8 @@
 <div class="col-auto align-center-end mx-5 mt-4">
     <label for="first_product" class="form-label">Your 1st Product</label><span class="text-danger">*</span>
     <div class="input-group">
-        <select name="first_product" id="first_product" class="form-select" aria-describedby="first-product-info">
-            <option value="" selected disabled>Select your main product</option>
+        <select name="first_product" id="first_product"  class="form-select" aria-describedby="first-product-info">
+            <option value="{{old('first_product',$user->first_product)}}" selected disabled> {{old('first_product',$user->first_product)}} </option>
             <!-- Root Vegetables -->
             <optgroup label="Root Vegetables">
                 <option value="Onion">玉ねぎ / Onion</option>
@@ -222,7 +227,7 @@
     <label for="second_product" class="form-label">Your 2nd Product</label>
     <div class="input-group">
         <select name="second_product" id="second_product" class="form-select" aria-describedby="first-product-info">
-            <option value="" selected disabled>Select your 2nd main product</option>
+            <option value="{{old('second_product',$user->second_product)}}" selected disabled>{{old('second_product',$user->second_product)}}</option>
             <!-- Root Vegetables -->
             <optgroup label="Root Vegetables">
                 <option value="Onion">玉ねぎ / Onion</option>
@@ -321,11 +326,12 @@
 <div class="col-auto align-center-end mx-5 mt-4">
     <label for="farm_description" class="form-label">Farm Description</label>
     <div class="input-group">
-        <textarea name="farm_description" id="farm_description" class="form-control" placeholder="Enter a brief description of your farm" maxlength="1000" rows="5" aria-describedby="farm-description-info"></textarea>
+        <textarea name="farm_description" id="farm_description" class="form-control" placeholder="Enter a brief description of your farm" maxlength="1000" rows="5" aria-describedby="farm-description-info">{{old('farm_description',$user->farm_description)}}</textarea>
     </div>
     <span class="text-muted">Provide up to 1000 characters to describe your farm.</span>
     @error('farm_description')
         <p class="text-danger small">{{$message}}</p>
     @enderror
 </div>
+
 

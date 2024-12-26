@@ -1,3 +1,5 @@
+@extends('layouts.farm.app')
+
 @section('content')
 <div class="container">
     <div class="card shadow">
@@ -6,7 +8,7 @@
             <p class="title text-yellowgreen text-start mx-5 mb-5">
                 Let's Regist Your Profile and Farm info
             </p>
-            <form method="GET" action="{{route('index')}}">
+            <form method="POST" action="{{route('storeProfile')}}" enctype="multipart/form-data">
                 @csrf
                 @include('partials.farm.farm-form')
                 <!-- Submit Button -->

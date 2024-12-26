@@ -155,13 +155,13 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end p-4" aria-labelledby="navbarDropdown">
                                 <!-- User Icon and Name -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-center gap-3" href="{{route('farm.index')}}">
-                                    <div class="d-flex align-items-center">
-                                        <img src="/storage/images/topbanner.jpg" alt="Farm Image" class="rounded-circle avatar-sm">
-                                        <div class="ms-2">
-                                            <span class="text-secondary h5">{{ Auth::user()->name }}</span>
-                                        </div>
-                                    </div>
+                                <a class="dropdown-item d-flex align-items-center justify-content-center gap-1" href="{{route('farm.index')}}">
+                                    @if (Auth::user()->avatar)
+                                        <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" class="rounded-circle avatar-sm">
+                                        <strong class="text-secondary">{{ Auth::user()->name }}</strong>
+                                    @else
+                                        <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>    <strong class="text-secondary">{{ Auth::user()->name }}</strong>
+                                    @endif
                                 </a>
                                 <hr>
 

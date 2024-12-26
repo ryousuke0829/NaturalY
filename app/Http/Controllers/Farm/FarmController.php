@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers\Farm;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class FarmController extends Controller
 {
+    private $user;
+    public function __construct(User $user){ 
+        $this->user=$user;  
+    }
+
     public function getItems()
     {
+
         return [
             [
                 'image' => '/storage/images/banana.jpg',
@@ -37,9 +45,13 @@ class FarmController extends Controller
 
     public function index()
     {   
+        $user = Auth::user();
         $items = $this->getItems(); 
-        return view('farm.index', compact('items'));
+        return view('farm.index', compact('items','user'));
     }
+    
+
+    // Pending Methods
     public function profileUpdate()
     {   
         return view('farm.profile-update');
@@ -55,6 +67,11 @@ class FarmController extends Controller
     public function orderMng()
     {   
         return view('farm.order-mng');
+    }
+
+    public function analysis()
+    {
+        return view('farm-analysis');
     }
 
 }

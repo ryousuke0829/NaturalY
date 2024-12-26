@@ -141,6 +141,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -150,19 +151,19 @@
                                         <span class="nav-text">
                                             {{ __('Login') }}
                                         </span>
-                                    </a>                                  
+                                    </a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link right-item" href="{{ route('register') }}">
-                                    <i class="fa-solid fa-user-plus nav-icon"></i>
-                                    <span class="nav-text">
-                                        {{ __('Register') }}
-                                    </span>
-                                </a>                                    
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link right-item" href="{{ route('register') }}">
+                                        <i class="fa-solid fa-user-plus nav-icon"></i>
+                                        <span class="nav-text">
+                                            {{ __('Register') }}
+                                        </span>
+                                    </a>                                    
+                                </li>
                             @endif
                         @else
                         <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold fs-5">{{ Auth::user()->name }}</span> san!!</li>
@@ -182,11 +183,15 @@
                                     <span class="nav-text">Menu</span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-end p-3 w-100" aria-labelledby="navbarDropdown">
+                                
                                 <!-- User Icon and Name -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-center gap-1" href="{{route('consumer.profile')}}">
-                                    <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-                                            <strong class="text-secondary">{{ Auth::user()->name }}</strong>
+                                <a class="dropdown-item d-flex align-items-center justify-content-center gap-1" href="{{route('consumer.showProfile')}}">
+                                    @if (Auth::user()->avatar)
+                                    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" class="rounded-circle avatar-sm"><strong class="text-secondary">{{ Auth::user()->name }}</strong>
+                                    @else
+                                    <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>{{ Auth::user()->name }}
+                                    @endif
                                 </a>
                                 <hr>
 
@@ -195,7 +200,7 @@
 
                                     {{-- Update Profile --}}
                                     <div class="col-6 d-flex flex-column align-items-center">
-                                        <a class="dropdown-item p-0" href="{{route('consumer.profileUpdate')}}">
+                                        <a class="dropdown-item p-0" href="{{route('showUpdateProfile')}}">
                                             <i class="fa-solid fa-pen-nib text-secondary icon-sm"></i>
                                             <p class="text-secondary mt-1 mb-0 text-sm">Update</p>
                                         </a>
@@ -277,5 +282,9 @@
         </footer>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/chart/farm-monthly-sales.js') }}"></script>
+    <script src="{{ asset('js/chart/farm-follower-report.js') }}"></script>
 </body>
 </html>
