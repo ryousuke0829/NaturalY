@@ -76,6 +76,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/consumer/{id}/profile', [AdminHomeController::class, 'consumerProfile'])->name('consumer.profile');
         Route::delete('/consumer/{user}/deactivate', [AdminHomeController::class, 'consumerDeactivate'])->name('consumer.deactivate');
         Route::patch('/consumer/{user}/activate', [AdminHomeController::class, 'consumerActivate'])->withTrashed()->name('consumer.activate');
+        Route::get('/consumer/search', [AdminHomeController::class, 'consumerSearch'])->name('consumer.search');
 
         Route::get('/farm-management', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
         Route::get('/farm/profile', [AdminHomeController::class, 'farmProfile'])->name('farm.profile');

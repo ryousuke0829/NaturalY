@@ -35,11 +35,11 @@ class AdminHomeController extends Controller
     public function consumerManagement($status = '')
     {
         if ($status == 'active') {
-            $consumers = User::paginate(10);
+            $consumers = User::whereRoleId(User::CONSUMER_ROLE)->paginate(10);
         } elseif ($status == 'inactive') {
-            $consumers = User::onlyTrashed()->paginate(10);
+            $consumers = User::whereRoleId(User::CONSUMER_ROLE)->onlyTrashed()->paginate(10);
         } else {
-            $consumers = User::withTrashed()->paginate(10);
+            $consumers = User::whereRoleId(User::CONSUMER_ROLE)->withTrashed()->paginate(10);
         }
 
         return view('admin.consumer-management')
@@ -91,5 +91,20 @@ class AdminHomeController extends Controller
         $user->restore();
 
         return redirect()->route('admin.consumer.management');
+    }
+
+    public function consumerSearch(Request $request){
+        $request->validate([
+            'search' => 'required'
+        ]);
+
+        $search = $request->search;
+
+        $consumers = User::where('name','like', '%'. $search .'%')
+                        ->whereRoleId(User::CONSUMER_ROLE)
+                        ->withTrashed()
+                        ->paginate(10);
+        
+        return view('admin.consumer-search', compact('consumers', 'search'));
     }
 }
