@@ -32,8 +32,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/register-farm', [ProfileController::class, 'registerFarm'])->name('registerFarm');
 
     // Update Profile for cnsumer and farm
-    Route::patch('/profile-update/form', [ProfileController::class, 'UpdateProfile'])->name('UpdateProfile');
-    Route::get('/profile-update', [ProfileController::class, 'showUpdateProfile'])->name('showUpdateProfile');
+    Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('editProfile');
+    Route::patch('/profile/update', [ProfileController::class, 'UpdateProfile'])->name('UpdateProfile');
 
     /**
      * Routes related to CONSUMER
@@ -57,11 +57,13 @@ Route::group(['middleware'=>'auth'], function(){
      */
     Route::group(['prefix'=>'farm', 'as'=>'farm.', 'middleware'=>'auth'],function(){
         Route::get('/', [FarmController::class, 'index'])->name('index');
-        Route::get('/farm-profile-update', [FarmController::class, 'showUpdateFarmProfile'])->name('showUpdateFarmProfile');
+        Route::get('/list-item', [FarmController::class, 'createItem'])->name('createItem');
+        Route::post('/store-item', [FarmController::class, 'storeItem'])->name('storeItem');
+        Route::get('/item/{item_id}', [FarmController::class, 'showItem'])->name('showItem');
+        Route::get('/item/edit/{item_id}', [FarmController::class, 'editItem'])->name('editItem');
+        Route::patch('/item/update/{item_id}', [FarmController::class, 'updateItem'])->name('updateItem');
         
         // Pending Route
-        Route::get('/profile-update', [FarmController::class, 'profileUpdate'])->name('profileUpdate');
-        Route::get('/list-item', [FarmController::class, 'itemList'])->name('itemList');
         Route::get('/item-update', [FarmController::class, 'itemUpdate'])->name('itemUpdate');
         Route::get('/order-management', [FarmController::class, 'orderMng'])->name('orderMng');
         Route::get('/analysis', [FarmController::class, 'analysis'])->name('analysis');
@@ -72,12 +74,19 @@ Route::group(['middleware'=>'auth'], function(){
      */
     Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'],function(){
         Route::get('/', [AdminHomeController::class, 'index'])->name('index');
-        Route::get('/consumer-management', [AdminHomeController::class, 'consumerManagement'])->name('consumer.management');
-        Route::get('/consumer/profile', [AdminHomeController::class, 'consumerProfile'])->name('consumer.profile');
+
+        Route::get('/consumer-management/{status?}', [AdminHomeController::class, 'consumerManagement'])->name('consumer.management');
+        Route::get('/consumer/{id}/profile', [AdminHomeController::class, 'consumerProfile'])->name('consumer.profile');
+        Route::delete('/consumer/{user}/deactivate', [AdminHomeController::class, 'consumerDeactivate'])->name('consumer.deactivate');
+        Route::patch('/consumer/{user}/activate', [AdminHomeController::class, 'consumerActivate'])->withTrashed()->name('consumer.activate');
+        Route::get('/consumer/search', [AdminHomeController::class, 'consumerSearch'])->name('consumer.search');
+
         Route::get('/farm-management', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
         Route::get('/farm/profile', [AdminHomeController::class, 'farmProfile'])->name('farm.profile');
+
         Route::get('/item-management', [AdminHomeController::class, 'itemManagement'])->name('item.management');
         Route::get('/item/show', [AdminHomeController::class, 'showItem'])->name('item.show');
+
         Route::get('/analysis', [AdminHomeController::class, 'analysis'])->name('analysis');
     });
 
