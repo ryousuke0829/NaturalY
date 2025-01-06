@@ -42,26 +42,34 @@ class AdminHomeController extends Controller
             $consumers = User::whereRoleId(User::CONSUMER_ROLE)->withTrashed()->paginate(10);
         }
 
-        return view('admin.consumer-management')
-                ->with('consumers', $consumers);
+        return view('admin.consumer-management')->with('consumers', $consumers);
     }
 
     public function consumerProfile($id)
     {
         $user = User::withTrashed()->findOrFail($id);
 
-        return view('admin.consumer-profile')
-                ->with('consumer', $user);
+        return view('admin.consumer-profile')->with('consumer', $user);
     }
 
-    public function farmManagement()
+    public function farmManagement($status = '')
     {
-        return view('admin.farm-management');
+        if ($status == 'active') {
+            $farms = User::whereRoleId(User::FARM_ROLE)->paginate(10);
+        } elseif ($status == 'inactive') {
+            $farms = User::whereRoleId(User::FARM_ROLE)->onlyTrashed()->paginate(10);
+        } else {
+            $farms = User::whereRoleId(User::FARM_ROLE)->withTrashed()->paginate(10);
+        }
+
+        return view('admin.farm-management')->with('farms', $farms);
     }
 
-    public function farmProfile()
+    public function farmProfile($id)
     {
-        return view('admin.farm-profile');
+        $farm = User::withTrashed()->findOrFail($id);
+
+        return view('admin.farm-profile')->with('farm', $farm);
     }
 
     public function itemManagement()
@@ -106,5 +114,34 @@ class AdminHomeController extends Controller
                         ->paginate(10);
         
         return view('admin.consumer-search', compact('consumers', 'search'));
+    }
+
+    public function farmSearch(Request $request){
+        $request->validate([
+            'search' => 'required'
+        ]);
+
+        $search = $request->search;
+
+        $farms = User::where('name','like', '%'. $search .'%')
+                        ->whereRoleId(User::FARM_ROLE)
+                        ->withTrashed()
+                        ->paginate(10);
+        
+        return view('admin.farm-search', compact('farms', 'search'));
+    }
+
+    public function farmDeactivate(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.farm.management');
+    }
+
+    public function farmActivate(User $user)
+    {
+        $user->restore();
+
+        return redirect()->route('admin.farm.management');
     }
 }

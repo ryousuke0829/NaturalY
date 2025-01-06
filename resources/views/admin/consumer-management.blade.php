@@ -46,7 +46,7 @@
                         </div>
                         @if ($consumer->trashed())
                             <div class="col-2 fs-3 text-secondary d-flex align-items-center">
-                                <i class="fa-solid fa-user-check"></i> Inactive
+                                <i class="fa-solid fa-user-xmark"></i> Inactive
                             </div>
                         @else
                             <div class="col-2 fs-3 text-danger d-flex align-items-center">

@@ -1,6 +1,8 @@
 @extends('layouts.admin.app')
 
 @section('content')
+    @include('admin.modal.farm-status')
+
     <div class="mx-5 mt-5 mb-3">
         <div class="card border border-dark shadow">
             <div class="row p-4">
@@ -8,11 +10,11 @@
                     <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
                 </div>
                 <div class="col-8">
-                    <h2 class="display-5 mt-4 fw-bold">John Natural Farm</h2>
+                    <h2 class="display-5 mt-4 fw-bold">{{ $farm->name }} Natural Farm</h2>
                     <div class="row">
                         <div class="col text-start">
-                            <span class="badge rounded-pill bg-success">Cucumber</span>
-                            <span class="badge rounded-pill bg-success">Onion</span>
+                            <span class="badge rounded-pill bg-success">{{ $farm->first_product }}</span>
+                            <span class="badge rounded-pill bg-success">{{ $farm->second_product }}</span>
                         </div>
         
                         <div class="col fw-bold">
@@ -23,13 +25,13 @@
             </div>
 
             <div class="row mx-5 mb-3 ps-3">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, magni molestiae corrupti fugiat fuga temporibus soluta iusto architecto voluptatem sed ut! Fuga deserunt debitis minus animi? Quos est officia repellat.</p>
+                <p>{{ $farm->farm_description }}</p>
             </div>
 
             <div class="row mx-5 mb-3 ps-3">
                 <div class="col-4">
                     <h5 class="fw-bold">Farm Address</h5>
-                    <span>123 Sakura street, Tokyo</span>
+                    <span>{{ $farm->address }}</span>
                 </div>
             </div>
 
@@ -126,11 +128,19 @@
 
             <div class="row mx-5 mb-3 ps-3">
                 <div class="col-5">
-                    <a href="#" class="btn btn-secondary w-50">Cancel</a>
+                    <a href="{{ route('admin.farm.management') }}" class="btn btn-secondary w-50">Cancel</a>
                 </div>
 
                 <div class="col">
-                    <a href="#" class="btn btn-outline-danger w-100">Active</a>
+                    @if ($farm->trashed())
+                        <button class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#activate-farm-{{ $farm->id }}">
+                            Activate {{ $farm->name }}
+                        </button>
+                    @else
+                        <button class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#deactivate-farm-{{ $farm->id }}">
+                            Deactivate {{ $farm->name }}
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
