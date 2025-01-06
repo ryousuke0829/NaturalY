@@ -24,7 +24,7 @@
     </div>
     <div class="mx-5 mb-3">
         @forelse ($farms as $farm)
-            <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
+            <a href="{{ route('admin.farm.profile', $farm->id) }}" class="text-decoration-none mb-2">
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         @if ($farm->trashed())
-                            <div class="col-2 fs-3 text-danger d-flex align-items-center">
+                            <div class="col-2 fs-3 text-secondary d-flex align-items-center">
                                 <i class="fa-solid fa-user-xmark"></i> Inactive
                             </div>
                         @else
