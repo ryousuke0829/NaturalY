@@ -48,7 +48,7 @@ padding: 0.4rem 2rem;
     <div class="content">
         <h2>Welcome to </h2>
         <h2>The Natural Yield Market</h2>
-        <a href="#learn-more" class="btn btn-outline-light">Learn More</a>
+        <a href="{{ route('about') }}" class="btn btn-outline-light">Learn More</a>
     </div>
 </div>
 

@@ -19,6 +19,7 @@ Route::get('/all-items', [HomeController::class, 'allItems'])->name('allItems');
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/about', function () {return view('about');})->name('about');
 
 Route::group(['middleware'=>'auth'], function(){
 
