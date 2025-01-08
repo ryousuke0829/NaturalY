@@ -54,8 +54,6 @@ class AdminHomeController extends Controller
 
     public function farmManagement($status = '', $product = '')
     {
-        // dd($product);
-
         if ($status == 'active') {
             $farms = User::whereRoleId(User::FARM_ROLE)
                         ->when($product, function ($query, $product) {
