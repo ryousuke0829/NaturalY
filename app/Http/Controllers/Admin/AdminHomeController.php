@@ -52,17 +52,54 @@ class AdminHomeController extends Controller
         return view('admin.consumer-profile')->with('consumer', $user);
     }
 
-    public function farmManagement($status = '')
+    public function farmManagement($status = '', $product = '')
     {
+        // dd($product);
+
         if ($status == 'active') {
-            $farms = User::whereRoleId(User::FARM_ROLE)->paginate(10);
+            $farms = User::whereRoleId(User::FARM_ROLE)
+                        ->when($product, function ($query, $product) {
+                            $query->where(function ($q) use ($product) {
+                                $q->where('first_product', $product)
+                                ->orWhere('second_product', $product);
+                            });
+                        })
+                        ->paginate(10);
         } elseif ($status == 'inactive') {
-            $farms = User::whereRoleId(User::FARM_ROLE)->onlyTrashed()->paginate(10);
+            $farms = User::whereRoleId(User::FARM_ROLE)
+                        ->when($product, function ($query, $product) {
+                            $query->where(function ($q) use ($product) {
+                                $q->where('first_product', $product)
+                                ->orWhere('second_product', $product);
+                            });
+                        })
+                        ->onlyTrashed()
+                        ->paginate(10);
         } else {
-            $farms = User::whereRoleId(User::FARM_ROLE)->withTrashed()->paginate(10);
+            $farms = User::whereRoleId(User::FARM_ROLE)
+                        ->when($product, function ($query, $product) {
+                            $query->where(function ($q) use ($product) {
+                                $q->where('first_product', $product)
+                                ->orWhere('second_product', $product);
+                            });
+                        })
+                        ->withTrashed()->paginate(10);
         }
 
-        return view('admin.farm-management')->with('farms', $farms);
+        $farmProducts = User::select('first_product', 'second_product')
+            ->get()
+            ->map(function ($user) {
+                return [$user->first_product, $user->second_product];
+            })
+            ->flatten() // Flattens the nested arrays into a single-level array
+            ->filter() // Remove null and falsy values
+            ->unique() // Remove duplicate values
+            ->values() // Re-index the array
+            ->toArray();
+
+        return view('admin.farm-management')
+                ->with('farms', $farms)
+                ->with('farmProducts', $farmProducts);
     }
 
     public function farmProfile($id)

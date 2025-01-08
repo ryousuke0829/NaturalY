@@ -15,23 +15,19 @@
             </div>
         </form>
     </div>
+
     <div class="mx-5 mb-2">
-        <button type="button" class="btn btn-success rounded-5 px-2">Cucumber</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Rambutan</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Apple</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Mango</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Tomato</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Milk</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Grape</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Calamansi</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Ube</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Lanzones</button>
+        @foreach ($farmProducts as $farm_product)
+            <a href="{{ route('admin.farm.management', ['status' => 'active', 'product' => $farm_product]) }}" class="btn btn-success rounded-5 px-2">{{ $farm_product }}</a>
+        @endforeach
     </div>
+
     <div class="mx-5 mb-3">
         <a href="{{ route('admin.farm.management') }}" class="btn btn-light rounded-5 px-4">All</a>
         <a href="{{ route('admin.farm.management', 'active') }}" class="btn btn-danger rounded-5 px-4">Active</a>
         <a href="{{ route('admin.farm.management', 'inactive') }}" class="btn btn-secondary rounded-5 px-4">Inactive</a>
     </div>
+
     <div class="mx-5 mb-3">
         @forelse ($farms as $farm)
             <a href="{{ route('admin.farm.profile', $farm->id) }}" class="text-decoration-none mb-2">
@@ -44,7 +40,8 @@
                             <div class="row">
                                 <div class="col text-start">
                                     <h5 class="fw-bold fs-4">{{ $farm->name }}</h5>
-                                    <span class="badge rounded-pill bg-success">Cucumber</span>
+                                    <span class="badge rounded-pill bg-success">{{ $farm->first_product }}</span>
+                                    <span class="badge rounded-pill bg-success">{{ $farm->second_product }}</span>
                                 </div>
                                 <div class="col text-end">
                                     <p class="fs-5">831 Followers</p>

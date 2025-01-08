@@ -82,7 +82,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/consumer/search', [AdminHomeController::class, 'consumerSearch'])->name('consumer.search');
 
         // FARM
-        Route::get('/farm-management/{status?}', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
+        Route::get('/farm-management/{status?}/{product?}', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
         Route::get('/farm/{id}/profile', [AdminHomeController::class, 'farmProfile'])->name('farm.profile');
         Route::get('/farm/search', [AdminHomeController::class, 'farmSearch'])->name('farm.search');
         Route::delete('/farm/{user}/deactivate', [AdminHomeController::class, 'farmDeactivate'])->name('farm.deactivate');
