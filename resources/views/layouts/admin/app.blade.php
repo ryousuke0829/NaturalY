@@ -176,7 +176,7 @@
                             
                                 <div class="dropdown-menu dropdown-menu-end py-3 px-4" aria-labelledby="navbarDropdown">
                                     <!-- User Icon and Name (Centered Horizontally) -->
-                                    <a class="dropdown-item d-flex align-items-center justify-content-center py-1" href="#" style="gap: 10px;">
+                                    <a href="{{ route('admin.index') }}" class="dropdown-item d-flex align-items-center justify-content-center py-1" style="gap: 10px;">
                                         <svg width="86" height="85" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M43 81.4584C23.319 77.0845 7.58337 58.5155 7.58337 38.9584V17.7084L43 3.54175L78.4167 17.7084V38.9584C78.4167 58.5226 62.6811 77.0845 43 81.4584ZM14.6667 21.2501V38.9584C14.8691 47.1472 17.7492 55.0441 22.8663 61.4404C27.9834 67.8367 35.0554 72.3801 43 74.3751C50.9447 72.3801 58.0167 67.8367 63.1338 61.4404C68.2508 55.0441 71.131 47.1472 71.3334 38.9584V21.2501L43 10.6251L14.6667 21.2501Z" fill="#B93030"/>
                                             <path d="M43 38.9583C47.8901 38.9583 51.8542 34.9942 51.8542 30.1042C51.8542 25.2141 47.8901 21.25 43 21.25C38.11 21.25 34.1459 25.2141 34.1459 30.1042C34.1459 34.9942 38.11 38.9583 43 38.9583Z" fill="#B93030"/>

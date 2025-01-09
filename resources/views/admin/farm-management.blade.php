@@ -5,134 +5,70 @@
         <h1 class="fw-bold text-center">FARM MANAGEMENT</h1>
     </div>
     <div class="mx-5">
-        <div class="input-group mb-2">
-            <span class="input-group-text" id="search">Search Farm</span>
-            <input type="text" name="search" class="form-control" >
-        </div>
+        <form action="{{ route('admin.farm.search') }}">
+                @csrf
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="search">Search User</span>
+
+                <input type="text" name="search" class="form-control" value="{{ old('search') }}">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
     </div>
+
     <div class="mx-5 mb-2">
-        <button type="button" class="btn btn-success rounded-5 px-2">Cucumber</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Rambutan</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Apple</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Mango</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Tomato</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Milk</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Grape</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Calamansi</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Ube</button>
-        <button type="button" class="btn btn-success rounded-5 px-2">Lanzones</button>
+        @foreach ($farmProducts as $farm_product)
+            <a href="{{ route('admin.farm.management', ['status' => 'active', 'product' => $farm_product]) }}" class="btn btn-success rounded-5 px-2">{{ $farm_product }}</a>
+        @endforeach
     </div>
+
     <div class="mx-5 mb-3">
-        <button type="button" class="btn btn-danger rounded-5 px-4">Active</button>
-        <button type="button" class="btn btn-primary rounded-5 px-4">Inactive</button>
+        <a href="{{ route('admin.farm.management') }}" class="btn btn-light rounded-5 px-4">All</a>
+        <a href="{{ route('admin.farm.management', 'active') }}" class="btn btn-danger rounded-5 px-4">Active</a>
+        <a href="{{ route('admin.farm.management', 'inactive') }}" class="btn btn-secondary rounded-5 px-4">Inactive</a>
     </div>
+
     <div class="mx-5 mb-3">
-        <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
-            <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                    </div>
-                    <div class="col-7 border-end border-secondary">
-                        <div class="row">
-                            <div class="col text-start">
-                                <h5 class="fw-bold fs-4">JOHN DOE</h5>
-                                <span class="badge rounded-pill bg-success">Cucumber</span>
+        @forelse ($farms as $farm)
+            <a href="{{ route('admin.farm.profile', $farm->id) }}" class="text-decoration-none mb-2">
+                <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
+                    <div class="row">
+                        <div class="col-3">
+                            <i class="fa-solid fa-image fa-10x d-block text-center"></i>
+                        </div>
+                        <div class="col-7 border-end border-secondary">
+                            <div class="row">
+                                <div class="col text-start">
+                                    <h5 class="fw-bold fs-4">{{ $farm->name }}</h5>
+                                    <span class="badge rounded-pill bg-success">{{ $farm->first_product }}</span>
+                                    <span class="badge rounded-pill bg-success">{{ $farm->second_product }}</span>
+                                </div>
+                                <div class="col text-end">
+                                    <p class="fs-5">831 Followers</p>
+                                </div>
                             </div>
-                            <div class="col text-end">
-                                <p class="fs-5">831 Followers</p>
+                            <div class="text-start text-secondary fw-bold">
+                                <p>{{ $farm->farm_description }}</p>
                             </div>
                         </div>
-                        <div class="text-start text-secondary fw-bold">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, facere blanditiis? Porro iste minima blanditiis rem cupiditate assumenda est nostrum ut? Quas reprehenderit vel est natus, laborum perspiciatis dolore id.</p>
-                        </div>
-                    </div>
-                    <div class="col-2 fs-3 text-danger d-flex align-items-center">
-                        <i class="fa-solid fa-user-check"></i> Active
+                        @if ($farm->trashed())
+                            <div class="col-2 fs-3 text-secondary d-flex align-items-center">
+                                <i class="fa-solid fa-user-xmark"></i> Inactive
+                            </div>
+                        @else
+                            <div class="col-2 fs-3 text-danger d-flex align-items-center">
+                                <i class="fa-solid fa-user-check"></i> Active
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        @empty
+            <h2 class="text-center">No Farms Yet.</h2>
+        @endforelse
 
-        <a href="#" class="text-decoration-none">
-            <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                    </div>
-                    <div class="col-7 border-end border-secondary">
-                        <div class="row">
-                            <div class="col text-start">
-                                <h5 class="fw-bold fs-4">JOHN DOE</h5>
-                                <span class="badge rounded-pill bg-success">Tomato</span>
-                            </div>
-                            <div class="col text-end">
-                                <p class="fs-5">831 Followers</p>
-                            </div>
-                        </div>
-                        <div class="text-start text-secondary fw-bold">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, facere blanditiis? Porro iste minima blanditiis rem cupiditate assumenda est nostrum ut? Quas reprehenderit vel est natus, laborum perspiciatis dolore id.</p>
-                        </div>
-                    </div>
-                    <div class="col-2 fs-3 text-primary d-flex align-items-center">
-                        <i class="fa-solid fa-user-xmark"></i> Inactive
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        <a href="#" class="text-decoration-none">
-            <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                    </div>
-                    <div class="col-7 border-end border-secondary">
-                        <div class="row">
-                            <div class="col text-start">
-                                <h5 class="fw-bold fs-4">JOHN DOE</h5>
-                                <span class="badge rounded-pill bg-success">Cabbage</span>
-                            </div>
-                            <div class="col text-end">
-                                <p class="fs-5">831 Followers</p>
-                            </div>
-                        </div>
-                        <div class="text-start text-secondary fw-bold">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, facere blanditiis? Porro iste minima blanditiis rem cupiditate assumenda est nostrum ut? Quas reprehenderit vel est natus, laborum perspiciatis dolore id.</p>
-                        </div>
-                    </div>
-                    <div class="col-2 fs-3 text-danger d-flex align-items-center">
-                        <i class="fa-solid fa-user-check"></i> Active
-                    </div>
-                </div>
-            </div>
-        </a>
-
-        <a href="#" class="text-decoration-none">
-            <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                    </div>
-                    <div class="col-7 border-end border-secondary">
-                        <div class="row">
-                            <div class="col text-start">
-                                <h5 class="fw-bold fs-4">JOHN DOE</h5>
-                                <span class="badge rounded-pill bg-success">Apple</span>
-                            </div>
-                            <div class="col text-end">
-                                <p class="fs-5">831 Followers</p>
-                            </div>
-                        </div>
-                        <div class="text-start text-secondary fw-bold">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, facere blanditiis? Porro iste minima blanditiis rem cupiditate assumenda est nostrum ut? Quas reprehenderit vel est natus, laborum perspiciatis dolore id.</p>
-                        </div>
-                    </div>
-                    <div class="col-2 fs-3 text-primary d-flex align-items-center">
-                        <i class="fa-solid fa-user-xmark"></i> Inactive
-                    </div>
-                </div>
-            </div>
-        </a>
+        <div class="justify-content-center d-flex">
+            {{ $farms->links() }}
+        </div>
     </div>
 @endsection

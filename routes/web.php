@@ -74,15 +74,21 @@ Route::group(['middleware'=>'auth'], function(){
     Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware'=>'admin'],function(){
         Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 
+        // CONSUMER
         Route::get('/consumer-management/{status?}', [AdminHomeController::class, 'consumerManagement'])->name('consumer.management');
         Route::get('/consumer/{id}/profile', [AdminHomeController::class, 'consumerProfile'])->name('consumer.profile');
         Route::delete('/consumer/{user}/deactivate', [AdminHomeController::class, 'consumerDeactivate'])->name('consumer.deactivate');
         Route::patch('/consumer/{user}/activate', [AdminHomeController::class, 'consumerActivate'])->withTrashed()->name('consumer.activate');
         Route::get('/consumer/search', [AdminHomeController::class, 'consumerSearch'])->name('consumer.search');
 
-        Route::get('/farm-management', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
-        Route::get('/farm/profile', [AdminHomeController::class, 'farmProfile'])->name('farm.profile');
+        // FARM
+        Route::get('/farm-management/{status?}/{product?}', [AdminHomeController::class, 'farmManagement'])->name('farm.management');
+        Route::get('/farm/{id}/profile', [AdminHomeController::class, 'farmProfile'])->name('farm.profile');
+        Route::get('/farm/search', [AdminHomeController::class, 'farmSearch'])->name('farm.search');
+        Route::delete('/farm/{user}/deactivate', [AdminHomeController::class, 'farmDeactivate'])->name('farm.deactivate');
+        Route::patch('/farm/{user}/activate', [AdminHomeController::class, 'farmActivate'])->withTrashed()->name('farm.activate');
 
+        // ITEM
         Route::get('/item-management', [AdminHomeController::class, 'itemManagement'])->name('item.management');
         Route::get('/item/show', [AdminHomeController::class, 'showItem'])->name('item.show');
 
