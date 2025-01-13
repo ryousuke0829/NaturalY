@@ -24,8 +24,34 @@ class Item extends Model
         'user_id',
     ];
 
+    // Relation
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    // Favorite or not
+    public function isFavoritedBy($userId)
+    {
+        return $this->favorites()->where('user_id', $userId)->exists();
+    }
+
+    // Count the niumber of favorites of its Item 
+    public function favoriteCount()
+    {
+        return $this->hasMany(Favorite::class, 'item_id', 'id')->count();
+    }
+
 }

@@ -170,7 +170,7 @@
                                 
                                     {{-- Item Listing --}}
                                     <div class="col-4 d-flex flex-column align-items-center">
-                                        <a class="dropdown-item w-auto" href="{{route('farm.createItem')}}">
+                                        <a class="dropdown-item w-auto" href="{{route('farm.create')}}">
                                             <i class="fa-solid fa-apple-whole text-secondary icon-sm"></i>
                                             <p class="text-secondary my-auto">List Item</p>
                                         </a>

@@ -54,7 +54,7 @@ padding: 0.4rem 2rem;
 
 {{-- Content Section --}}
 <div class="container">
-
+    
     {{-- Item Card --}}
     <p class="title mb-3">LET'S BITE ORGANIC</p>
 

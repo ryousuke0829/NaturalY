@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
     {{-- css --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <style>
@@ -169,12 +170,20 @@
                         <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold fs-5">{{ Auth::user()->name }}</span> san!!</li>
 
                         {{-- Cart --}}
-                        <li class="nav-item  me-2">
-                            <a class="nav-link mx-auto text-center nav-link right-item" href="{{route('consumer.cart')}}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <li class="nav-item me-2 position-relative">
+                            <a class="nav-link mx-auto text-center nav-link right-item" href="{{route('consumer.showCart')}}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa-solid fa-cart-shopping fs-3 nav-item nav-icon"></i>
+                        
+                                @if ($cartQuantity > 0)
+                                    <span class="position-absolute top-25 start-50 translate-middle text-danger small fw-bold">
+                                        {{ $cartQuantity }}
+                                    </span>
+                                @endif
+                        
                                 <span class="nav-text">Cart</span>
                             </a>
                         </li>
+                        
                         
                         {{-- Hamburger --}}
                         <li class="nav-item dropdown">
@@ -209,11 +218,18 @@
 
                                     {{-- Favorite --}}
                                     <div class="col-6 d-flex flex-column align-items-center">
-                                        <a class="dropdown-item p-0" href="{{route('consumer.favorites')}}">
-                                            <i class="fa-regular fa-heart text-secondary"></i>
-                                            <p class="text-secondary mt-2 mb-0 text-sm">Favorites</p>
+                                        <a class="dropdown-item p-0 position-relative" href="{{ route('consumer.showFavorites') }}">
+                                            <i class="fa-regular fa-heart text-secondary fs-2"></i>
+                                            @if ($favoriteCount)
+                                                <span class="position-absolute top-25 start-50 translate-middle text-muted small fw-bold">
+                                                    {{ $favoriteCount }}
+                                                </span>
+                                            @endif
+                                            <p class="text-secondary mt-1 mb-0 text-sm">Favorites</p>
                                         </a>
                                     </div>
+                                    
+                                    
 
                                 </div>
 
@@ -229,11 +245,11 @@
 
                                     {{-- Following --}}
                                     <div class="col-6 d-flex flex-column align-items-center mt-3">
-                                        <a class="dropdown-item p-0" href="{{route('consumer.followings')}}">
+                                        <a class="dropdown-item p-0" href="{{ route('consumer.followings') }}">
                                             <i class="fa-solid fa-tractor text-secondary icon-sm"></i>
-                                            <p class="text-secondary mt-1 mb-0 text-sm">Followings</p>
+                                            <p class="text-secondary mt-1 mb-0 text-sm">Follow</p>
                                         </a>
-                                    </div>
+                                    </div>                                    
 
                                 </div>
                                 <hr>

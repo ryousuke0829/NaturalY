@@ -21,13 +21,12 @@ class FarmController extends Controller
     {   
         $user = $this->user->findOrFail(Auth::user()->id);
         $items = $user->with('items')->get();
-        return view('farm.index')
-            ->with('user', $user)
-            ->with('items', $items);
+        return view('farm.index', compact('user', 'items'));
     }
 
-    public function createItem()
+    public function create()
     {
+        dd('createItem');
         $user = Auth::user();
         $item = new Item(); 
         return view('farm.item-list', compact('user', 'item'));
@@ -72,24 +71,7 @@ class FarmController extends Controller
         
         $item->save();
 
-        return redirect()->route('farm.index')->with('user', $user);
-    }
-
-    public function showItem($item_id)
-    {   
-        // tentative data
-        $reviews = [
-            [
-                'username' => 'Sasaki Ryosuke',
-                'rating' => 4.5,
-                'comment' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                'date' => '12/24/2024',
-            ],
-        ];
-
-        $user = Auth::user();
-        $item = $this->item->findOrFail($item_id);
-        return view('farm.show-item', compact('item', 'user','reviews'));
+        return redirect()->route('farm.index', compact('user'));
     }
 
     public function editItem($item_id)
@@ -139,7 +121,7 @@ class FarmController extends Controller
         
         $item->save();
 
-        return redirect()->route('farm.index')->with('user', $user);
+        return redirect()->route('farm.index', compact('user'));
     }
 
     // Pending Methods

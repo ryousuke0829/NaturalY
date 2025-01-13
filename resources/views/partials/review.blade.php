@@ -1,14 +1,34 @@
-<div class="row d-flex align-items-center mb-1">
-    <div class="col-auto pe-0">
-        <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
+@forelse ($reviews as $review)
+    <hr class="mt-0">
+    <div class="bg-light d-flex justify-content-between align-items-center">
+        <div>
+            <span class="h3">{{ $review->title }}</span>
+        </div>
+        <div>
+            <span class="h3">☆{{ $review->rating }}.0</span>
+        </div>
     </div>
-    <div class="col">
-        <p class="mb-0 h4">{{ $review['username'] }}</p>
+    <div>
+        <h4 class="card-title text-primary mb-2"></h4>
+        <p class="card-text">{{ $review->comment }}</p>
     </div>
-    <div class="col">
-        <p class="mb-0 text-end h5">☆{{ $review['rating'] }}</p>
+    <div class="ms-auto small">
+
+        <div class="row g-1">
+            <div class="col-auto text-muted">Reviewed by</div>
+            @if ($review->user_id === Auth::id())
+            <span class="col text-primary">You</span>
+            @else
+            <div class="col text-muted">
+                {{ $review->user->name ?? 'Anonymous' }}
+            </div>
+            @endif
+        </div>
+        <div class="row g-1">
+            <div class="col-auto text-muted">Reviewed on</div>
+            <div class="col text-muted">{{ $review->created_at->format('Y/m/d H:i') }}</div>
+        </div>
     </div>
-</div>
-<p class="mb-0">{{ $review['comment'] }}</p>
-<p class="text-end text-muted text-sm my-0">{{ $review['date'] }}</p>
-<hr class="mt-0 mb-5">
+@empty
+    <p class="text-center text-muted">No reviews available.</p>
+@endforelse

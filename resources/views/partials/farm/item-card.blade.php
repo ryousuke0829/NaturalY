@@ -1,6 +1,6 @@
 <div class="col-3">
     <div class="card h-100 shadow-lg border-1">
-        <a href="{{route('farm.showItem',['item_id' => $item->id])}}" class="text-decoration-none text-dark">
+        <a href="{{route('showItem',['item_id' => $item->id])}}" class="text-decoration-none text-dark">
             <div class="position-relative">
                 <img src="{{ $item->picture_1 }}" class="card-img-top" alt="Item Image">
                 <div class="position-absolute top-0 start-0 px-2 text-white bg-danger opacity-50">

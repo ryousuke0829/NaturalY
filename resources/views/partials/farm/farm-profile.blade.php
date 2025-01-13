@@ -20,7 +20,12 @@
                         <a href="#" class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->second_product}}</a>
                     </div>
                     <div class="col-4">
-                        <h6 class="text-end">831 Followers</h6>   
+                        <h6 class="text-end">
+                            <a href="{{ route('farm.showFollowers', ['farm_id' => $user->id]) }}" class="text-decoration-none fw-bold fs-5 text-dark">
+                                {{ $user->followers->count() }} 
+                                {{ $user->followers->count() === 1 ? 'Follower' : 'Followers' }}
+                            </a>
+                        </h6>                        
                     </div>
                 </div>
             </div>
@@ -44,5 +49,3 @@
             @endforeach
         </div>
     </div>
-
-

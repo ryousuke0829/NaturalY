@@ -17,10 +17,8 @@
                     Update Organic !
                     </button>
                 </div>
-                
             </form>
         </div>
     </div>
-    
 </div>
 @endsection

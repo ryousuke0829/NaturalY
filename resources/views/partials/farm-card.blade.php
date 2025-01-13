@@ -1,5 +1,5 @@
 <div class="col-6">
-    <a href="{{ route('farmProfile') }}" class="text-decoration-none text-dark">
+    <a href="{{ route('showfarmProfile', ['farm_id' => $farm->id]) }}" class="text-decoration-none text-dark">
         <div class="card h-100 shadow-sm">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -19,7 +19,10 @@
                                 <h4 class="card-title mb-0 text-ellipsis">{{ $farm->farm_name }}</h4>
                             </div>
                             <div class="col">
-                                <h5 class="text-muted text-end">{{ $farm->followers ?? 0 }} Followers</h5>
+                                <h5 class="text-muted text-end">
+                                    {{ $farm->followers_count ?? 0 }} 
+                                    {{ ($farm->followers_count ?? 0) === 1 ? 'Follower' : 'Followers' }}
+                                </h5>
                             </div>
                         </div>
                         <p class="badge text-bg-success text-decoration-none mb-2 rounded-pill">{{ $farm->first_product }}</p>
