@@ -42,26 +42,69 @@ class AdminHomeController extends Controller
             $consumers = User::whereRoleId(User::CONSUMER_ROLE)->withTrashed()->paginate(10);
         }
 
-        return view('admin.consumer-management')
-                ->with('consumers', $consumers);
+        return view('admin.consumer-management')->with('consumers', $consumers);
     }
 
     public function consumerProfile($id)
     {
         $user = User::withTrashed()->findOrFail($id);
 
-        return view('admin.consumer-profile')
-                ->with('consumer', $user);
+        return view('admin.consumer-profile')->with('consumer', $user);
     }
 
-    public function farmManagement()
+    public function farmManagement($status = '', $product = '')
     {
-        return view('admin.farm-management');
+        if ($status == 'active') {
+            $farms = User::whereRoleId(User::FARM_ROLE)
+                        ->when($product, function ($query, $product) {
+                            $query->where(function ($q) use ($product) {
+                                $q->where('first_product', $product)
+                                ->orWhere('second_product', $product);
+                            });
+                        })
+                        ->paginate(10);
+        } elseif ($status == 'inactive') {
+            $farms = User::whereRoleId(User::FARM_ROLE)
+                        ->when($product, function ($query, $product) {
+                            $query->where(function ($q) use ($product) {
+                                $q->where('first_product', $product)
+                                ->orWhere('second_product', $product);
+                            });
+                        })
+                        ->onlyTrashed()
+                        ->paginate(10);
+        } else {
+            $farms = User::whereRoleId(User::FARM_ROLE)
+                        ->when($product, function ($query, $product) {
+                            $query->where(function ($q) use ($product) {
+                                $q->where('first_product', $product)
+                                ->orWhere('second_product', $product);
+                            });
+                        })
+                        ->withTrashed()->paginate(10);
+        }
+
+        $farmProducts = User::select('first_product', 'second_product')
+            ->get()
+            ->map(function ($user) {
+                return [$user->first_product, $user->second_product];
+            })
+            ->flatten() // Flattens the nested arrays into a single-level array
+            ->filter() // Remove null and falsy values
+            ->unique() // Remove duplicate values
+            ->values() // Re-index the array
+            ->toArray();
+
+        return view('admin.farm-management')
+                ->with('farms', $farms)
+                ->with('farmProducts', $farmProducts);
     }
 
-    public function farmProfile()
+    public function farmProfile($id)
     {
-        return view('admin.farm-profile');
+        $farm = User::withTrashed()->findOrFail($id);
+
+        return view('admin.farm-profile')->with('farm', $farm);
     }
 
     public function itemManagement()
@@ -106,5 +149,34 @@ class AdminHomeController extends Controller
                         ->paginate(10);
         
         return view('admin.consumer-search', compact('consumers', 'search'));
+    }
+
+    public function farmSearch(Request $request){
+        $request->validate([
+            'search' => 'required'
+        ]);
+
+        $search = $request->search;
+
+        $farms = User::where('name','like', '%'. $search .'%')
+                        ->whereRoleId(User::FARM_ROLE)
+                        ->withTrashed()
+                        ->paginate(10);
+        
+        return view('admin.farm-search', compact('farms', 'search'));
+    }
+
+    public function farmDeactivate(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.farm.management');
+    }
+
+    public function farmActivate(User $user)
+    {
+        $user->restore();
+
+        return redirect()->route('admin.farm.management');
     }
 }
