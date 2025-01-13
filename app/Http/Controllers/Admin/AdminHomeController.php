@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -108,13 +109,15 @@ class AdminHomeController extends Controller
     }
 
     public function itemManagement()
-    {
-        return view('admin.item-management');
+    {   
+        $items = Item::paginate(10);
+
+        return view('admin.item-management')->with('items', $items);
     }
 
-    public function showItem()
+    public function showItem(Item $item)
     {
-        return view('admin.show-item');
+        return view('admin.show-item')->with('item', $item);
     }
 
     public function analysis()
