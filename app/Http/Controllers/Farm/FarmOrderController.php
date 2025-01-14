@@ -9,23 +9,32 @@ use App\Models\Order;
 class FarmOrderController extends Controller
 {
 
-    public function orderMng()
+    public function orderMng(Request $request)
     {
-        $farmId = Auth::id();
-
-        // 農家が出品した商品に関連する注文を取得
-        $orders = Order::whereHas('orderItems.item', function ($query) use ($farmId) {
+        $farmId = auth()->id();
+    
+        $sortOrder = $request->get('sort', 'desc'); 
+        $status = $request->get('status');
+    
+        $ordersQuery = Order::whereHas('orderItems.item', function ($query) use ($farmId) {
             $query->where('user_id', $farmId);
-        })->with(['orderItems.item'])->get();
-
+        })->with(['orderItems.item']);
+    
+        if ($status) {
+            $ordersQuery->where('status', $status === 'unshipped' ? 'pending' : $status);
+        }
+    
+        $orders = $ordersQuery->orderBy('created_at', $sortOrder)->paginate(8); 
+    
         return view('farm.order-mng', compact('orders'));
     }
+    
+    
 
     public function updateStatus(Request $request, $id)
     {
         $order = Order::findOrFail($id);
 
-        // ステータスのバリデーション
         $validated = $request->validate([
             'status' => 'required|string|in:pending,shipped',
         ]);
