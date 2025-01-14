@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Farm\FarmController;
+use App\Http\Controllers\Farm\FarmOrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
@@ -17,19 +17,18 @@ use Illuminate\Support\Facades\Route;
 /**
  * Controller for regular users
  */
+Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/all-farms', [HomeController::class, 'allFarms'])->name('allFarms');
 Route::get('/farm-profile', [HomeController::class, 'farmProfile'])->name('farmProfile');
-Route::get('/farm/{farm_id}', [HomeController::class, 'showFarmProfile'])->name('showfarmProfile');
+Route::get('/farm-info/{farm_id}', [HomeController::class, 'showFarmProfile'])->name('showfarmProfile');
 Route::get('/all-items', [HomeController::class, 'allItems'])->name('allItems');
 Route::get('/show-item/{item_id}', [HomeController::class, 'showItem'])->name('showItem');
 
 Auth::routes();
 
-
 Route::get('/about', function () {return view('about');})->name('about');
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/', [HomeController::class, 'index'])->name('index');
     // Resister for users
     Route::get('/select-role', [ProfileController::class, 'selectRole'])->name('registerRole'); 
     Route::post('/register-form', [ProfileController::class, 'storeRole'])->name('storeRole');
@@ -77,26 +76,36 @@ Route::group(['middleware'=>'auth'], function(){
         Route::post('/follow/{farm_id}', [FollowController::class, 'follow'])->name('follow');
         Route::post('/unfollow/{farm_id}', [FollowController::class, 'unfollow'])->name('unfollow');
         Route::post('/consumer/toggle-follow/{farm_id}', [FollowController::class, 'toggleFollow'])->name('toggleFollow');
-
-
     });
 
     /**
      * Routes related to FARM
      */
-    Route::group(['prefix'=>'farm', 'as'=>'farm.'],function(){
+    Route::group(['prefix'=>'farm', 'as'=>'farm.', 'middleware'=>'auth'],function(){
+
         Route::get('/', [FarmController::class, 'index'])->name('index');
-        Route::get('/create-item', [FarmController::class, 'create'])->name('create');
+
+        // Item Listing
+        Route::get('/list-item', [FarmController::class, 'createItem'])->name('createItem');
         Route::post('/store-item', [FarmController::class, 'storeItem'])->name('storeItem');
+        Route::get('/item/{item_id}', [FarmController::class, 'showItem'])->name('showItem');
         Route::get('/item/edit/{item_id}', [FarmController::class, 'editItem'])->name('editItem');
         Route::patch('/item/update/{item_id}', [FarmController::class, 'updateItem'])->name('updateItem');
+
+        // Follow
         Route::get('/farm/{farm_id}/followers', [FollowController::class, 'showFollowers'])->name('showFollowers');
+
+        // Order Management
+        Route::get('/order-management', [FarmOrderController::class, 'orderMng'])->name('orderMng');
+        Route::patch('/orders/{id}/status', [FarmOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
         
         // Pending Route
         Route::get('/item-update', [FarmController::class, 'itemUpdate'])->name('itemUpdate');
-        Route::get('/order-management', [FarmController::class, 'orderMng'])->name('orderMng');
+        // Route::get('/order-management', [FarmController::class, 'orderMng'])->name('orderMng');
         Route::get('/analysis', [FarmController::class, 'analysis'])->name('analysis');
     });
+
 
     /**
      * Routes related to ADMIN

@@ -1,128 +1,45 @@
 @extends('layouts.farm.app')
 
 @section('content')
-<div class="container">
-    <div class="card shadow">
-        <div class="card-body py-5 px-5">
-            <!-- Title -->
-            <p class="title nav-color text-start mb-5 text-shadow">
-                ORDER MANAGEMENT
-            </p>
-            {{-- Item Card --}}
-            <div class="row mb-4">
-                <div class="card shadow-sm p-0">
-                    <div class="card-header py-1">
-                        <div class="row">
-                            <div class="col-2">
-                                <span class="text-muted">Date of Order</span>
-                                <span class="text-danger">2024/12/31</span>
-                            </div>
-                            <div class="col-2">
-                                <span class="text-muted">
-                                    Quantity<br>3
-                                </span>
-                            </div>
-                            <div class="col-2">
-                                <span class="text-muted">
-                                    Total<br>$12.00
-                                </span>
-                            </div>
-                            <div class="col-auto">
-                                <span class="text-muted">
-                                    Shipping Adress<br>Tokyo
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-0">
-                        <div class="col-md-3">
-                            <img src="/storage/images/banana.jpg" class="img-fluid rounded-bottom-left img-cover h-100" alt="Item Image">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card-body mx-4">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <div class="d-flex align-items-center">
-                                            <a href="{{route('farmProfile')}}" class="text-decoration-none text-dark">
-                                                <img src="/storage/images/topbanner.jpg" alt="Farm Image" class="rounded-circle avatar-sm">
-                                                <span class="mb-0 ms-1 fw-bold">SASAKI NATURAL FARM</span>
-                                            </a>            
-                                        </div>
-                                        <a href="{{route('showItem')}}" class="text-decoration-none text-dark">
-                                            <h2 class="card-title mt-2">Good Banana</h2>
-                                            <p class="text-muted">10 bananas</p>
-                                        </a>
-                                    </div>
-                                    <div class="col-3 d-flex align-items-center">
-                                        <a href="#" class="text-decoration-none h3 text-center text-danger">
-                                            Unshipped
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="card shadow-sm p-0">
-                    <div class="card-header py-1">
-                        <div class="row">
-                            <div class="col-2">
-                                <span class="text-muted">
-                                    Date of Order<br>2024/12/31
-                                </span>
-                            </div>
-                            <div class="col-2">
-                                <span class="text-muted">
-                                    Quantity<br>3
-                                </span>
-                            </div>
-                            <div class="col-2">
-                                <span class="text-muted">
-                                    Total<br>$12.00
-                                </span>
-                            </div>
-                            <div class="col-auto">
-                                <span class="text-muted">
-                                    Shipping Adress<br>Tokyo
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-0">
-                        <div class="col-md-3">
-                            <img src="/storage/images/banana.jpg" class="img-fluid rounded-bottom-left img-cover h-100" alt="Item Image">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card-body mx-4">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <div class="d-flex align-items-center">
-                                            <a href="{{route('farmProfile')}}" class="text-decoration-none text-dark">
-                                                <img src="/storage/images/topbanner.jpg" alt="Farm Image" class="rounded-circle avatar-sm">
-                                                <span class="mb-0 ms-1 fw-bold">SASAKI NATURAL FARM</span>
-                                            </a>            
-                                        </div>
-                                        <a href="{{route('showItem')}}" class="text-decoration-none text-dark">
-                                            <h2 class="card-title mt-2">Good Banana</h2>
-                                            <p class="text-muted">10 bananas</p>
-                                        </a>
-                                    </div>
-                                    <div class="col-3 d-flex align-items-center">
-                                        <a href="#" class="text-decoration-none h3 text-center">
-                                            <i class="fa-regular fa-circle-check fs-2"></i> <br>
-                                            Shipped
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Order Management</h1>
 
-        </div>
-    </div>
+    @if ($orders->isEmpty())
+        <p class="text-center text-muted fs-2">No orders received yet.</p>
+    @else
+        <table class="table table-bordered text-center">
+            <thead class="table-light">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orders as $order)
+                    <tr>
+                        <td>{{ $order->id }}</td>
+                        <td>{{ $order->shipping_name }}</td>
+                        <td>${{ number_format($order->total_price, 2) }}</td>
+                        <td>
+                            <form action="{{ route('farm.orders.updateStatus', $order->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <select name="status" class="form-select" onchange="this.form.submit()">
+                                    <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="shipped" {{ $order->status === 'shipped' ? 'selected' : '' }}>Shipped</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-sm">Details</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
 </div>
 @endsection
