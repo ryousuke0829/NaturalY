@@ -108,11 +108,32 @@ class AdminHomeController extends Controller
         return view('admin.farm-profile')->with('farm', $farm);
     }
 
-    public function itemManagement()
+    public function itemManagement($status = '', $category = '')
     {   
-        $items = Item::paginate(10);
+        if ($status == 'active') {
+            $items = Item::when($category, function ($query, $category) {
+                            $query->where('category', $category);
+                        })
+                        ->paginate(10);
+        } elseif ($status == 'inactive') {
+            $items = Item::when($category, function ($query, $category) {
+                            $query->where('category', $category);
+                        })
+                        ->onlyTrashed()
+                        ->paginate(10);
+        } else {
+            $items = Item::when($category, function ($query, $category) {
+                            $query->where('category', $category);
+                        })
+                        ->withTrashed()
+                        ->paginate(10);
+        }
+        
+        $itemsCategories = Item::pluck('category')->unique()->toArray(); 
 
-        return view('admin.item-management')->with('items', $items);
+        return view('admin.item-management')
+                ->with('items', $items)
+                ->with('itemsCategories', $itemsCategories);
     }
 
     public function showItem(Item $item)
@@ -181,5 +202,33 @@ class AdminHomeController extends Controller
         $user->restore();
 
         return redirect()->route('admin.farm.management');
+    }
+
+    public function itemSearch(Request $request){
+        $request->validate([
+            'search' => 'required'
+        ]);
+
+        $search = $request->search;
+
+        $items = Item::where('name','like', '%'. $search .'%')
+                        ->withTrashed()
+                        ->paginate(10);
+        
+        return view('admin.item-search', compact('items', 'search'));
+    }
+
+    public function itemDeactivate(Item $item)
+    {
+        $item->delete();
+
+        return redirect()->route('admin.item.management');
+    }
+
+    public function itemActivate(Item $item)
+    {
+        $item->restore();
+
+        return redirect()->route('admin.item.management');
     }
 }

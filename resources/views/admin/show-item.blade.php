@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    @include('admin.modal.item-status')
 
     {{-- Item Card --}}
     <div class="card shadow-sm px-5 pb-3">
@@ -173,7 +174,15 @@
             </div>
         
             <div class="col">
-                <a href="#" class="btn btn-outline-danger w-100">Active</a>
+                @if ($item->trashed())
+                    <button class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#activate-item-{{ $item->id }}">
+                        Activate {{ $item->name }}
+                    </button>
+                @else
+                    <button class="btn btn-outline-secondary w-100" data-bs-toggle="modal" data-bs-target="#deactivate-item-{{ $item->id }}">
+                        Deactivate {{ $item->name }}
+                    </button>
+                @endif
             </div>
         </div>
     </div>
