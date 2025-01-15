@@ -12,21 +12,21 @@
                     <p class="card-title mb-0 h3 text-ellipsis">{{ $item->name }}</p>
                     <div class="ms-auto">
                         @if($item->isFavoritedBy(Auth::id()))
-                            <form action="{{ route('consumer.removeFromFavorites', $item->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="item_id" value="{{ $item->id }}">
-                                <button type="submit" class="btn btn-sm shadow-none p-0 text-danger">
-                                    <i class="fa-solid fa-heart text-danger"></i>
-                                </button>
-                            </form>
+                        <form action="{{ route('consumer.removeFromFavorites', $item->id) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="item_id" value="{{ $item->id }}">
+                            <button type="submit" class="btn btn-sm shadow-none p-0 text-danger">
+                                <i class="fa-solid fa-heart text-danger"></i>
+                            </button>
+                        </form>
                         @else
-                            <form action="{{ route('consumer.addToFavorites', $item->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="item_id" value="{{ $item->id }}">
-                                <button type="submit" class="btn btn-sm shadow-none p-0 m-0">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </form>
+                        <form action="{{ route('consumer.addToFavorites', $item->id) }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="item_id" value="{{ $item->id }}">
+                            <button type="submit" class="btn btn-sm shadow-none p-0 m-0">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </form>
                         @endif
                     </div>
                 </div>

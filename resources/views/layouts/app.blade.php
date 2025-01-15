@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,11 +10,14 @@
     <title>{{ config('app.name', 'NaturalY') }}</title>
 
     {{-- Bootstrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     {{-- Font-awsome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -21,119 +25,147 @@
     <!-- Google Fonts で IM FELL French Canon SC をインポート -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Noto+Sans+JP:wght@100..900&display=swap"
+        rel="stylesheet">
 
     {{-- css --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <style>
-    html, body {
-        height: 100%; 
-        margin: 0; 
-    }
-    
-    #app {
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
-    }
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
 
-    main {
-        flex: 1;
-    }
+        #app {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
 
-    footer {
-        background-color: #cecdcd;
-        text-align: center;
-        padding: 10px 0; 
-    }
+        main {
+            flex: 1;
+        }
 
-    .brand-text {
-        text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-        -webkit-text-stroke-width: 1;
-        -webkit-text-stroke-color: #9A9A9A;
-        font-family: "HiraMinProN-W6";
-        font-size: 3rem;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 100%;
-        letter-spacing: 4px;
-        background-image: linear-gradient(180deg, #6cc859 0%, #cecdcd 70%, #965500 100%);
-        -webkit-background-clip: text; 
-        -webkit-text-fill-color: transparent; 
-        -webkit-text-stroke: 0.5px black;
-    }
-    .logo-style {
-    height: 55px;
-    margin-right: 10px;
-    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
-    }
+        footer {
+            background-color: #cecdcd;
+            text-align: center;
+            padding: 10px 0;
+        }
 
-    .nav-text{
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
-        font-weight: 600;
-        font-size: 1rem;
-        -webkit-text-stroke: 0.2px black;
-        color: white;
-        font-family: Raleway;
-    }
-    .nav-icon{
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
-        -webkit-text-stroke: 0.2px black;
-        color: white;
-        font-size: 1.5rem;
-    }
-    #login-link:hover {
-    
-    }
-    .nav-link.right-item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    }
-    .nav-link.right-item:hover {
-    color: red; 
-    text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7);
-    transform: scale(1.2); 
-    transition: all 0.4s ease; 
-    }
+        .brand-text {
+            text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+            -webkit-text-stroke-width: 1;
+            -webkit-text-stroke-color: #9A9A9A;
+            font-family: "HiraMinProN-W6";
+            font-size: 3rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 100%;
+            letter-spacing: 4px;
+            background-image: linear-gradient(180deg, #6cc859 0%, #cecdcd 70%, #965500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 0.5px black;
+        }
 
-    @keyframes shake {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    20% { transform: translate(-2px, 1px) rotate(-1deg); }
-    40% { transform: translate(2px, -1px) rotate(1deg); }
-    60% { transform: translate(-1px, -2px) rotate(-1deg); }
-    80% { transform: translate(1px, 2px) rotate(1deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-    }
-    .logo:hover {
-    animation: shake 0.4s ease-in-out;
-    }  
-    main.py-4 {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    }
+        .logo-style {
+            height: 55px;
+            margin-right: 10px;
+            filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+        }
 
-    body {
-    padding-top: 80px;
-    }
-    
-</style>
+        .nav-text {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+            font-weight: 600;
+            font-size: 1rem;
+            -webkit-text-stroke: 0.2px black;
+            color: white;
+            font-family: Raleway;
+        }
+
+        .nav-icon {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+            -webkit-text-stroke: 0.2px black;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        #login-link:hover {}
+
+        .nav-link.right-item {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .nav-link.right-item:hover {
+            color: red;
+            text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7);
+            transform: scale(1.2);
+            transition: all 0.4s ease;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            20% {
+                transform: translate(-2px, 1px) rotate(-1deg);
+            }
+
+            40% {
+                transform: translate(2px, -1px) rotate(1deg);
+            }
+
+            60% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(1px, 2px) rotate(1deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        .logo:hover {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        main.py-4 {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        body {
+            padding-top: 80px;
+        }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+
 <body class="bg-consumer">
-    <div id="app" >
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100" style="background:#FFF5E8; z-index: 1050;">
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100"
+            style="background:#FFF5E8; z-index: 1050;">
             <div class="container">
                 <a class="navbar-brand logo d-flex align-items-center" href="{{ url('/') }}">
                     <img src="{{ asset('storage/images/logo.png') }}" alt="NaturalY Logo" class="logo-style">
                     <span class="brand-text">NaturalY</span>
-                </a>                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -142,64 +174,74 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        
+
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link right-item" href="{{ route('login') }}" id="login-link">
-                                        <i class="fa-solid fa-right-to-bracket nav-icon"></i>
-                                        <span class="nav-text">
-                                            {{ __('Login') }}
-                                        </span>
-                                    </a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link right-item" href="{{ route('login') }}" id="login-link">
+                                <i class="fa-solid fa-right-to-bracket nav-icon"></i>
+                                <span class="nav-text">
+                                    {{ __('Login') }}
+                                </span>
+                            </a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link right-item" href="{{ route('register') }}">
-                                        <i class="fa-solid fa-user-plus nav-icon"></i>
-                                        <span class="nav-text">
-                                            {{ __('Register') }}
-                                        </span>
-                                    </a>                                    
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link right-item" href="{{ route('register') }}">
+                                <i class="fa-solid fa-user-plus nav-icon"></i>
+                                <span class="nav-text">
+                                    {{ __('Register') }}
+                                </span>
+                            </a>
+                        </li>
+                        @endif
                         @else
-                        <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold fs-5">{{ Auth::user()->name }}</span> san!!</li>
+                        <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold fs-5">{{ Auth::user()->name
+                                }}</span> san!!</li>
 
                         {{-- Cart --}}
                         <li class="nav-item me-2 position-relative">
-                            <a class="nav-link mx-auto text-center nav-link right-item" href="{{route('consumer.showCart')}}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a class="nav-link mx-auto text-center nav-link right-item"
+                                href="{{route('consumer.showCart')}}" role="button" aria-haspopup="true"
+                                aria-expanded="false" v-pre>
                                 <i class="fa-solid fa-cart-shopping fs-3 nav-item nav-icon"></i>
-                        
+
                                 @if ($cartQuantity > 0)
-                                    <span class="position-absolute top-25 start-50 translate-middle text-danger small fw-bold">
-                                        {{ $cartQuantity }}
-                                    </span>
+                                <span
+                                    class="position-absolute top-25 start-50 translate-middle text-danger small fw-bold">
+                                    {{ $cartQuantity }}
+                                </span>
                                 @endif
-                        
+
                                 <span class="nav-text">Cart</span>
                             </a>
                         </li>
-                        
-                        
+
+
                         {{-- Hamburger --}}
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link mx-auto text-center nav-link right-item" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fa-solid fa-burger fs-3 nav-item nav-icon"></i>
-                                    <span class="nav-text">Menu</span>
+                            <a id="navbarDropdown" class="nav-link mx-auto text-center nav-link right-item" href="#"
+                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                v-pre>
+                                <i class="fa-solid fa-burger fs-3 nav-item nav-icon"></i>
+                                <span class="nav-text">Menu</span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end p-3 w-100" aria-labelledby="navbarDropdown">
-                                
+
                                 <!-- User Icon and Name -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-center gap-1" href="{{route('consumer.showProfile')}}">
+                                <a class="dropdown-item d-flex align-items-center justify-content-center gap-1"
+                                    href="{{route('consumer.showProfile')}}">
                                     @if (Auth::user()->avatar)
-                                    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" class="rounded-circle avatar-sm"><strong class="text-secondary">{{ Auth::user()->name }}</strong>
+                                    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}"
+                                        class="rounded-circle avatar-sm"><strong class="text-secondary">{{
+                                        Auth::user()->name }}</strong>
                                     @else
-                                    <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>{{ Auth::user()->name }}
+                                    <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>{{ Auth::user()->name
+                                    }}
                                     @endif
                                 </a>
                                 <hr>
@@ -213,23 +255,25 @@
                                             <i class="fa-solid fa-pen-nib text-secondary icon-sm"></i>
                                             <p class="text-secondary mt-1 mb-0 text-sm">Update</p>
                                         </a>
-                                    </div>                                   
+                                    </div>
 
 
                                     {{-- Favorite --}}
                                     <div class="col-6 d-flex flex-column align-items-center">
-                                        <a class="dropdown-item p-0 position-relative" href="{{ route('consumer.showFavorites') }}">
+                                        <a class="dropdown-item p-0 position-relative"
+                                            href="{{ route('consumer.showFavorites') }}">
                                             <i class="fa-regular fa-heart text-secondary fs-2"></i>
                                             @if ($favoriteCount)
-                                                <span class="position-absolute top-25 start-50 translate-middle text-muted small fw-bold">
-                                                    {{ $favoriteCount }}
-                                                </span>
+                                            <span
+                                                class="position-absolute top-25 start-50 translate-middle text-muted small fw-bold">
+                                                {{ $favoriteCount }}
+                                            </span>
                                             @endif
                                             <p class="text-secondary mt-1 mb-0 text-sm">Favorites</p>
                                         </a>
                                     </div>
-                                    
-                                    
+
+
 
                                 </div>
 
@@ -249,22 +293,23 @@
                                             <i class="fa-solid fa-tractor text-secondary icon-sm"></i>
                                             <p class="text-secondary mt-1 mb-0 text-sm">Follow</p>
                                         </a>
-                                    </div>                                    
+                                    </div>
 
                                 </div>
                                 <hr>
-                                
+
                                 <!-- Logout -->
-                                <a class="dropdown-item d-flex align-items-center justify-content-center" href="{{ route('logout') }}"
+                                <a class="dropdown-item d-flex align-items-center justify-content-center"
+                                    href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fa-solid fa-right-from-bracket text-secondary icon-sm"></i>
-                                        <span class="text-secondary mt-1 mb-0 ms-2">{{ __('Logout') }}</span>
+                                    <i class="fa-solid fa-right-from-bracket text-secondary icon-sm"></i>
+                                    <span class="text-secondary mt-1 mb-0 ms-2">{{ __('Logout') }}</span>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
-                        </li>                            
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -274,7 +319,7 @@
         <main class="py-4 {{ request()->is('/') ? '' : 'mt-5' }}">
             @yield('content')
         </main>
-        
+
         <footer class="mt-5">
             <div class="container-fluid text-center">
                 <div class="row">
@@ -303,4 +348,5 @@
     <script src="{{ asset('js/chart/farm-monthly-sales.js') }}"></script>
     <script src="{{ asset('js/chart/farm-follower-report.js') }}"></script>
 </body>
+
 </html>

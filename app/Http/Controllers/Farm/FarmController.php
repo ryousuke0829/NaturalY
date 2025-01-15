@@ -18,10 +18,15 @@ class FarmController extends Controller
     }
 
     public function index()
-    {   
-        $user = $this->user->findOrFail(Auth::user()->id);
-        $items = $user->with('items')->get();
-        return view('farm.index', compact('user', 'items'));
+    {
+        $user = Auth::user();
+    
+        $farms = User::where('role_id', 3)
+            ->withCount('followers')
+            ->orderBy('followers_count', 'desc')
+            ->paginate(10);
+    
+        return view('farm.index', compact('user', 'farms'));
     }
 
     public function createItem()

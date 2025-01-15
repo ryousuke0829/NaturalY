@@ -2,19 +2,20 @@
 
 @section('content')
 <div class="container">
-    {{-- タイトル --}}
+
+    {{-- Tittle --}}
     <div class="text-center mb-4">
         <h1>Write a Review</h1>
         <p class="text-muted">Share your experience about this product!</p>
     </div>
 
-    {{-- フォーム --}}
+    {{-- Form --}}
     <form action="{{ route('consumer.storeReview', ['orderItemId' => $orderItem->id]) }}" method="POST">
         @csrf
         <input type="hidden" name="order_item_id" value="{{ $orderItem->id }}">
 
         <div class="mb-4 text-center">
-            <img src="{{ $orderItem->item->picture_1 }}" alt="{{ $orderItem->item->name }}" class="rounded w-25" >
+            <img src="{{ $orderItem->item->picture_1 }}" alt="{{ $orderItem->item->name }}" class="rounded w-25">
             <h2>{{ $orderItem->item->name }}</h2>
         </div>
 
@@ -27,9 +28,9 @@
             <label for="rating" class="form-label">Rating</label>
             <select class="form-select" id="rating" name="rating" required>
                 <option value="" disabled selected>Select Rating</option>
-                @for ($i = 1; $i <= 5; $i++)
-                    <option value="{{ $i }}" {{ old('rating') == $i ? 'selected' : '' }}>{{ $i }} Star{{ $i > 1 ? 's' : '' }}</option>
-                @endfor
+                @for ($i = 1; $i <= 5; $i++) <option value="{{ $i }}" {{ old('rating')==$i ? 'selected' : '' }}>{{ $i }}
+                    Star{{ $i > 1 ? 's' : '' }}</option>
+                    @endfor
             </select>
         </div>
 

@@ -52,7 +52,7 @@ class ProfileController extends Controller
             return redirect()->route('showRegiserFarm', compact('user'));
         }
     
-        return redirect()->route('home')->withErrors('Invalid role selected.');
+        return redirect()->route('home');
     }
 
     // Save User Profile
@@ -71,17 +71,17 @@ class ProfileController extends Controller
         ]);
     
         $user = $this->user->findOrfail(Auth::user()->id);
-        // dd($user);
+
         if ($request->hasFile('avatar')) {
             $user->avatar = 'data:avatar/'.$request->avatar->extension().';base64,'.base64_encode(file_get_contents($request->avatar));
         } else {
             $user->avatar = $user->avatar ?? null;
         }
-        $user->zip_code = $request->zip_code;
-        $user->prefecture = $request->prefecture;
-        $user->address = $request->address;
+        $user->zip_code     = $request->zip_code;
+        $user->prefecture   = $request->prefecture;
+        $user->address      = $request->address;
         $user->phone_number = $request->phone_number;
-        $user->farm_name = $request->farm_name;
+        $user->farm_name    = $request->farm_name;
         $user->first_product = $request->first_product;
         $user->second_product = $request->second_product;
         $user->farm_description = $request->farm_description;
@@ -98,7 +98,6 @@ class ProfileController extends Controller
         } elseif ($user->role_id == 3) {
             return view('farm.profile-update', compact('user'));
         }
-            
     }
 
     // Update Consumer Profile
@@ -117,7 +116,6 @@ class ProfileController extends Controller
         ]);
     
         $user = $this->user->findOrfail(Auth::user()->id);
-        // dd($user);
 
         $user->zip_code = $request->zip_code;
         $user->prefecture = $request->prefecture;

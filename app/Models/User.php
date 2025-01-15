@@ -78,5 +78,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Follow::class, 'farm_id');
     }
+    
+    public function getFollowersCountAttribute()
+    {
+        return $this->followers()->count();
+    }
 
 }

@@ -22,53 +22,49 @@
                     </div>
                     <div class="row ms-5">
                         <div class="col-md-11">
-                            <input id="name" type="text"
-                                class="form-control @error('name') is-invalid @enderror" 
-                                name="name" value="{{ old('name') }}" 
-                                required autocomplete="name" autofocus>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>
 
                     <!-- Email -->
                     <div class="row ms-5 mt-3">
-                            <label for="email" class="col-form-label text-md-start fw-bold">
-                                {{ __('Email Address') }} <span class="text-danger">*</span>
-                            </label>
+                        <label for="email" class="col-form-label text-md-start fw-bold">
+                            {{ __('Email Address') }} <span class="text-danger">*</span>
+                        </label>
                     </div>
                     <div class="row ms-5">
                         <div class="col-md-11">
-                            <input id="email" type="email" 
-                                    class="form-control @error('email') is-invalid @enderror" 
-                                    name="email" value="{{ old('email') }}" 
-                                    required autocomplete="email">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>
 
                     <!-- Password -->
                     <div class="row ms-5 mt-3">
-                            <label for="password" class="col-form-label text-md-start fw-bold">
-                                {{ __('Password') }} <span class="text-danger">*</span>
-                            </label>
+                        <label for="password" class="col-form-label text-md-start fw-bold">
+                            {{ __('Password') }} <span class="text-danger">*</span>
+                        </label>
                     </div>
                     <div class="row ms-5">
                         <div class="col-md-11">
-                            <input id="password" type="password" 
-                                class="form-control @error('password') is-invalid @enderror" 
-                                name="password" required autocomplete="new-password">
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="password" required
+                                autocomplete="new-password">
                             @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>
@@ -81,8 +77,7 @@
                     </div>
                     <div class="row ms-5">
                         <div class="col-md-11">
-                            <input id="password-confirm" type="password" 
-                                class="form-control" 
+                            <input id="password-confirm" type="password" class="form-control"
                                 name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
@@ -92,7 +87,7 @@
                         <div class="col-md-11">
                             <button type="submit" class="btn btn-yellowgreen w-100 fs-4 fw-bold py-1">
                                 Next
-                            </button>                                
+                            </button>
                         </div>
                     </div>
                 </form>

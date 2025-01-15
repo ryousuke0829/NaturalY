@@ -10,7 +10,6 @@
             <div class="card-body d-flex flex-column">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <p class="card-title mb-0 h5 text-ellipsis">{{ $item->name }}</p>
-                    {{-- {{ $averageRating }} --}}
                 </div>
                 <spa class="badge text-bg-success text-decoration-none mb-2">
                     {{ $item->category }}

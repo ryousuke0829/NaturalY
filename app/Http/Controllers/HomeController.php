@@ -36,18 +36,22 @@ class HomeController extends Controller
 
     public function getFarms()
     {
-        return User::where('role_id', 3)->orderBy('created_at', 'desc');
+    return User::where('role_id', 3)
+            ->withCount('followers')
+            ->orderBy('followers_count', 'desc'); 
     }
     public function getItems()
     {
-        return Item::orderBy('created_at', 'desc');
+        return Item::withCount('favorites') 
+            ->orderBy('favorites_count', 'desc') 
+            ->orderBy('created_at', 'desc'); 
     }
 
     // Home Page
     public function index()
     {   
         $user = Auth::user();
-        $items = $this->getItems()->take(8)->get();
+        $items = $this->getItems()->take(4)->get();
         $farms = $this->getFarms()->take(4)->get()->map(function ($farm) {
             $farm->followers_count = $farm->followers()->count();
             return $farm;
@@ -64,7 +68,7 @@ class HomeController extends Controller
 
     public function allFarms()
     {   
-        $farms = $this->getFarms()->paginate(4); 
+        $farms = $this->getFarms()->paginate(6); 
         return view('all-farms', compact('farms'));
     }
     
@@ -102,8 +106,53 @@ class HomeController extends Controller
     
         return view('show-item', compact('item', 'user', 'reviews', 'averageRating'));
     }
-    
 
+    public function showFarmProfile($farm_id)
+    {
+        $farm = User::where('role_id', 3)->findOrFail($farm_id);
+    
+        $farm->followers_count = $farm->followers()->count();
+    
+        $isFollowing = $farm->followers()->where('user_id', auth()->id())->exists();
+    
+        $items = $farm->items()->get();
+    
+        return view('farm-profile', compact('farm', 'items', 'isFollowing'));
+    }
+    
+    public function searchItems(Request $request)
+    {
+        $query = $request->input('search'); 
+    
+        $items = Item::query()
+            ->where('name', 'like', "%{$query}%") 
+            ->orWhere('category', 'like', "%{$query}%") 
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); 
+    
+        return view('search-results', compact('items', 'query'));
+    }
+    public function searchFarms(Request $request)
+    {
+        $query = $request->input('search');
+    
+        $farms = User::where('role_id', 3)
+            ->where(function ($q) use ($query) {
+                $q->where('farm_name', 'LIKE', "%$query%")
+                  ->orWhere('first_product', 'LIKE', "%$query%")
+                  ->orWhere('second_product', 'LIKE', "%$query%");
+            })
+            ->paginate(12);
+    
+        $categories = User::where('role_id', 3)
+            ->distinct()
+            ->pluck('first_product')
+            ->merge(User::where('role_id', 3)->distinct()->pluck('second_product'))
+            ->unique()
+            ->values();
+    
+        return view('search-farms', compact('farms', 'categories', 'query'));
+    }
 
     // Tentative method
     public function favorites()
@@ -117,16 +166,4 @@ class HomeController extends Controller
         return view('consumer.followings', compact('farms'));
     }
 
-    public function showFarmProfile($farm_id)
-    {
-        $user = Auth::user();
-        $farm = User::where('id', $farm_id)
-            ->where('role_id', 3)
-            ->with('items')
-            ->firstOrFail();
-        
-        $isFollowing = Follow::where('user_id', $user->id)->where('farm_id', $farm_id)->exists();
-
-        return view('farm-profile', compact('farm', 'isFollowing'));
-    }
 }

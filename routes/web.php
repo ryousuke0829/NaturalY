@@ -13,22 +13,25 @@ use App\Http\Controllers\FollowController;
 
 use Illuminate\Support\Facades\Route;
 
-
 /**
- * Controller for regular users
+ * Routes related to Regular(all) users
  */
 Route::get('/', [HomeController::class, 'index'])->name('index');
+// Show general pages
 Route::get('/all-farms', [HomeController::class, 'allFarms'])->name('allFarms');
 Route::get('/farm-profile', [HomeController::class, 'farmProfile'])->name('farmProfile');
 Route::get('/farm-info/{farm_id}', [HomeController::class, 'showFarmProfile'])->name('showfarmProfile');
 Route::get('/all-items', [HomeController::class, 'allItems'])->name('allItems');
 Route::get('/show-item/{item_id}', [HomeController::class, 'showItem'])->name('showItem');
+Route::get('/about', function () {return view('about');})->name('about');
+// Search 
+Route::get('/search-items', [HomeController::class, 'searchItems'])->name('searchItems');
+Route::get('/search-farms', [HomeController::class, 'searchFarms'])->name('searchFarms');
 
 Auth::routes();
 
-Route::get('/about', function () {return view('about');})->name('about');
-
 Route::group(['middleware'=>'auth'], function(){
+
     // Resister for users
     Route::get('/select-role', [ProfileController::class, 'selectRole'])->name('registerRole'); 
     Route::post('/register-form', [ProfileController::class, 'storeRole'])->name('storeRole');
@@ -45,13 +48,13 @@ Route::group(['middleware'=>'auth'], function(){
      * Routes related to CONSUMER
      */
     Route::group(['prefix'=>'consumer', 'as'=>'consumer.'],function(){
+
         // Profile
         Route::get('/profile', [ProfileController::class, 'showProfile'])->name('showProfile');
 
         // Cart
         Route::post('/cart/add', [CartController::class, 'addToCart'])->name('addToCart');
         Route::get('/cart', [CartController::class, 'showCart'])->name('showCart');
-        // Route::post('/cart/item/update', [CartController::class, 'updateQuantity'])->name('consumer.updateQuantity');
         Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])->name('updateQuantity');
         Route::get('/order', [CartController::class, 'showOrder'])->name('showOrder');
 
@@ -99,12 +102,9 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/order-management', [FarmOrderController::class, 'orderMng'])->name('orderMng');
         Route::patch('/orders/{id}/status', [FarmOrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
-        
         // Pending Route
-        Route::get('/item-update', [FarmController::class, 'itemUpdate'])->name('itemUpdate');
         Route::get('/analysis', [FarmController::class, 'analysis'])->name('analysis');
     });
-
 
     /**
      * Routes related to ADMIN

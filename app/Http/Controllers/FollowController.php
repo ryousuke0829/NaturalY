@@ -16,11 +16,12 @@ class FollowController extends Controller
         $follows = Follow::with('farm')
             ->where('user_id', $user->id)
             ->paginate(6);
-
-        $farms = $follows->map(function ($follow) {
+        
+        $farms = collect($follows->items())->map(function ($follow) {
             $farm = $follow->farm;
             $farm->followers_count = $farm->followers()->count();
             return $farm;
+
         });
 
         $farms = new \Illuminate\Pagination\LengthAwarePaginator(
@@ -81,9 +82,10 @@ class FollowController extends Controller
 
     public function showFollowers($farm_id)
     {
-    $farm = User::where('role_id', 3)->findOrFail($farm_id); 
-    $followers = $farm->followers; 
-
-    return view('farm.followers', compact('farm', 'followers'));
+        $farm = User::where('role_id', 3)->findOrFail($farm_id);
+        $followers = $farm->followers()->with('user')->get();
+    
+        return view('farm.followers', compact('farm', 'followers'));
     }
+    
 }

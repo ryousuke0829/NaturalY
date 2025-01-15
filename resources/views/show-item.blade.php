@@ -15,44 +15,51 @@
                 <p class="fs-2 mb-0">☆{{ $averageRating }}</p>
             </div>
         </div>
-        
+
         {{-- Category Tag --}}
-        <a href="#" class="badge rounded-pill text-bg-success text-decoration-none">{{ $item->category ?? 'Uncategorized' }}</a>
-        
+        <a href="#" class="badge rounded-pill text-bg-success text-decoration-none">{{ $item->category ??
+            'Uncategorized' }}</a>
+
         {{-- Item Carousel --}}
         <div id="carouselExampleIndicators" class="carousel slide mt-3 w-75 mx-auto">
             <div class="carousel-indicators">
-                @foreach([$item->picture_1, $item->picture_2, $item->picture_3, Auth::user()->avatar] as $index => $picture)
-                    @if ($picture)
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-current="true" aria-label="Slide {{ $index + 1 }}"></button>
-                    @endif
+                @foreach([$item->picture_1, $item->picture_2, $item->picture_3, Auth::user()->avatar] as $index =>
+                $picture)
+                @if ($picture)
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}"
+                    class="{{ $index == 0 ? 'active' : '' }}" aria-current="true"
+                    aria-label="Slide {{ $index + 1 }}"></button>
+                @endif
                 @endforeach
             </div>
             <div class="carousel-inner">
-                @foreach([$item->picture_1, $item->picture_2, $item->picture_3, Auth::user()->avatar] as $index => $picture)
-                    @if ($picture)
-                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                            <img src="{{ $picture }}" class="d-block w-100" alt="Item Image">
-                        </div>
-                    @endif
+                @foreach([$item->picture_1, $item->picture_2, $item->picture_3, $item->user->avatar] as $index =>
+                $picture)
+                @if ($picture)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                    <img src="{{ $picture }}" class="d-block w-100" alt="Item Image">
+                </div>
+                @endif
                 @endforeach
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        
+
         {{-- Farm Name --}}
         <div class="mt-5">
-            <strong >Farm</strong>
+            <strong>Farm</strong>
             <p class="my-0">{{ $item->user->farm_name}} <span class="text-muted"> ({{ $item->user->name }})</span></p>
         </div>
-        
+
         {{-- Production Area --}}
         <strong class="mt-4">Production Area</strong>
         <span class="my-0">〒{{ $item->user->zip_code}}</span>
@@ -70,11 +77,11 @@
         <strong class="mt-3">Expected Delivery Date</strong>
         <p>
             @if ($item->delivery_date == 'short')
-                3~7 days
+            3~7 days
             @elseif ($item->delivery_date == 'middle')
-                7~14 days
+            7~14 days
             @elseif ($item->delivery_date == 'long')
-                14~21 days
+            14~21 days
             @endif
         </p>
 
@@ -96,23 +103,23 @@
         <h5 class="card-title mb-0 fs-1 text-center mt-4 mb-5 title">REVIEW</h5>
         @include('partials.review')
     </div>
-    
+
 </div>
 
 @if ($user->role_id == 2)
-    {{-- Add to Cart Button --}}
-    <form action="{{ route('consumer.addToCart') }}" method="POST" class="fixed-button bg-warning text-decoration-none">
-        @csrf
-        <input type="hidden" name="item_id" value="{{ $item->id }}">
-        <button type="submit" class="btn btn-link p-0 text-decoration-none">
-            <i class="fa-solid fa-cart-shopping fs-3 text-white">＋</i>
-        </button>
-    </form>
+{{-- Add to Cart Button --}}
+<form action="{{ route('consumer.addToCart') }}" method="POST" class="fixed-button bg-warning text-decoration-none">
+    @csrf
+    <input type="hidden" name="item_id" value="{{ $item->id }}">
+    <button type="submit" class="btn btn-link p-0 text-decoration-none">
+        <i class="fa-solid fa-cart-shopping fs-3 text-white">＋</i>
+    </button>
+</form>
 @elseif ($user->role_id == 3)
-    {{-- Edit Button --}}
-    <a href="{{ route('farm.editItem', ['item_id' => $item->id]) }}" class="fixed-button bg-success text-decoration-none">
-        <i class="fa-solid fa-pen-nib fs-2"></i>
-    </a>
+{{-- Edit Button --}}
+<a href="{{ route('farm.editItem', ['item_id' => $item->id]) }}" class="fixed-button bg-success text-decoration-none">
+    <i class="fa-solid fa-pen-nib fs-2"></i>
+</a>
 @endif
 
 @endsection

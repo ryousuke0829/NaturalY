@@ -1,5 +1,5 @@
 @extends('layouts.app')
-    
+
 @section('content')
 <div class="container">
     <div class="text-center text-primary mb-5">
@@ -7,7 +7,7 @@
         <span class="fw-bold display-6 ms-2">Analysis</span>
     </div>
 
-    <div class="card mb-3 w-100 px-4 pt-3 bg-primary text-white" >
+    <div class="card mb-3 w-100 px-4 pt-3 bg-primary text-white">
         <h1>Total Monthly Sales Report</h1>
         <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between">
@@ -37,11 +37,10 @@
             <a href="#">
                 <div class="card shadow-lg border-1 mb-3">
                     <div class="position-relative">
-                        <img src="/storage/images/banana.jpg" 
-                            class="card-img-top" 
-                            alt="Item Image" 
+                        <img src="/storage/images/banana.jpg" class="card-img-top" alt="Item Image"
                             style="object-fit: cover;">
-                        <div class="position-absolute top-0 start-0 px-2 text-white bg-danger opacity-50 " style="font-size: 0.8rem;">
+                        <div class="position-absolute top-0 start-0 px-2 text-white bg-danger opacity-50 "
+                            style="font-size: 0.8rem;">
                             10 Favorites
                         </div>
                     </div>
@@ -126,11 +125,10 @@
         <div class="col-4">
             <a href="#">
                 <div class="card shadow-lg border-1 mb-3">
-                    <img src="/storage/images/banana.jpg" 
-                        class="card-img-top" 
-                        alt="Item Image" 
+                    <img src="/storage/images/banana.jpg" class="card-img-top" alt="Item Image"
                         style="object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 px-2 text-white bg-danger opacity-50 " style="font-size: 0.8rem;">
+                    <div class="position-absolute top-0 start-0 px-2 text-white bg-danger opacity-50 "
+                        style="font-size: 0.8rem;">
                         10 Favorites
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -214,11 +212,10 @@
         <div class="col-4">
             <a href="#">
                 <div class="card shadow-lg border-1 mb-3">
-                    <img src="/storage/images/banana.jpg" 
-                        class="card-img-top" 
-                        alt="Item Image" 
+                    <img src="/storage/images/banana.jpg" class="card-img-top" alt="Item Image"
                         style="object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 px-2 text-white bg-danger opacity-50 " style="font-size: 0.8rem;">
+                    <div class="position-absolute top-0 start-0 px-2 text-white bg-danger opacity-50 "
+                        style="font-size: 0.8rem;">
                         10 Favorites
                     </div>
                     <div class="card-body d-flex flex-column">
@@ -301,7 +298,7 @@
     </div>
 
     <div class="mb-5">
-        <div class="card mb-3 px-4 pt-3 bg-warning text-white" >
+        <div class="card mb-3 px-4 pt-3 bg-warning text-white">
             <h1>Follower Report</h1>
             <div class="card-body d-flex flex-column">
                 <div class="d-flex justify-content-between">
@@ -326,6 +323,6 @@
     <div class="mb-5 bg-white">
         <canvas id="farmFollowerChart"></canvas>
     </div>
-    
+
 </div>
 @endsection

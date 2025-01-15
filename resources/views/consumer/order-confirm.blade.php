@@ -17,21 +17,22 @@
         </div>
         <div class="card-body">
             @foreach ($cartItems as $item)
-                <div class="row align-items-center mb-3">
-                    <div class="col-md-3 text-center">
-                        <img src="{{ $item->item->picture_1 }}" alt="{{ $item->item->name }}" class="rounded img-fluid" style="max-height: 120px;">
-                    </div>
-                    <div class="col-md-6">
-                        <h5 class="mb-1">{{ $item->item->name }}</h5>
-                        <p class="mb-0 text-muted">Contents: {{ $item->item->contents }}</p>
-                        <p class="mb-0">Unit Price: ${{ number_format($item->item->price, 2) }}</p>
-                        <p class="mb-0">Quantity: {{ $item->quantity }}</p>
-                    </div>
-                    <div class="col-md-3 text-end">
-                        <h5 class="text-muted">Subtotal: ${{ number_format($item->item->price * $item->quantity, 2) }}</h5>
-                    </div>
+            <div class="row align-items-center mb-3">
+                <div class="col-md-3 text-center">
+                    <img src="{{ $item->item->picture_1 }}" alt="{{ $item->item->name }}" class="rounded img-fluid"
+                        style="max-height: 120px;">
                 </div>
-                <hr>
+                <div class="col-md-6">
+                    <h5 class="mb-1">{{ $item->item->name }}</h5>
+                    <p class="mb-0 text-muted">Contents: {{ $item->item->contents }}</p>
+                    <p class="mb-0">Unit Price: ${{ number_format($item->item->price, 2) }}</p>
+                    <p class="mb-0">Quantity: {{ $item->quantity }}</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <h5 class="text-muted">Subtotal: ${{ number_format($item->item->price * $item->quantity, 2) }}</h5>
+                </div>
+            </div>
+            <hr>
             @endforeach
             <div class="row">
                 <div class="col-md-6 offset-md-6 text-end">
@@ -51,16 +52,16 @@
             <div class="card-body pb-0">
                 <p><strong>Shipper Name:</strong> {{ session('shipping_name') }}</p>
                 <input type="hidden" name="shipping_name" value="{{ session('shipping_name') }}">
-                
+
                 <p><strong>Zip Code:</strong> {{ session('shipping_zipcode') }}</p>
                 <input type="hidden" name="shipping_zipcode" value="{{ session('shipping_zipcode') }}">
-                
+
                 <p><strong>Prefecture:</strong> {{ session('shipping_prefecture') }}</p>
                 <input type="hidden" name="shipping_prefecture" value="{{ session('shipping_prefecture') }}">
-                
+
                 <p><strong>Address:</strong> {{ session('shipping_address') }}</p>
                 <input type="hidden" name="shipping_address" value="{{ session('shipping_address') }}">
-                
+
                 <p><strong>Phone Number:</strong> {{ session('shipping_phone') }}</p>
                 <input type="hidden" name="shipping_phone" value="{{ session('shipping_phone') }}">
             </div>
@@ -73,7 +74,7 @@
             </div>
             <div class="card-body">
                 <p><strong>Credit card:</strong> <span>**** - **** - **** - 1234</span></p>
-                
+
             </div>
         </div>
 

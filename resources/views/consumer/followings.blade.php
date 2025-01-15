@@ -15,12 +15,12 @@
     {{-- Farms --}}
     <div class="row g-3">
         @forelse ($farms as $farm)
-            @include('partials.farm-card', ['farm' => $farm])
+        @include('partials.farm-card', ['farm' => $farm])
         @empty
-            <p class="text-center text-muted">You are not following any farmers yet.</p>
+        <p class="text-center text-muted">You are not following any farmers yet.</p>
         @endforelse
     </div>
-    
+
     {{-- Pagination --}}
     <nav aria-label="Page navigation" class="mt-5">
         {{ $farms->links() }}
