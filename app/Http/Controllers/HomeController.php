@@ -96,7 +96,7 @@ class HomeController extends Controller
             ->whereIn('order_item_id', $orderItems)
             ->get();
     
-        $item = $this->item->findOrFail($item_id);
+        $item = Item::withTrashed()->findOrFail($item_id);
     
         $averageRating = $reviews->count() > 0
         ? number_format($reviews->avg('rating'), 1)

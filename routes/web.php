@@ -91,9 +91,12 @@ Route::group(['middleware'=>'auth'], function(){
         // Item Listing
         Route::get('/list-item', [FarmController::class, 'createItem'])->name('createItem');
         Route::post('/store-item', [FarmController::class, 'storeItem'])->name('storeItem');
-        Route::get('/item/{item_id}', [FarmController::class, 'showItem'])->name('showItem');
         Route::get('/item/edit/{item_id}', [FarmController::class, 'editItem'])->name('editItem');
         Route::patch('/item/update/{item_id}', [FarmController::class, 'updateItem'])->name('updateItem');
+        Route::post('/farm/item/{item_id}/toggle', [FarmController::class, 'toggleVisibility'])->name('toggleVisibility');
+        Route::delete('/farm/item/{item_id}/delete', [FarmController::class, 'deleteItem'])->name('deleteItem');
+    
+
 
         // Follow
         Route::get('/farm/{farm_id}/followers', [FollowController::class, 'showFollowers'])->name('showFollowers');

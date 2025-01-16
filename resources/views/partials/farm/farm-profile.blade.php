@@ -24,7 +24,7 @@
                     <div class="col-4 text-end">
                         <a href="{{ route('farm.showFollowers', ['farm_id' => $user->id]) }}"
                             class="text-decoration-none text-dark fs-2">
-                            {{ $user->followers_count }} Followers
+                            {{ $user->followers_count }} {{ str('Follower')->plural($user->followers_count) }}
                         </a>
                     </div>
                 </div>
@@ -41,11 +41,11 @@
         <h5 class="mt-4">Farm Adress</h5>
         <p>{{$user->address}}, {{$user->prefecture}}, #{{$user->zip_code}}, JAPAN</p>
 
-        {{-- Farm Products --}}
         <h5 class="mt-4">Products</h5>
-        <div class="row g-3">
-            @foreach ($user->items as $item)
-            @include('partials.farm.item-card')
+        <div class="row">
+            @foreach ($items as $item)
+                @include('partials.farm.item-card', ['item' => $item])
             @endforeach
         </div>
     </div>
+    

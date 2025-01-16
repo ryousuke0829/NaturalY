@@ -14,7 +14,7 @@
     <div class="input-group">
         <select name="category" id="category" class="form-select" aria-describedby="category">
             <option value="" disabled>Select your main product</option>
-            @include('partials.category')
+            @include('partials.category', ['name' => 'category', 'item' => $item])
         </select>
     </div>
     <span class="text-muted">Select the main product you grow (e.g., onion, carrot, etc.)</span>
@@ -37,12 +37,12 @@
 </div>
 
 {{-- Item Pictures --}}
-<div class="col-auto align-center-end mx-5 mt-4">
+<div class="col-auto text-center mx-5 mt-4">
     <div class="row">
         @for ($i = 1; $i <= 3; $i++) <div class="col-4">
-            <label for="picture_{{$i}}" class="form-label">Item Picture {{$i}}</label> <br>
+            <label for="picture_{{$i}}" class="form-label fw-bold">Item Picture {{$i}}</label> <br>
             @if(isset($item->{"picture_{$i}"}))
-            <img src="{{ $item->{" picture_{$i}"} }}" alt="Picture {{$i}}" class="avatar-lg mb-2">
+            <img src="{{ $item->{"picture_{$i}"} }}" alt="Picture {{$i}}" class="card-img-top mb-2">
             @endif
             @error("picture_{{$i}}")
             <p class="text-danger small">{{$message}}</p>
@@ -52,7 +52,7 @@
     </div>
     @endfor
 </div>
-<p class="text-muted">Acceptable formats are jpeg, jpg, png, and gif only. Max file size is 1MB.</p>
+<p class="text-muted text-start">Acceptable formats are jpeg, jpg, png, and gif only. Max file size is 1MB.</p>
 </div>
 
 {{-- Contents --}}

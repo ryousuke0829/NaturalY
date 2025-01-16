@@ -163,6 +163,11 @@
 
 <body class="bg-consumer">
     <div id="app">
+        @if (session('status'))
+        <div class="alert alert-success text-center">
+            {{ session('status') }}
+        </div>
+        @endif
         <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100 nav-bg">
             <div class="container">
                 <a class="navbar-brand logo d-flex align-items-center" href="{{route('farm.index')}}">

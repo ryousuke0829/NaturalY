@@ -120,6 +120,16 @@
 <a href="{{ route('farm.editItem', ['item_id' => $item->id]) }}" class="fixed-button bg-success text-decoration-none">
     <i class="fa-solid fa-pen-nib fs-2"></i>
 </a>
+<div class="container">
+    <form action="{{ route('farm.deleteItem', ['item_id' => $item->id]) }}" method="POST"
+        onsubmit="return confirm('Are you sure you want to permanently delete this item? This action cannot be undone.');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-sm btn-danger w-100 mt-5 py-2 fs-5">
+            <i class="fa-solid fa-trash"></i> Delete
+        </button>
+    </form>
+</div>
 @endif
 
 @endsection

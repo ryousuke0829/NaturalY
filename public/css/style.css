@@ -218,15 +218,8 @@ background-image: linear-gradient( #70B563 0%, #c6ffbb 80%, #f1ffee 100%);
   overflow-x: hidden; /
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+.inactive-item {
+  background-color: rgba(180, 180, 180, 0.7);
+  opacity: 0.4;
+  pointer-events: auto; 
+}

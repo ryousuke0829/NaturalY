@@ -14,7 +14,7 @@
                 @csrf
                 @method('PATCH')
                 @include('partials.farm.item-form')
-                <div class="mx-5">
+                <div class="mx-5">  
                     <button type="submit" class="btn btn-outline-success w-100 fs-4 py-1 mt-4">
                         Update Organic !
                     </button>
