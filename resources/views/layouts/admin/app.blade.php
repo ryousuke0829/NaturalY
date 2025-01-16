@@ -330,8 +330,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @stack('scripts')
-
-    <script src="{{ asset('js/chart/number-of-sales.js') }}"></script>
+    
     <script src="{{ asset('js/chart/number-of-user-bys.js') }}"></script>
 </body>
 </html>

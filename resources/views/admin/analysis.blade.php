@@ -113,6 +113,7 @@
 
     {{-- Charts --}}
     @push('scripts')
+    {{-- Number of customers and farmers --}}
     <script>
         const numCustomersAndFarmers = {
             labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
@@ -136,6 +137,7 @@
         );
     </script>
 
+    {{-- Number of purchase --}}
     <script>
         const numPurchase = {
             labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
@@ -156,6 +158,30 @@
         new Chart(
             document.getElementById('annualNumberOfPurchaseChart'),
             configNumPurchase
+        );
+    </script>
+
+    {{-- Amount sales --}}
+    <script>
+        const amountSales = {
+            labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            
+            datasets: [{
+                label: 'Annual Number of Purchase',
+                data: @json($amountSalesPerMonth),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+        const configAmountSales = {
+            type: 'line',
+            data: amountSales
+        };
+        
+        new Chart(
+            document.getElementById('annualAmountOfSalesChart'),
+            configAmountSales
         );
     </script>
     @endpush

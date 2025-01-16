@@ -184,6 +184,25 @@ class AdminHomeController extends Controller
             $numPurchasePerMonth[] = $value;
         }
 
+        // Amount of sales per month
+        $salesPerMonth = DB::table('orders')
+            ->select(DB::raw('MONTH(created_at) as month, SUM(total_price) as total_sales'))
+            ->whereYear('created_at', now()->year) // Filter for the current year
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->pluck('total_sales', 'month');
+
+        // Initialize an array with 12 months and set default value to 0
+        $salesPerMonthArray = array_fill(1, 12, 0);
+
+        // Merge query results into the initialized array
+        $salesPerMonthArray = array_replace($salesPerMonthArray, $salesPerMonth->toArray());
+
+        $amountSalesPerMonth = [];
+
+        foreach ($salesPerMonthArray as $key => $value) {
+            $amountSalesPerMonth[] = $value;
+        }
+
         // Follower ranking
         $farmFollowersCount = Follow::with('farm')
             ->select('farm_id', DB::raw('COUNT(user_id) as count'))
@@ -202,7 +221,8 @@ class AdminHomeController extends Controller
                 'numCustomersAndFarmers', 
                 'farmFollowersCount',
                 'farmSales',
-                'numPurchasePerMonth'
+                'numPurchasePerMonth',
+                'amountSalesPerMonth'
             ));
     }
 
