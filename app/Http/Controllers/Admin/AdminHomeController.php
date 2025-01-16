@@ -143,7 +143,27 @@ class AdminHomeController extends Controller
 
     public function analysis()
     {
-        return view('admin.analysis');
+        $data = User::where('role_id', '!=', User::ADMIN_ROLE)
+            ->selectRaw("MONTH(created_at) as month, count(*) as aggregate")
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('month')
+            ->get()
+            ->keyBy('month')
+            ->toArray();
+
+        $result = array_fill(1, 12, 0);
+
+        foreach ($data as $month => $row) {
+            $result[$month] = $row['aggregate'];
+        }
+                
+        $numCustomersAndFarmers = [];
+
+        foreach ($result as $key => $value) {
+            $numCustomersAndFarmers[] = $value;
+        }
+                
+        return view('admin.analysis', compact('numCustomersAndFarmers'));
     }
 
     public function consumerDeactivate(User $user)

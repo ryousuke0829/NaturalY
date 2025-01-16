@@ -39,7 +39,7 @@
         <div class="row mx-5 mb-5">
             <h3>Annual Follower Ranking</h3>
 
-            <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
+            <a href="#" class="text-decoration-none mb-2">
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
@@ -63,7 +63,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
+            <a href="#" class="text-decoration-none mb-2">
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
@@ -87,7 +87,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
+            <a href="#" class="text-decoration-none mb-2">
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
@@ -119,7 +119,7 @@
         <div class="row mx-5 mb-5">
             <h3>Annual Sales Ranking</h3>
 
-            <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
+            <a href="#" class="text-decoration-none mb-2">
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
@@ -143,7 +143,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
+            <a href="#" class="text-decoration-none mb-2">
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
@@ -167,7 +167,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('admin.farm.profile') }}" class="text-decoration-none mb-2">
+            <a href="#" class="text-decoration-none mb-2">
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
@@ -196,4 +196,30 @@
             </div>
         </div>
     </div>
+
+    {{-- Charts --}}
+    @push('scripts')
+    <script>
+        const numCustomersAndFarmers = {
+            labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            
+            datasets: [{
+                label: 'Annual Number of Customers and Farmers',
+                data: @json($numCustomersAndFarmers),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+        const config = {
+            type: 'line',
+            data: numCustomersAndFarmers
+        };
+        
+        new Chart(
+            document.getElementById('annualNumberOfCustomersAndFarmersChart'),
+            config
+        );
+    </script>
+    @endpush
 @endsection
