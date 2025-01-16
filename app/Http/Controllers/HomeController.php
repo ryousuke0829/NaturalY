@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Item;
+use App\Models\OrderItem;
+use App\Models\Review;
+use App\Models\Follow;
+use App\Models\Favorite;
 
 class HomeController extends Controller
 {   
@@ -32,21 +36,28 @@ class HomeController extends Controller
 
     public function getFarms()
     {
-        return User::where('role_id', 3)->orderBy('created_at', 'desc');
+    return User::where('role_id', 3)
+            ->withCount('followers')
+            ->orderBy('followers_count', 'desc'); 
     }
     public function getItems()
     {
-        return Item::orderBy('created_at', 'desc');
+        return Item::withCount('favorites') 
+            ->orderBy('favorites_count', 'desc') 
+            ->orderBy('created_at', 'desc'); 
     }
 
     // Home Page
     public function index()
     {   
         $user = Auth::user();
-        $items = $this->getItems()->take(8)->get();
-        $farms = $this->getFarms()->take(4)->get();
+        $items = $this->getItems()->take(4)->get();
+        $farms = $this->getFarms()->take(4)->get()->map(function ($farm) {
+            $farm->followers_count = $farm->followers()->count();
+            return $farm;
+        });
     
-        return $this->redirectBasedOnRole($user, $items, $farms);
+        return $this->redirectBasedOnRole($user, $items, $farms,);
     }
 
     public function allItems()
@@ -57,7 +68,7 @@ class HomeController extends Controller
 
     public function allFarms()
     {   
-        $farms = $this->getFarms()->paginate(4); 
+        $farms = $this->getFarms()->paginate(6); 
         return view('all-farms', compact('farms'));
     }
     
@@ -77,49 +88,73 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function showItem($item_id)
+    {   
+        $orderItems = OrderItem::where('item_id', $item_id)->pluck('id');
+        
+        $reviews = Review::with('user')
+            ->whereIn('order_item_id', $orderItems)
+            ->get();
     
-    public function showItem()
-    {   
-        $reviews = [
-            [
-                'username' => 'Sasaki Ryosuke',
-                'rating' => 4.5,
-                'comment' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                'date' => '12/24/2024',
-            ],
-        ];
-        return view('show-item', compact('reviews'));
+        $item = $this->item->findOrFail($item_id);
+    
+        $averageRating = $reviews->count() > 0
+        ? number_format($reviews->avg('rating'), 1)
+        : 'N/A';
+    
+        $user = Auth::user();
+    
+        return view('show-item', compact('item', 'user', 'reviews', 'averageRating'));
     }
-    public function cart()
-    {   
-        $cartItems = [
-            [
-                'image' => '/storage/images/banana.jpg',
-                'favorites' => 10,
-                'title' => 'Good Banana',
-                'category' => 'Cucumber',
-                'description' => 'Lorem ipsum dolor sit amet...',
-                'details' => 'Vero eaque nesciunt praesentium...',
-                'price' => 3.99,
-                'farm_image' => '/storage/images/topbanner.jpg',
-                'farm_name' => 'Farm Name',
-                'quantity' => 3,
-            ],
-        ];
-        return view('consumer.cart', compact('cartItems'));
-    }
-    public function order()
+
+    public function showFarmProfile($farm_id)
     {
-        return view('consumer.order');
+        $farm = User::where('role_id', 3)->findOrFail($farm_id);
+    
+        $farm->followers_count = $farm->followers()->count();
+    
+        $isFollowing = $farm->followers()->where('user_id', auth()->id())->exists();
+    
+        $items = $farm->items()->get();
+    
+        return view('farm-profile', compact('farm', 'items', 'isFollowing'));
     }
-    public function orderConfirm()
+    
+    public function searchItems(Request $request)
     {
-        return view('consumer.order-confirm');
+        $query = $request->input('search'); 
+    
+        $items = Item::query()
+            ->where('name', 'like', "%{$query}%") 
+            ->orWhere('category', 'like', "%{$query}%") 
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); 
+    
+        return view('search-results', compact('items', 'query'));
     }
-    public function orderSuccess()
+    public function searchFarms(Request $request)
     {
-        return view('consumer.order-success');
+        $query = $request->input('search');
+    
+        $farms = User::where('role_id', 3)
+            ->where(function ($q) use ($query) {
+                $q->where('farm_name', 'LIKE', "%$query%")
+                  ->orWhere('first_product', 'LIKE', "%$query%")
+                  ->orWhere('second_product', 'LIKE', "%$query%");
+            })
+            ->paginate(12);
+    
+        $categories = User::where('role_id', 3)
+            ->distinct()
+            ->pluck('first_product')
+            ->merge(User::where('role_id', 3)->distinct()->pluck('second_product'))
+            ->unique()
+            ->values();
+    
+        return view('search-farms', compact('farms', 'categories', 'query'));
     }
+
+    // Tentative method
     public function favorites()
     {   
         $items = $this->getItems(); 
@@ -130,18 +165,5 @@ class HomeController extends Controller
         $farms = $this->getfarms(); 
         return view('consumer.followings', compact('farms'));
     }
-    public function purchaseHistory()
-    {
-        return view('consumer.purchase-history');
-    }
-    public function review()
-    {   
-        return view('consumer.review');
-    }
 
-    public function farmProfile()
-    {   
-        $items = $this->getItems(); 
-        return view('farm-profile', compact('items'));
-    }
 }

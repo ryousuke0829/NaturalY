@@ -18,12 +18,15 @@ class FarmController extends Controller
     }
 
     public function index()
-    {   
-        $user = $this->user->findOrFail(Auth::user()->id);
-        $items = $user->with('items')->get();
-        return view('farm.index')
-            ->with('user', $user)
-            ->with('items', $items);
+    {
+        $user = Auth::user();
+    
+        $farms = User::where('role_id', 3)
+            ->withCount('followers')
+            ->orderBy('followers_count', 'desc')
+            ->paginate(10);
+    
+        return view('farm.index', compact('user', 'farms'));
     }
 
     public function createItem()
@@ -73,23 +76,6 @@ class FarmController extends Controller
         $item->save();
 
         return redirect()->route('farm.index')->with('user', $user);
-    }
-
-    public function showItem($item_id)
-    {   
-        // tentative data
-        $reviews = [
-            [
-                'username' => 'Sasaki Ryosuke',
-                'rating' => 4.5,
-                'comment' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                'date' => '12/24/2024',
-            ],
-        ];
-
-        $user = Auth::user();
-        $item = $this->item->findOrFail($item_id);
-        return view('farm.show-item', compact('item', 'user','reviews'));
     }
 
     public function editItem($item_id)

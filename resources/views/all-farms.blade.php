@@ -1,7 +1,7 @@
 @extends('layouts.app')
-    
+
 @section('content')
-    
+
 {{-- Content Section --}}
 <div class="container">
 
@@ -9,32 +9,32 @@
     <p class="title mb-3">Good Organic Farms</p>
     
     {{-- Search bar --}}
-    <form action="#" class="w-100">
+    <form action="{{ route('searchFarms') }}" method="GET" class="w-100">
         <div class="input-group">
-            <span class="input-group-text bg-secondary text-white px-4" id="search-label">
+            <button 
+                type="submit" 
+                class="input-group-text bg-secondary text-white px-4 border-0" 
+                id="search-label">
                 <i class="fa-solid fa-search"></i>
-            </span>
+            </button>
             <input 
                 type="search" 
                 name="search" 
                 class="form-control form-control-sm" 
-                placeholder="Search organic..." 
-                aria-label="Search organic" 
-                aria-describedby="search-label">
-        </div>
-        {{-- Category Tag --}}
-        <div class="mt-0">
-            @for ($i = 0; $i < 16; $i++)
-                <a href="#" class="badge rounded-pill text-bg-success text-decoration-none">Cucumber</a>
-            @endfor
+                placeholder="Search farm name or products..." 
+                aria-label="Search organic farms" 
+                aria-describedby="search-label"
+                value="{{ request('search') }}">
         </div>
     </form>
 
     {{-- Farm Card --}}
     <div class="row g-3 mt-3">
-        @foreach ($farms as $farm)
+        @forelse ($farms as $farm)
             @include('partials.farm-card', ['farm' => $farm])
-        @endforeach
+        @empty
+            <p class="text-center text-muted">No farms found matching your search.</p>
+        @endforelse
     </div>
 
     {{-- Pagination --}}

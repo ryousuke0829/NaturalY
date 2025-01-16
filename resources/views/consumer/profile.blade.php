@@ -1,9 +1,9 @@
 @extends('layouts.app')
-    
+
 @section('content')
 
 <div class="container">
-    
+
     <div class="card shadow-sm px-5 pb-4 w-75 mx-auto">
         <div class="mt-4 d-flex align-items-center justify-content-center">
             @if ($user->avatar)
@@ -12,7 +12,7 @@
             <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
             @endif
             <span class="card-title mb-0  ms-3 title text-uppercase">{{$user->name}}</span>
-        </div>        
+        </div>
         <div class="row">
             <div class="col">
                 <h5 class="mt-4">Address</h5>
@@ -31,16 +31,11 @@
         </div>
     </div>
 
+    {{-- Edit Button --}}
     <a href="{{route('editProfile')}}" class="btn fixed-button text-decoration-none text-orange">
         <i class="fa-solid fa-pen-nib fs-2 text-white mb-0 position-relative top-25"></i>
     </a>
-    
-    
-    
 
 </div>
 
-
 @endsection
-
-

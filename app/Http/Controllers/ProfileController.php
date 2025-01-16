@@ -9,7 +9,6 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {   
-    
     private $user;
     public function __construct(User $user){ 
         $this->user=$user;  
@@ -18,7 +17,7 @@ class ProfileController extends Controller
     public function showProfile()
     {   
         $user = Auth::user();
-        return view('consumer.profile')->with('user', $user);
+        return view('consumer.profile', compact('user'));
     }
     public function selectRole()
     {
@@ -28,12 +27,12 @@ class ProfileController extends Controller
     public function showRegiserConsumer()
     {
         $user = Auth::user();
-        return view('auth.register-consumer')->with('user', $user);
+        return view('auth.register-consumer', compact('user'));
     }
     public function showRegiserFarm()
     {
         $user = Auth::user();
-        return view('auth.register-farm')->with('user', $user);
+        return view('auth.register-farm', compact('user'));
     }
 
     // Definde the Role of User
@@ -48,12 +47,12 @@ class ProfileController extends Controller
         $user->save();
     
         if ($user->role_id == 2) {
-            return redirect()->route('showRegiserConsumer')->with('user', $user);
+            return redirect()->route('showRegiserConsumer', compact('user'));
         } elseif ($user->role_id == 3) {
-            return redirect()->route('showRegiserFarm')->with('user', $user);
+            return redirect()->route('showRegiserFarm', compact('user'));
         }
     
-        return redirect()->route('home')->withErrors('Invalid role selected.');
+        return redirect()->route('home');
     }
 
     // Save User Profile
@@ -72,34 +71,33 @@ class ProfileController extends Controller
         ]);
     
         $user = $this->user->findOrfail(Auth::user()->id);
-        // dd($user);
+
         if ($request->hasFile('avatar')) {
             $user->avatar = 'data:avatar/'.$request->avatar->extension().';base64,'.base64_encode(file_get_contents($request->avatar));
         } else {
             $user->avatar = $user->avatar ?? null;
         }
-        $user->zip_code = $request->zip_code;
-        $user->prefecture = $request->prefecture;
-        $user->address = $request->address;
+        $user->zip_code     = $request->zip_code;
+        $user->prefecture   = $request->prefecture;
+        $user->address      = $request->address;
         $user->phone_number = $request->phone_number;
-        $user->farm_name = $request->farm_name;
+        $user->farm_name    = $request->farm_name;
         $user->first_product = $request->first_product;
         $user->second_product = $request->second_product;
         $user->farm_description = $request->farm_description;
     
         $user->save();
-        return redirect()->route('index')->with('user', $user);
+        return redirect()->route('index', compact('user'));
     }
 
     // Move to Update Consumer Page
     public function editProfile(){
         $user = $this->user->findOrFail(Auth::user()->id);
         if ($user->role_id == 2) {
-            return view('consumer.profile-update')->with('user',$user);
+            return view('consumer.profile-update', compact('user'));
         } elseif ($user->role_id == 3) {
-            return view('farm.profile-update')->with('user',$user);
+            return view('farm.profile-update', compact('user'));
         }
-            
     }
 
     // Update Consumer Profile
@@ -118,7 +116,6 @@ class ProfileController extends Controller
         ]);
     
         $user = $this->user->findOrfail(Auth::user()->id);
-        // dd($user);
 
         $user->zip_code = $request->zip_code;
         $user->prefecture = $request->prefecture;
@@ -137,9 +134,9 @@ class ProfileController extends Controller
     
         $user->save();
         if ($user->role_id == 2) {
-            return redirect()->route('consumer.showProfile')->with('user', $user); 
+            return redirect()->route('consumer.showProfile', compact('user')); 
         } elseif ($user->role_id == 3) {
-            return redirect()->route('index')->with('user', $user);
+            return redirect()->route('index', compact('user'));
         }
     }
 }

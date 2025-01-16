@@ -13,7 +13,7 @@
 
                 @csrf
                 @include('partials.consumer-form')
-                
+
                 <!-- Submit Button -->
                 <div class="row mt-5 mx-1">
                     <button type="submit" class="btn btn-orange w-100 fs-4 py-1">
@@ -21,7 +21,7 @@
                     </button>
                 </div>
             </form>
-        
+
         </div>
     </div>
 </div>

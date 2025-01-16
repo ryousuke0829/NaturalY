@@ -1,7 +1,7 @@
 @extends('layouts.app')
-    
+
 @section('content')
-    
+
 {{-- Content Section --}}
 <div class="container">
 
@@ -14,27 +14,16 @@
 
     {{-- Farms --}}
     <div class="row g-3">
-        @foreach ($farms as $farm)
-            @for ($i = 0; $i < 5; $i++)
-                @include('partials.farm-card', ['farm' => $farm])
-            @endfor
-        @endforeach
+        @forelse ($farms as $farm)
+        @include('partials.farm-card', ['farm' => $farm])
+        @empty
+        <p class="text-center text-muted">You are not following any farmers yet.</p>
+        @endforelse
     </div>
-    
-    
-        {{-- Pagination --}}
+
+    {{-- Pagination --}}
     <nav aria-label="Page navigation" class="mt-5">
-        <ul class="pagination justify-content-center mt-3">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-        </ul>
+        {{ $farms->links() }}
     </nav>
 </div>
 @endsection
