@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Follow;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminHomeController extends Controller
 {
@@ -143,6 +145,7 @@ class AdminHomeController extends Controller
 
     public function analysis()
     {
+        // Chart data
         $data = User::where('role_id', '!=', User::ADMIN_ROLE)
             ->selectRaw("MONTH(created_at) as month, count(*) as aggregate")
             ->whereYear('created_at', date('Y'))
@@ -162,8 +165,19 @@ class AdminHomeController extends Controller
         foreach ($result as $key => $value) {
             $numCustomersAndFarmers[] = $value;
         }
+
+        // Follower ranking
+        $farmFollowersCount = Follow::with('farm')
+            ->select('farm_id', DB::raw('COUNT(user_id) as count'))
+            ->groupBy('farm_id')
+            ->orderByDesc('count')
+            ->limit(3)
+            ->get();
                 
-        return view('admin.analysis', compact('numCustomersAndFarmers'));
+        return view('admin.analysis', compact(
+                'numCustomersAndFarmers', 
+                'farmFollowersCount'
+            ));
     }
 
     public function consumerDeactivate(User $user)
