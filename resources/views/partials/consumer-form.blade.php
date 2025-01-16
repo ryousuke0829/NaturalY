@@ -12,16 +12,17 @@
         Acceptable formats: jpeg, jpg, png, gif. Max size: 1MB.
     </small>
     @error('avatar')
-        <p class="text-danger small">{{ $message }}</p>
+    <p class="text-danger small">{{ $message }}</p>
     @enderror
 </div>
 
 {{-- Zip code --}}
 <div class="mb-4">
     <label for="zip_code" class="form-label">Zip Code</label>
-    <input type="text" name="zip_code" id="zip_code" value="{{old('zip_code',$user->zip_code)}}" class="form-control" placeholder="000-0000" pattern="\d{3}-\d{4}" maxlength="8">
+    <input type="text" name="zip_code" id="zip_code" value="{{old('zip_code',$user->zip_code)}}" class="form-control"
+        placeholder="000-0000" pattern="\d{3}-\d{4}" maxlength="8">
     @error('zip_code')
-        <p class="text-danger small">{{ $message }}</p>
+    <p class="text-danger small">{{ $message }}</p>
     @enderror
 </div>
 
@@ -30,7 +31,7 @@
     <label for="prefecture" class="form-label">Prefecture</label>
     <div class="input-group">
         <select name="prefecture" id="prefecture" class="form-select" aria-describedby="prefecture-info">
-            <option value= "{{$user->prefecture}}" selected>{{old('prefecture',$user->prefecture)}}</option>
+            <option value="{{$user->prefecture}}" selected>{{old('prefecture',$user->prefecture)}}</option>
             <option value="Hokkaido">Hokkaido / 北海道</option>
             <option value="Aomori">Aomori / 青森県</option>
             <option value="Iwate">Iwate / 岩手県</option>
@@ -82,26 +83,26 @@
         </select>
     </div>
     @error('prefecture')
-        <p class="text-danger small">{{$message}}</p>
+    <p class="text-danger small">{{$message}}</p>
     @enderror
 </div>
 
 {{-- Address --}}
 <div class="mb-4">
     <label for="address" class="form-label">Address</label>
-    <input type="text" name="address" id="address"  value="{{old('address',$user->address)}}" class="form-control" placeholder="Enter your full address" maxlength="255">
+    <input type="text" name="address" id="address" value="{{old('address',$user->address)}}" class="form-control"
+        placeholder="Enter your full address" maxlength="255">
     @error('address')
-        <p class="text-danger small">{{ $message }}</p>
+    <p class="text-danger small">{{ $message }}</p>
     @enderror
 </div>
 
 {{-- Phone Number --}}
 <div class="mb-5">
     <label for="phone_number" class="form-label">Phone Number</label>
-    <input type="tel" name="phone_number" id="phone_number" value="{{old('phone_number',$user->phone_number)}}" class="form-control" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}" maxlength="13">
+    <input type="tel" name="phone_number" id="phone_number" value="{{old('phone_number',$user->phone_number)}}"
+        class="form-control" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}" maxlength="13">
     @error('phone_number')
-        <p class="text-danger small">{{ $message }}</p>
+    <p class="text-danger small">{{ $message }}</p>
     @enderror
 </div>
-
-

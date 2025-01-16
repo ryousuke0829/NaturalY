@@ -6,9 +6,9 @@
         <div class="row">
             <div class="col-auto">
                 @if ($user->avatar)
-                    <img src="{{$user->avatar}}" alt="{{$user->id}}" class="rounded-circle avatar-lg">
+                <img src="{{$user->avatar}}" alt="{{$user->id}}" class="rounded-circle avatar-lg">
                 @else
-                    <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
+                <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
                 @endif
             </div>
             <div class="col d-flex flex-column justify-content-center ms-4">
@@ -16,11 +16,16 @@
                 <span class="text-muted mb-0">Host Farmer：{{$user->name}}</span>
                 <div class="row mb-2 d-flex">
                     <div class="col-8 flex-column">
-                        <a href="#" class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->first_product}}</a>
-                        <a href="#" class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->second_product}}</a>
+                        <a href="#"
+                            class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->first_product}}</a>
+                        <a href="#"
+                            class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->second_product}}</a>
                     </div>
-                    <div class="col-4">
-                        <h6 class="text-end">831 Followers</h6>   
+                    <div class="col-4 text-end">
+                        <a href="{{ route('farm.showFollowers', ['farm_id' => $user->id]) }}"
+                            class="text-decoration-none text-dark fs-2">
+                            {{ $user->followers_count }} Followers
+                        </a>
                     </div>
                 </div>
             </div>
@@ -40,9 +45,7 @@
         <h5 class="mt-4">Products</h5>
         <div class="row g-3">
             @foreach ($user->items as $item)
-                @include('partials.farm.item-card')
+            @include('partials.farm.item-card')
             @endforeach
         </div>
     </div>
-
-
