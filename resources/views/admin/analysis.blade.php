@@ -125,14 +125,37 @@
                 tension: 0.1
             }]
         };
-        const config = {
+        const configNumCustomersAndFarmers = {
             type: 'line',
             data: numCustomersAndFarmers
         };
         
         new Chart(
             document.getElementById('annualNumberOfCustomersAndFarmersChart'),
-            config
+            configNumCustomersAndFarmers
+        );
+    </script>
+
+    <script>
+        const numPurchase = {
+            labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            
+            datasets: [{
+                label: 'Annual Number of Purchase',
+                data: @json($numPurchasePerMonth),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+        const configNumPurchase = {
+            type: 'line',
+            data: numPurchase
+        };
+        
+        new Chart(
+            document.getElementById('annualNumberOfPurchaseChart'),
+            configNumPurchase
         );
     </script>
     @endpush

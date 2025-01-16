@@ -146,7 +146,7 @@ class AdminHomeController extends Controller
 
     public function analysis()
     {
-        // Chart data
+        // Number of Customers and Farms per month
         $data = User::where('role_id', '!=', User::ADMIN_ROLE)
             ->selectRaw("MONTH(created_at) as month, count(*) as aggregate")
             ->whereYear('created_at', date('Y'))
@@ -167,6 +167,23 @@ class AdminHomeController extends Controller
             $numCustomersAndFarmers[] = $value;
         }
 
+        // Number of purchase per month
+        $purchasePerMonth = DB::table('orders')
+            ->select(DB::raw('MONTH(created_at) as month, COUNT(id) as order_count'))
+            ->whereYear('created_at', now()->year) // Filter for the current year
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy(DB::raw('MONTH(created_at)'))
+            ->pluck('order_count', 'month');
+
+        // Fill missing months with 0
+        $purchasePerMonthArray = array_replace(array_fill(1, 12, 0), $purchasePerMonth->toArray());
+
+        $numPurchasePerMonth = [];
+
+        foreach ($purchasePerMonthArray as $key => $value) {
+            $numPurchasePerMonth[] = $value;
+        }
+
         // Follower ranking
         $farmFollowersCount = Follow::with('farm')
             ->select('farm_id', DB::raw('COUNT(user_id) as count'))
@@ -184,7 +201,8 @@ class AdminHomeController extends Controller
         return view('admin.analysis', compact(
                 'numCustomersAndFarmers', 
                 'farmFollowersCount',
-                'farmSales'
+                'farmSales',
+                'numPurchasePerMonth'
             ));
     }
 
