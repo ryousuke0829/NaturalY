@@ -76,77 +76,34 @@
         <div class="row mx-5 mb-5">
             <h3>Annual Sales Ranking</h3>
 
-            <a href="#" class="text-decoration-none mb-2">
-                <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
-                    <div class="row">
-                        <div class="col-3">
-                            <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col text-start">
-                                    <h5 class="fw-bold fs-4">JOHN DOE</h5>
-                                    <span class="badge rounded-pill bg-success">Cucumber</span>
-                                </div>
-                                <div class="col text-end">
-                                    <p class="fs-5">831 Followers</p>
-                                </div>
+            @forelse ($farmSales as $farm_sales)
+                <a href="#" class="text-decoration-none mb-2">
+                    <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa-solid fa-image fa-10x d-block text-center"></i>
                             </div>
-                            <div class="text-start text-secondary fw-bold">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, facere blanditiis? Porro iste minima blanditiis rem cupiditate assumenda est nostrum ut? Quas reprehenderit vel est natus, laborum perspiciatis dolore id.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="text-decoration-none mb-2">
-                <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
-                    <div class="row">
-                        <div class="col-3">
-                            <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col text-start">
-                                    <h5 class="fw-bold fs-4">JOHN DOE</h5>
-                                    <span class="badge rounded-pill bg-success">Cucumber</span>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col text-start">
+                                        <h5 class="fw-bold fs-4">{{ $farm_sales->user->name }}</h5>
+                                        <span class="badge rounded-pill bg-success">{{ $farm_sales->user->first_product }}</span>
+                                        <span class="badge rounded-pill bg-success">{{ $farm_sales->user->second_product }}</span>
+                                    </div>
+                                    <div class="col text-end">
+                                        <p class="fs-5">SALES: {{ $farm_sales->total_sales }}</p>
+                                    </div>
                                 </div>
-                                <div class="col text-end">
-                                    <p class="fs-5">831 Followers</p>
+                                <div class="text-start text-secondary fw-bold">
+                                    <p>{{ $farm_sales->user->farm_description }}</p>
                                 </div>
-                            </div>
-                            <div class="text-start text-secondary fw-bold">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, facere blanditiis? Porro iste minima blanditiis rem cupiditate assumenda est nostrum ut? Quas reprehenderit vel est natus, laborum perspiciatis dolore id.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
-
-            <a href="#" class="text-decoration-none mb-2">
-                <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
-                    <div class="row">
-                        <div class="col-3">
-                            <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col text-start">
-                                    <h5 class="fw-bold fs-4">JOHN DOE</h5>
-                                    <span class="badge rounded-pill bg-success">Cucumber</span>
-                                </div>
-                                <div class="col text-end">
-                                    <p class="fs-5">831 Followers</p>
-                                </div>
-                            </div>
-                            <div class="text-start text-secondary fw-bold">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, facere blanditiis? Porro iste minima blanditiis rem cupiditate assumenda est nostrum ut? Quas reprehenderit vel est natus, laborum perspiciatis dolore id.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @empty
+                <h2 class="text-center">No records yet.</h2>
+            @endforelse
 
             <div class="text-end">
                 <a href="#" class="text-decoration-none text-dark fs-6 fw-bold">>>>Weekly and Daily data</a>

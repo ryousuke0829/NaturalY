@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Follow;
 use App\Models\Item;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -171,12 +172,19 @@ class AdminHomeController extends Controller
             ->select('farm_id', DB::raw('COUNT(user_id) as count'))
             ->groupBy('farm_id')
             ->orderByDesc('count')
-            ->limit(3)
+            ->get();
+
+        // Sales ranking
+        $farmSales = Order::with('user')
+            ->select('user_id', DB::raw('SUM(total_price) as total_sales'))
+            ->groupBy('user_id')
+            ->orderByDesc('total_sales')
             ->get();
                 
         return view('admin.analysis', compact(
                 'numCustomersAndFarmers', 
-                'farmFollowersCount'
+                'farmFollowersCount',
+                'farmSales'
             ));
     }
 
