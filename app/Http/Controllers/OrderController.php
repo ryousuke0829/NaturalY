@@ -85,12 +85,18 @@ class OrderController extends Controller
     public function purchaseHistory()
     {
         $user = Auth::user();
-
-        $orders = Order::with(['orderItems.item.user', 'orderItems.review'])
-            ->where('user_id', $user->id)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
+    
+        $orders = Order::with([
+            'orderItems.item' => function ($query) {
+                $query->withTrashed(); 
+            },
+            'orderItems.item.user',
+            'orderItems.review'
+        ])
+        ->where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+    
         return view('consumer.purchase-history', compact('orders'));
     }
 
