@@ -16,6 +16,8 @@ class Controller extends BaseController
     public function redirectBasedOnRole($user, $items, $farms)
     {   
         switch ($user->role_id) {
+            case 1:
+                return redirect()->route('admin.index');
             case 2:
                 return view('home', compact('user', 'items', 'farms'));
             case 3:

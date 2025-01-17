@@ -7,7 +7,11 @@
         <div class="card border border-dark shadow">
             <div class="row p-4">
                 <div class="col-4">
-                    <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
+                    @if ($farm->avatar)
+                        <img src="{{ $farm->avatar }}" alt="{{ $farm->name }}" class="img-thumbnail">
+                    @else
+                        <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
+                    @endif
                 </div>
                 <div class="col-8">
                     <h2 class="display-5 mt-4 fw-bold">{{ $farm->name }} Natural Farm</h2>
@@ -45,7 +49,7 @@
                                 <a href="{{ route('farm.showItem', $item->id) }}">
                                     <div class="card h-100 shadow-lg border-1">
                                         <div class="position-relative">
-                                            <img src="/storage/images/banana.jpg" 
+                                            <img src="{{ $item->picture_1 }}" 
                                                 class="card-img-top" 
                                                 alt="Item Image" 
                                                 style="object-fit: cover;">
