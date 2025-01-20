@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,121 +30,6 @@
 
     {{-- css --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-
-        #app {
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        footer {
-            background-color: #cecdcd;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .brand-text {
-            text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-            -webkit-text-stroke-width: 1;
-            -webkit-text-stroke-color: #9A9A9A;
-            font-family: "HiraMinProN-W6";
-            font-size: 3rem;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 100%;
-            letter-spacing: 4px;
-            background-image: linear-gradient(180deg, #6cc859 0%, #cecdcd 70%, #965500 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 0.5px black;
-        }
-
-        .logo-style {
-            height: 55px;
-            margin-right: 10px;
-            filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
-        }
-
-        .nav-text {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
-            font-weight: 600;
-            font-size: 1rem;
-            -webkit-text-stroke: 0.2px black;
-            color: white;
-            font-family: Raleway;
-        }
-
-        .nav-icon {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
-            -webkit-text-stroke: 0.2px black;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        #login-link:hover {}
-
-        .nav-link.right-item {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .nav-link.right-item:hover {
-            color: red;
-            text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7);
-            transform: scale(1.2);
-            transition: all 0.4s ease;
-        }
-
-        @keyframes shake {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            20% {
-                transform: translate(-2px, 1px) rotate(-1deg);
-            }
-
-            40% {
-                transform: translate(2px, -1px) rotate(1deg);
-            }
-
-            60% {
-                transform: translate(-1px, -2px) rotate(-1deg);
-            }
-
-            80% {
-                transform: translate(1px, 2px) rotate(1deg);
-            }
-
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-        }
-
-        .logo:hover {
-            animation: shake 0.4s ease-in-out;
-        }
-
-        main.py-4 {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-
-        body {
-            padding-top: 80px;
-        }
-    </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -153,8 +37,8 @@
 
 <body class="bg-consumer">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100"
-            style="background:#FFF5E8; z-index: 1050;">
+        <div id="particles-js"></div>
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100">
             <div class="container">
                 <a class="navbar-brand logo d-flex align-items-center" href="{{ url('/') }}">
                     <img src="{{ asset('storage/images/logo.png') }}" alt="NaturalY Logo" class="logo-style">
@@ -220,7 +104,6 @@
                             </a>
                         </li>
 
-
                         {{-- Hamburger --}}
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link mx-auto text-center nav-link right-item" href="#"
@@ -230,7 +113,7 @@
                                 <span class="nav-text">Menu</span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end p-3 w-100" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
 
                                 <!-- User Icon and Name -->
                                 <a class="dropdown-item d-flex align-items-center justify-content-center gap-1"
@@ -257,7 +140,6 @@
                                         </a>
                                     </div>
 
-
                                     {{-- Favorite --}}
                                     <div class="col-6 d-flex flex-column align-items-center">
                                         <a class="dropdown-item p-0 position-relative"
@@ -272,9 +154,7 @@
                                             <p class="text-secondary mt-1 mb-0 text-sm">Favorites</p>
                                         </a>
                                     </div>
-
-
-
+                                    
                                 </div>
 
                                 <div class="row text-center">
@@ -315,38 +195,106 @@
                 </div>
             </div>
         </nav>
+        
+        {{-- Hero Section--}}
+        @if(request()->is('/'))
+        <div class="top-banner">
+            <video autoplay muted class="hero-video video1" id="video1">
+                <source src="{{ asset('/storage/videos/top-movie1.mp4') }}" type="video/mp4">
+            </video>
+            <video autoplay muted class="hero-video video2" id="video2">
+                <source src="{{ asset('/storage/videos/top-movie2.mp4') }}" type="video/mp4">
+            </video>
+            <video autoplay muted class="hero-video video3" id="video3">
+                <source src="{{ asset('/storage/videos/top-movie3.mp4') }}" type="video/mp4">
+            </video>
 
-        <main class="py-4 {{ request()->is('/') ? '' : 'mt-5' }}">
-            @yield('content')
+            <div class="overlay"></div>
+
+            <div class="content">
+                <h2>Welcome to</h2>
+                <h2 class="animated-text text-uppercase">The Natural Yield Market</h2>
+                <a href="{{ route('about') }}" class="btn btn-outline-light p-2 fs-5">About Us</a>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const videos = [
+                    document.getElementById("video1"),
+                    document.getElementById("video2"),
+                    document.getElementById("video3"),
+                ];
+
+                let currentIndex = 0;
+                let fadeDuration = 1800;
+                let playDuration = 4500; 
+
+                function playNextVideo() {
+                    let currentVideo = videos[currentIndex];
+                    let nextIndex = (currentIndex + 1) % videos.length;
+                    let nextVideo = videos[nextIndex];
+
+                    nextVideo.style.opacity = "0";
+                    nextVideo.currentTime = 0;
+                    nextVideo.play();
+
+                    setTimeout(() => {
+                        nextVideo.style.transition = `opacity ${fadeDuration}ms ease-in-out`;
+                        currentVideo.style.transition = `opacity ${fadeDuration}ms ease-in-out`;
+                        nextVideo.style.opacity = "1"; 
+                        currentVideo.style.opacity = "0"; 
+                    }, playDuration - fadeDuration); 
+
+                    currentIndex = nextIndex;
+                    setTimeout(playNextVideo, playDuration);
+                }
+
+                videos[0].style.opacity = "1";
+                videos[0].play();
+                setTimeout(playNextVideo, playDuration);
+            });
+        </script>
+        @endif
+
+        <main id="main-content">
+            <div>
+                @for ($i = 0; $i < 50; $i++)
+                    <div class="floating-object"></div>
+                @endfor
+                <div class="py-5 position-relative z-1">
+                    @yield('content')
+                </div>
+            </div>
         </main>
-
-        <footer class="mt-5">
+        
+        <footer>
             <div class="container-fluid text-center">
                 <div class="row">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a class="px-4 link-secondary fs-1 instagram" href="https://www.instagram.com/agtre.jaec/"><i class="fa-brands fa-instagram"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a class="px-4 link-secondary fs-1 facebook" href="https://www.facebook.com/jaec.trainee"><i class="fa-brands fa-facebook"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a class="px-4 link-secondary fs-1 youtube" href="https://youtube.com/channel/UCWhVH0KT-Rd_AoVmr6FXQxA?si=UgwJcF_BJei7nCac"><i class="fa-brands fa-youtube"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-line"></i></a>
+                            <a class="px-4 link-secondary fs-1 line" href="https://page.line.me/znl1671g?openQrModal=true"><i class="fa-brands fa-line"></i></a>
                         </li>
-                    </ul>
+                    </ul>                    
                     <small class="text-muted">&copy; 2024 Natural Yield Market</small>
                 </div>
             </div>
         </footer>
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/chart/farm-monthly-sales.js') }}"></script>
     <script src="{{ asset('js/chart/farm-follower-report.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+
 </body>
 
 </html>

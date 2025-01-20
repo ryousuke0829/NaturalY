@@ -11,7 +11,9 @@ class ReviewController extends Controller
 {
     public function create($orderItemId)
     {
-        $orderItem = OrderItem::with('item')->findOrFail($orderItemId);
+        $orderItem = OrderItem::with(['item' => function ($query) {
+            $query->withTrashed();
+        }, 'user'])->findOrFail($orderItemId);
     
         return view('consumer.review', compact('orderItem'));
     }

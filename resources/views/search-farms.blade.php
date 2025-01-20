@@ -6,7 +6,7 @@
     <h1 class="mb-2">Search Results for "{{ $query }}"</h1>
 
     {{-- Search bar --}}
-    <form action="{{ route('searchItems') }}" method="GET" class="w-100 mb-4">
+    <form action="{{ route('searchFarms') }}" method="GET" class="w-100 mb-4">
         <div class="input-group">
             <button type="submit" class="input-group-text bg-secondary text-white px-4 border-0" id="search-label">
                 <i class="fa-solid fa-search"></i>

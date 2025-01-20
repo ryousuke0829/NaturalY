@@ -31,55 +31,7 @@
     <label for="prefecture" class="form-label">Prefecture</label>
     <div class="input-group">
         <select name="prefecture" id="prefecture" class="form-select" aria-describedby="prefecture-info">
-            <option value="{{$user->prefecture}}" selected>{{old('prefecture',$user->prefecture)}}</option>
-            <option value="Hokkaido">Hokkaido / 北海道</option>
-            <option value="Aomori">Aomori / 青森県</option>
-            <option value="Iwate">Iwate / 岩手県</option>
-            <option value="Miyagi">Miyagi / 宮城県</option>
-            <option value="Akita">Akita / 秋田県</option>
-            <option value="Yamagata">Yamagata / 山形県</option>
-            <option value="Fukushima">Fukushima / 福島県</option>
-            <option value="Ibaraki">Ibaraki / 茨城県</option>
-            <option value="Tochigi">Tochigi / 栃木県</option>
-            <option value="Gunma">Gunma / 群馬県</option>
-            <option value="Saitama">Saitama / 埼玉県</option>
-            <option value="Chiba">Chiba / 千葉県</option>
-            <option value="Tokyo">Tokyo / 東京都</option>
-            <option value="Kanagawa">Kanagawa / 神奈川県</option>
-            <option value="Niigata">Niigata / 新潟県</option>
-            <option value="Toyama">Toyama / 富山県</option>
-            <option value="Ishikawa">Ishikawa / 石川県</option>
-            <option value="Fukui">Fukui / 福井県</option>
-            <option value="Yamanashi">Yamanashi / 山梨県</option>
-            <option value="Nagano">Nagano / 長野県</option>
-            <option value="Gifu">Gifu / 岐阜県</option>
-            <option value="Shizuoka">Shizuoka / 静岡県</option>
-            <option value="Aichi">Aichi / 愛知県</option>
-            <option value="Mie">Mie / 三重県</option>
-            <option value="Shiga">Shiga / 滋賀県</option>
-            <option value="Kyoto">Kyoto / 京都府</option>
-            <option value="Osaka">Osaka / 大阪府</option>
-            <option value="Hyogo">Hyogo / 兵庫県</option>
-            <option value="Nara">Nara / 奈良県</option>
-            <option value="Wakayama">Wakayama / 和歌山県</option>
-            <option value="Tottori">Tottori / 鳥取県</option>
-            <option value="Shimane">Shimane / 島根県</option>
-            <option value="Okayama">Okayama / 岡山県</option>
-            <option value="Hiroshima">Hiroshima / 広島県</option>
-            <option value="Yamaguchi">Yamaguchi / 山口県</option>
-            <option value="Tokushima">Tokushima / 徳島県</option>
-            <option value="Kagawa">Kagawa / 香川県</option>
-            <option value="Ehime">Ehime / 愛媛県</option>
-            <option value="Kochi">Kochi / 高知県</option>
-            <option value="Fukuoka">Fukuoka / 福岡県</option>
-            <option value="Saga">Saga / 佐賀県</option>
-            <option value="Nagasaki">Nagasaki / 長崎県</option>
-            <option value="Kumamoto">Kumamoto / 熊本県</option>
-            <option value="Oita">Oita / 大分県</option>
-            <option value="Miyazaki">Miyazaki / 宮崎県</option>
-            <option value="Kagoshima">Kagoshima / 鹿児島県</option>
-            <option value="Okinawa">Okinawa / 沖縄県</option>
-            <option value="Overseas">Overseas / 海外</option>
+            @include('partials.prefecture')
         </select>
     </div>
     @error('prefecture')

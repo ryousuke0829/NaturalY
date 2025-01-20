@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="card shadow">
+    <div class="card shadow bg-farmgray bg-farmgray">
         <div class="card-body py-5 px-5">
             <!-- Title -->
             <p class="title text-start text-dark mb-5 text-shadow text-center">
@@ -57,7 +57,7 @@
                                 <span class="text-muted">Date of Order</span><br>
                                 <span
                                     class="{{ now()->diffInDays($orderItem->created_at) > 0 ? 'text-danger fw-bold' : '' }}">
-                                    {{ $orderItem->created_at->format('Y/m/d') }}
+                                    {{ $orderItem->created_at->format('Y/m/d　H:i') }}
                                 </span>
                             </div>
                             <div class="col-2">
@@ -72,7 +72,7 @@
                             </div>
                             <div class="col-auto">
                                 <span class="text-muted">
-                                    Shipping Address<br>{{ $orderItem->order->shipping_address }}
+                                    Shipping Address<br>{{ $orderItem->order->shipping_prefecture }}
                                 </span>
                             </div>
                         </div>

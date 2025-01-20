@@ -1,6 +1,6 @@
 @forelse ($reviews as $review)
 <hr class="mt-0">
-<div class="bg-light d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-center mb-3">
     <div>
         <span class="h3">{{ $review->title }}</span>
     </div>
@@ -9,7 +9,6 @@
     </div>
 </div>
 <div>
-    <h4 class="card-title text-primary mb-2"></h4>
     <p class="card-text">{{ $review->comment }}</p>
 </div>
 <div class="ms-auto small">

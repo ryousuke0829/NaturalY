@@ -1,0 +1,23 @@
+footer {
+    background-color: #cecdcd;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 0;
+  }
+  
+  .nav .nav-item a {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav .nav-item a.instagram:hover {
+    color: #E4405F !important;
+  }
+  .nav .nav-item a.facebook:hover {
+    color: #1877F2 !important;
+  }
+  .nav .nav-item a.youtube:hover {
+    color: #FF0000 !important;
+  }
+  .nav .nav-item a.line:hover {
+    color: #00C300 !important;
+  }

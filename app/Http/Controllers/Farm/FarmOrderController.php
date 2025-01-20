@@ -13,32 +13,33 @@ class FarmOrderController extends Controller
     public function orderMng(Request $request)
     {
         $userId = auth()->id();
-
-        // Base query
+    
         $query = \App\Models\OrderItem::whereHas('item', function ($q) use ($userId) {
-            $q->where('user_id', $userId); // ログイン中のユーザーが販売した商品
-        })->with(['order', 'item']);
-
+            $q->where('user_id', $userId)->withTrashed(); 
+        })->with(['order', 'item' => function ($q) {
+            $q->withTrashed(); 
+        }]);
+    
         // Filter by status
-
         if ($request->filled('status')) {
             $query->whereHas('order', function ($q) use ($request) {
-                $q->where('status', $request->status); // 注文のステータスでフィルタリング
+                $q->where('status', $request->status);
             });
         }
-
+    
         // Sort by created_at
         if ($request->filled('sort') && in_array($request->sort, ['asc', 'desc'])) {
             $query->orderBy('created_at', $request->sort);
         } else {
-            $query->orderBy('created_at', 'desc'); // デフォルトは新しい順
+            $query->orderBy('created_at', 'desc'); 
         }
-
+    
         // Paginate the results
         $orderItems = $query->paginate(10);
-
+    
         return view('farm.order-mng', compact('orderItems'));
     }
+    
 
 
     public function updateStatus(Request $request, $id)

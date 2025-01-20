@@ -26,4 +26,8 @@ class OrderItem extends Model
     {
     return $this->hasOne(Review::class, 'order_item_id', 'id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

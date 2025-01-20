@@ -2,10 +2,14 @@
 
 @section('content')
 <div class="container">
+    <div class="text-center mb-5">
+        <i class="fa-regular fa-thumbs-up fs-1"></i>
+        <h1 class="text-center title">Your Cart</h1>
+    </div>
+    
     @if ($cartItems->isEmpty())
     <p class="text-center fs-1 text-muted">Your cart is empty now.</p>
     @else
-    <h1>Your Cart</h1>
     <div class="row g-3">
         @foreach ($cartItems as $item)
         <div class="col-md-3 col-sm-6 col-12">

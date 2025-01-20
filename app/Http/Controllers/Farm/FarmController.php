@@ -26,9 +26,11 @@ class FarmController extends Controller
             ->orderBy('followers_count', 'desc')
             ->paginate(10);
     
-        return view('farm.index', compact('user', 'farms'));
+        $items = Item::withTrashed()->where('user_id', $user->id)->get();
+    
+        return view('farm.index', compact('user', 'farms', 'items'));
     }
-
+    
     public function createItem()
     {
         $user = Auth::user();
@@ -81,7 +83,7 @@ class FarmController extends Controller
     public function editItem($item_id)
     {   
         $user = Auth::user();
-        $item = $this->item->findOrFail($item_id);
+        $item = Item::withTrashed()->findOrFail($item_id);
         return view('farm.item-update', compact('item', 'user'));
     }
 
@@ -127,13 +129,36 @@ class FarmController extends Controller
 
         return redirect()->route('farm.index')->with('user', $user);
     }
-
-    // Pending Methods
-    public function orderMng()
-    {   
-        return view('farm.order-mng');
+    
+    public function toggleVisibility($item_id)
+    {
+        $item = Item::withTrashed()
+            ->where('id', $item_id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+    
+        if ($item->trashed()) {
+            $item->restore(); 
+        } else {
+            $item->delete(); 
+        }
+    
+        return redirect()->route('farm.index');
     }
 
+    public function deleteItem($item_id)
+    {
+        $item = Item::withTrashed() 
+            ->where('id', $item_id)
+            ->where('user_id', auth()->id())
+            ->firstOrFail();
+    
+        $item->forceDelete(); 
+    
+        return redirect()->route('farm.index')->with('status', 'Item permanently deleted.');
+    }    
+
+    // Pending Methods
     public function analysis()
     {
         return view('farm-analysis');
