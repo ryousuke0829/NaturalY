@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div class="card shadow-sm p-5 pb-5 mt-5">
+    <div class="card shadow-sm p-5 pb-5 mt-5 bg-farmgray bg-farmgray">
 
         {{-- Farm Title --}}
         <div class="row">
@@ -12,14 +12,14 @@
                 @endif
             </div>
             <div class="col d-flex flex-column justify-content-center ms-4">
-                <span class="card-title mb-0 title">{{$user->farm_name}}</span>
-                <span class="text-muted mb-0">Host Farmer：{{$user->name}}</span>
+                <p class="card-title mb-0 ps-0 title">{{$user->farm_name}}</p>
+                <p class="text-muted mb-0">Host Farmer：{{$user->name}}</p>
                 <div class="row mb-2 d-flex">
                     <div class="col-8 flex-column">
-                        <a href="#"
-                            class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->first_product}}</a>
-                        <a href="#"
-                            class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->second_product}}</a>
+                        <span href="#"
+                            class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->first_product}}</span>
+                        <span href="#"
+                            class="badge rounded-pill text-bg-success text-decoration-none mb-1">{{$user->second_product}}</span>
                     </div>
                     <div class="col-4 text-end">
                         <a href="{{ route('farm.showFollowers', ['farm_id' => $user->id]) }}"

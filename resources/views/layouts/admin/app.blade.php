@@ -309,18 +309,18 @@
                 <div class="row">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a class="px-4 link-secondary fs-1 instagram" href="https://www.instagram.com/agtre.jaec/"><i class="fa-brands fa-instagram"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a class="px-4 link-secondary fs-1 facebook" href="https://www.facebook.com/jaec.trainee"><i class="fa-brands fa-facebook"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a class="px-4 link-secondary fs-1 youtube" href="https://youtube.com/channel/UCWhVH0KT-Rd_AoVmr6FXQxA?si=UgwJcF_BJei7nCac"><i class="fa-brands fa-youtube"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-line"></i></a>
+                            <a class="px-4 link-secondary fs-1 line" href="https://page.line.me/znl1671g?openQrModal=true"><i class="fa-brands fa-line"></i></a>
                         </li>
-                    </ul>
+                    </ul>                    
                     <small class="text-muted">&copy; 2024 Natural Yield Market</small>
                 </div>
             </div>

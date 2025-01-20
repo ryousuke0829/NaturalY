@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Item;
@@ -24,7 +25,7 @@ class HomeController extends Controller
     public function __construct(User $user, Item $item)
     {
         $this->middleware('auth');
-        $user = $user;
+        $this->user = $user;
         $this->item=$item; 
     }
 
@@ -34,12 +35,19 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function getFarms()
+    public function getFarms($paginate = false, $limit = null)
     {
-    return User::where('role_id', 3)
+        $query = User::where('role_id', 3)
             ->withCount('followers')
-            ->orderBy('followers_count', 'desc'); 
+            ->orderBy('followers_count', 'desc');
+    
+        if ($limit) {
+            return $query->limit($limit)->get();
+        }
+    
+        return $paginate ? $query->paginate(6) : $query->get();
     }
+    
     public function getItems()
     {
         return Item::withCount('favorites') 
@@ -52,10 +60,7 @@ class HomeController extends Controller
     {   
         $user = Auth::user();
         $items = $this->getItems()->take(4)->get();
-        $farms = $this->getFarms()->take(4)->get()->map(function ($farm) {
-            $farm->followers_count = $farm->followers()->count();
-            return $farm;
-        });
+        $farms = $this->getFarms(false, 4);
     
         return $this->redirectBasedOnRole($user, $items, $farms,);
     }
@@ -68,7 +73,7 @@ class HomeController extends Controller
 
     public function allFarms()
     {   
-        $farms = $this->getFarms()->paginate(6); 
+        $farms = $this->getFarms(true);
         return view('all-farms', compact('farms'));
     }
     
@@ -90,17 +95,21 @@ class HomeController extends Controller
 
     public function showItem($item_id)
     {   
+        $item = Item::withTrashed()->findOrFail($item_id);
+    
+        if ($item->trashed() && $item->user_id !== Auth::id()) {
+            abort(404);
+        }
+    
         $orderItems = OrderItem::where('item_id', $item_id)->pluck('id');
-        
+    
         $reviews = Review::with('user')
             ->whereIn('order_item_id', $orderItems)
             ->get();
     
-        $item = Item::withTrashed()->findOrFail($item_id);
-    
         $averageRating = $reviews->count() > 0
-        ? number_format($reviews->avg('rating'), 1)
-        : 'N/A';
+            ? number_format($reviews->avg('rating'), 1)
+            : 'N/A';
     
         $user = Auth::user();
     
@@ -113,7 +122,7 @@ class HomeController extends Controller
     
         $farm->followers_count = $farm->followers()->count();
     
-        $isFollowing = $farm->followers()->where('user_id', auth()->id())->exists();
+        $isFollowing = $farm->followers()->where('user_id', Auth::id())->exists();
     
         $items = $farm->items()->get();
     
@@ -124,12 +133,14 @@ class HomeController extends Controller
     {
         $query = $request->input('search'); 
     
-        $items = Item::query()
-            ->where('name', 'like', "%{$query}%") 
-            ->orWhere('category', 'like', "%{$query}%") 
-            ->orderBy('created_at', 'desc')
-            ->paginate(10); 
-    
+        $items = Item::whereNull('deleted_at') 
+        ->where(function ($q) use ($query) {
+            $q->where('name', 'like', "%{$query}%")
+              ->orWhere('category', 'like', "%{$query}%");
+        })
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+        
         return view('search-results', compact('items', 'query'));
     }
     public function searchFarms(Request $request)
@@ -145,25 +156,16 @@ class HomeController extends Controller
             ->paginate(12);
     
         $categories = User::where('role_id', 3)
-            ->distinct()
-            ->pluck('first_product')
-            ->merge(User::where('role_id', 3)->distinct()->pluck('second_product'))
-            ->unique()
-            ->values();
+        ->select('first_product', 'second_product')
+        ->distinct()
+        ->get()
+        ->flatMap(function ($farm) {
+            return [$farm->first_product, $farm->second_product];
+        })
+        ->unique()
+        ->values();
     
         return view('search-farms', compact('farms', 'categories', 'query'));
     }
-
-    // Tentative method
-    public function favorites()
-    {   
-        $items = $this->getItems(); 
-        return view('consumer.favorites', compact('items'));
-    }
-    public function followings()
-    {   
-        $farms = $this->getfarms(); 
-        return view('consumer.followings', compact('farms'));
-    }
-
+    
 }

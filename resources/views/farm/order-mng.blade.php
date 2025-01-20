@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="card shadow">
+    <div class="card shadow bg-farmgray bg-farmgray">
         <div class="card-body py-5 px-5">
             <!-- Title -->
             <p class="title text-start text-dark mb-5 text-shadow text-center">

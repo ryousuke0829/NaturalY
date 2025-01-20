@@ -8,10 +8,8 @@
         <div class="container position-relative text-white">
             <h1 class="display-3 fw-bold animated fadeInDown">Welcome to Natural Yield Market</h1>
             <p class="lead animated fadeInUp">Empowering Japan's Organic Farmers and Connecting Them with Consumers.</p>
-            <a href="#about" class="btn btn-secondary btn-lg mt-4 animated fadeInUp delay-1s">Learn More</a>
         </div>
     </section>
-
 
     <!-- About Section -->
     <section id="about" class="my-5 py-5">
@@ -37,10 +35,10 @@
     </section>
 
     <!-- Mission Section -->
-    <section class="my-5 py-5 bg-light">
+    <section class="my-5 p-5 bg-light">
         <h2 class="text-dark title text-center">Our Mission</h2>
         <div class="container mt-4">
-            <div class="text-center">
+            <div class="text-start">
                 <p class="fs-4">
                     To revolutionize agriculture in Japan by promoting organic practices and creating opportunities for
                     farmers to thrive.

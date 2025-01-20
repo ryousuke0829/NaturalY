@@ -1,8 +1,32 @@
 @php
-    $selectedValue = ($name === 'category') ? old($name, $item->$name ?? '') : old($name, $user->$name ?? '');
+    $routeName = Route::currentRouteName();
+
+    if ($routeName === 'storeProfile') {
+        $selectedValue = 'Please select';
+    } else {
+        $selectedValue = ($name === 'category')
+            ? old($name, $item->$name ?? '')
+            : old($name, $user->$name ?? '');
+    }
 @endphp
 
+<!-- デフォルトの選択肢 -->
+<option value="" disabled {{ $selectedValue == '' ? 'selected' : '' }}>Please select</option>
+
 <!-- Root Vegetables -->
+<optgroup label="Root Vegetables">
+    <option value="Onion" {{ $selectedValue == 'Onion' ? 'selected' : '' }}>Onion</option>
+    <option value="Carrot" {{ $selectedValue == 'Carrot' ? 'selected' : '' }}>Carrot</option>
+    <option value="Radish" {{ $selectedValue == 'Radish' ? 'selected' : '' }}>Radish</option>
+    <option value="Sweet Potato" {{ $selectedValue == 'Sweet Potato' ? 'selected' : '' }}>Sweet Potato</option>
+    <option value="Potato" {{ $selectedValue == 'Potato' ? 'selected' : '' }}>Potato</option>
+    <option value="Turnip" {{ $selectedValue == 'Turnip' ? 'selected' : '' }}>Turnip</option>
+    <option value="Beetroot" {{ $selectedValue == 'Beetroot' ? 'selected' : '' }}>Beetro
+
+
+<!-- Root Vegetables -->
+<option value="" disabled {{ $selectedValue == 'Please select' ? 'selected' : '' }}>Please select</option>
+
 <optgroup label="Root Vegetables">
     <option value="Onion" {{ $selectedValue == 'Onion' ? 'selected' : '' }}>Onion</option>
     <option value="Carrot" {{ $selectedValue == 'Carrot' ? 'selected' : '' }}>Carrot</option>

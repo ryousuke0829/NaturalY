@@ -58,20 +58,27 @@ class ProfileController extends Controller
     // Save User Profile
     public function storeProfile(Request $request)
     {
-        $request->validate([
-            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif|max:1024',
-            'zip_code' => 'nullable',
-            'prefecture' => 'nullable|string',
-            'address' => 'nullable|string|max:255',
-            'phone_number' => 'nullable|regex:/\d{3}-\d{4}-\d{4}/',
-            'farm_name' => 'nullable',
+        $user = $this->user->findOrfail(Auth::user()->id);
+        
+        $rules = [
+            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif,webp|max:1024',
+            'zip_code' => 'required',
+            'prefecture' => 'required|string',
+            'address' => 'required|string|max:255',
+            'phone_number' => 'required|regex:/\d{3}-\d{4}-\d{4}/',
             'first_product' => 'nullable',
             'second_product' => 'nullable',
             'farm_description' => 'nullable',
-        ]);
+        ];
     
-        $user = $this->user->findOrfail(Auth::user()->id);
-
+        if ($user->role_id == 3) {
+            $rules['farm_name'] = 'required|string|max:255';
+        } else {
+            $rules['farm_name'] = 'nullable|string|max:255';
+        }
+    
+        $request->validate($rules);
+        
         if ($request->hasFile('avatar')) {
             $user->avatar = 'data:avatar/'.$request->avatar->extension().';base64,'.base64_encode(file_get_contents($request->avatar));
         } else {
@@ -90,7 +97,7 @@ class ProfileController extends Controller
         return redirect()->route('index', compact('user'));
     }
 
-    // Move to Update Consumer Page
+    // Move to Update User Page
     public function editProfile(){
         $user = $this->user->findOrFail(Auth::user()->id);
         if ($user->role_id == 2) {
@@ -100,11 +107,11 @@ class ProfileController extends Controller
         }
     }
 
-    // Update Consumer Profile
+    // Update User Profile
     public function UpdateProfile(Request $request)
     {
         $request->validate([
-            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif|max:1024',
+            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif,webp|max:1024',
             'zip_code' => 'nullable',
             'prefecture' => 'nullable|string',
             'address' => 'nullable|string|max:255',

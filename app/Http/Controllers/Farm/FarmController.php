@@ -143,7 +143,7 @@ class FarmController extends Controller
             $item->delete(); 
         }
     
-        return redirect()->route('farm.index')->with('status', 'Item visibility updated.');
+        return redirect()->route('farm.index');
     }
 
     public function deleteItem($item_id)

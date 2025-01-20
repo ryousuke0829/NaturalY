@@ -1,0 +1,27 @@
+body,
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overscroll-behavior-y: none;
+  overflow: auto;
+  min-height: 100vh !important;
+}
+
+body {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  width: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh; /* 最低でも画面の高さにする */
+}

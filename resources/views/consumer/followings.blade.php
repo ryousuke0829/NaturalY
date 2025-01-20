@@ -17,7 +17,7 @@
         @forelse ($farms as $farm)
         @include('partials.farm-card', ['farm' => $farm])
         @empty
-        <p class="text-center text-muted">You are not following any farmers yet.</p>
+        <p class="text-center fs-1 text-muted">You have no folloings yet.</p>
         @endforelse
     </div>
 

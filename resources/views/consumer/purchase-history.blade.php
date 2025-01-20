@@ -39,7 +39,7 @@
                             <img src="{{ $orderItem->item->picture_1 }}" class="rounded-bottom-left card-img-top" alt="{{ $orderItem->item->name }}" >
                         </div>
                         <div class="col-md-9">
-                            <div class="card-body mx-4 pb-0 pe-0">
+                            <div class="card-body mx-4 py-1 px-0">
                                 <div class="row">
                                     <div class="col-10">
                                         <a href="{{ route('showfarmProfile', ['farm_id' => $orderItem->item->user->id]) }}" class="text-decoration-none text-dark">

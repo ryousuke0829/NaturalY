@@ -1,0 +1,87 @@
+.navbar {
+    background: url("https://www.transparenttextures.com/patterns/wood-pattern.png"), rgba(172, 92, 27, 0.7);
+    backdrop-filter: blur(10px);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    width: 100%;
+}
+.farm-nav-bg {
+    background: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png"), rgba(18, 122, 9, 0.7);
+    backdrop-filter: blur(10px);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+}
+
+.logo-style {
+    height: 55px;
+    margin-right: 10px;
+    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+}
+.farm-logo-style {
+    height: 55px;
+    margin-right: 10px;
+    filter: drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.541));
+}
+
+.logo:hover {
+    animation: shake 0.4s ease-in-out;
+}
+
+.nav-text {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+    font-weight: 600;
+    font-size: 1rem;
+    -webkit-text-stroke: 0.2px black;
+    color: white;
+    font-family: Raleway;
+}
+
+.brand-text {
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #9A9A9A;
+    font-family: "HiraMinProN-W6";
+    font-size: 3.5rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
+    letter-spacing: 4px;
+    background-image: linear-gradient(180deg, #4dd832 0%, #eaeaea 70%, #965500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.5px black;
+}
+.farm-brand-text {
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #9A9A9A;
+    font-family: "HiraMinProN-W6";
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 4px;
+    background-image: linear-gradient(180deg, #ffffff 60%, #bab9b9 80%, #181818 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.5px black;
+}
+
+.nav-icon {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+    -webkit-text-stroke: 0.2px black;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.nav-link.right-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.nav-link.right-item:hover {
+    transform: scale(1.2);
+    transition: all 0.4s ease;
+}

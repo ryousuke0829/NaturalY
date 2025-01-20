@@ -31,148 +31,22 @@
         rel="stylesheet">
     {{-- css --}}
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-
-        #app {
-            display: flex;
-            flex-direction: column;
-            min-height: 100%;
-        }
-
-        main {
-            flex: 1;
-        }
-
-        footer {
-            background-color: #cecdcd;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .brand-text {
-            text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-            -webkit-text-stroke-width: 1;
-            -webkit-text-stroke-color: #9A9A9A;
-            font-family: "HiraMinProN-W6";
-            font-size: 3rem;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 100%;
-            letter-spacing: 4px;
-            background-image: linear-gradient(180deg, #ffffff 60%, #bab9b9 80%, #181818 90%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 0.5px black;
-        }
-
-        .logo-style {
-            height: 55px;
-            margin-right: 10px;
-            filter: drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.541));
-        }
-
-        .nav-bg {
-            background: #187828;
-            color: #187828;
-            z-index: 1050;
-        }
-
-        .nav-color {
-            color: #187828;
-        }
-
-        .nav-text {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
-            font-weight: 600;
-            font-size: 1rem;
-            -webkit-text-stroke: 0.2px black;
-            color: white;
-            font-family: Raleway;
-        }
-
-        .nav-icon {
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
-            -webkit-text-stroke: 0.2px black;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        #login-link:hover {}
-
-        .nav-link.right-item {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .nav-link.right-item:hover {
-            color: red;
-            text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7);
-            transform: scale(1.2);
-            transition: all 0.4s ease;
-        }
-
-        @keyframes shake {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            20% {
-                transform: translate(-2px, 1px) rotate(-1deg);
-            }
-
-            40% {
-                transform: translate(2px, -1px) rotate(1deg);
-            }
-
-            60% {
-                transform: translate(-1px, -2px) rotate(-1deg);
-            }
-
-            80% {
-                transform: translate(1px, 2px) rotate(1deg);
-            }
-
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-        }
-
-        .logo:hover {
-            animation: shake 0.4s ease-in-out;
-        }
-
-        main.py-4 {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-
-        body {
-            padding-top: 80px;
-        }
-    </style>
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="bg-consumer">
+<body class="bg-farm">
     <div id="app">
         @if (session('status'))
         <div class="alert alert-success text-center">
             {{ session('status') }}
         </div>
         @endif
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100 nav-bg">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm position-fixed top-0 w-100 farm-nav-bg">
             <div class="container">
                 <a class="navbar-brand logo d-flex align-items-center" href="{{route('farm.index')}}">
-                    <img src="{{ asset('storage/images/logo.png') }}" alt="NaturalY Logo" class="logo-style">
-                    <span class="brand-text">NaturalY</span>
+                    <img src="{{ asset('storage/images/logo.png') }}" alt="NaturalY Logo" class="farm-logo-style">
+                    <span class="farm-brand-text">NaturalY</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -255,33 +129,41 @@
             </div>
         </nav>
 
-        <main class="py-4 {{ request()->is('/') ? '' : 'mt-5' }}">
-            @yield('content')
+        <main id="main-content">
+            <div class="bg-farm">
+                @for ($i = 0; $i < 50; $i++)
+                    <div class="floating-object"></div>
+                @endfor
+                <div class="py-5 position-relative z-1">
+                    @yield('content')
+                </div>
+            </div>
         </main>
 
-        <footer class="mt-5">
+        <footer>
             <div class="container-fluid text-center">
                 <div class="row">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a class="px-4 link-secondary fs-1 instagram" href="https://www.instagram.com/agtre.jaec/"><i class="fa-brands fa-instagram"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a class="px-4 link-secondary fs-1 facebook" href="https://www.facebook.com/jaec.trainee"><i class="fa-brands fa-facebook"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a class="px-4 link-secondary fs-1 youtube" href="https://youtube.com/channel/UCWhVH0KT-Rd_AoVmr6FXQxA?si=UgwJcF_BJei7nCac"><i class="fa-brands fa-youtube"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="px-4 link-secondary fs-1" href="#"><i class="fa-brands fa-line"></i></a>
+                            <a class="px-4 link-secondary fs-1 line" href="https://page.line.me/znl1671g?openQrModal=true"><i class="fa-brands fa-line"></i></a>
                         </li>
-                    </ul>
+                    </ul>                    
                     <small class="text-muted">&copy; 2024 Natural Yield Market</small>
                 </div>
             </div>
         </footer>
 
     </div>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>

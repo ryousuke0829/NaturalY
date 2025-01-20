@@ -5,7 +5,7 @@
 
     {{-- Tittle --}}
     <div class="text-center mb-4">
-        <h1>Write a Review</h1>
+        <h1 class="title">Write a Review</h1>
         <p class="text-muted">Share your experience about this product!</p>
     </div>
 
@@ -15,7 +15,7 @@
         <input type="hidden" name="order_item_id" value="{{ $orderItem->id }}">
 
         <div class="mb-4 text-center">
-            <img src="{{ $orderItem->item->picture_1 }}" alt="{{ $orderItem->item->name }}" class="rounded w-25">
+            <img src="{{ $orderItem->item->picture_1}}" alt="{{ $orderItem->item->name }}" class="rounded w-25">
             <h2>{{ $orderItem->item->name }}</h2>
         </div>
 
