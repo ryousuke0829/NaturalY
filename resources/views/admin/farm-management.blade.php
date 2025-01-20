@@ -34,7 +34,11 @@
                 <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                     <div class="row">
                         <div class="col-3">
-                            <i class="fa-solid fa-image fa-10x d-block text-center"></i>
+                            @if ($farm->avatar)
+                                <img src="{{ $farm->avatar }}" alt="{{ $farm->name }}" class="img-thumbnail">
+                            @else
+                                <i class="fa-solid fa-image fa-10x d-block text-center"></i>
+                            @endif
                         </div>
                         <div class="col-7 border-end border-secondary">
                             <div class="row">

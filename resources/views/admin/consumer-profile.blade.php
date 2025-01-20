@@ -7,7 +7,11 @@
         <div class="card border border-dark shadow">
             <div class="row p-5">
                 <div class="col-4">
-                    <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
+                    @if ($consumer->avatar)
+                        <img src="{{ $consumer->avatar }}" alt="{{ $consumer->name }}" class="img-thumbnail">
+                    @else
+                        <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
+                    @endif
                 </div>
                 <div class="col-8">
                     <h2 class="display-5 mt-4">{{ $consumer->name }}</h2>

@@ -127,8 +127,11 @@ Route::group(['middleware'=>'auth'], function(){
         Route::patch('/farm/{user}/activate', [AdminHomeController::class, 'farmActivate'])->withTrashed()->name('farm.activate');
 
         // ITEM
-        Route::get('/item-management', [AdminHomeController::class, 'itemManagement'])->name('item.management');
-        Route::get('/item/show', [AdminHomeController::class, 'showItem'])->name('item.show');
+        Route::get('/item-management/{status?}/{category?}', [AdminHomeController::class, 'itemManagement'])->name('item.management');
+        Route::get('/item/{item}/show', [AdminHomeController::class, 'showItem'])->withTrashed()->name('item.show');
+        Route::get('/item/search', [AdminHomeController::class, 'itemSearch'])->name('item.search');
+        Route::delete('/item/{item}/deactivate', [AdminHomeController::class, 'itemDeactivate'])->name('item.deactivate');
+        Route::patch('/item/{item}/activate', [AdminHomeController::class, 'itemActivate'])->withTrashed()->name('item.activate');
 
         Route::get('/analysis', [AdminHomeController::class, 'analysis'])->name('analysis');
     });
