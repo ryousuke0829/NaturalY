@@ -56,4 +56,9 @@ class Item extends Model
         return $this->hasMany(Favorite::class, 'item_id', 'id')->count();
     }
 
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
 }

@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col text-end">
                                     <h5 class="fs-4"><i class="fa-regular fa-star"></i> 4.9</h5>
-                                    <span>Total Sales Quantity: 831 units</span>
+                                    <span>Total Sales Quantity: {{ $item->orderItems->sum('quantity') }} units</span>
                                 </div>
                             </div>
                             <div class="text-start text-secondary fw-bold">

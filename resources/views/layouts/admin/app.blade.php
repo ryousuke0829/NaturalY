@@ -22,8 +22,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-    {{-- css --}}
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     <style>
     html, body {
@@ -106,6 +104,10 @@
     /* animationの設定 (0.5秒間、ease-in-outでアニメーション) */
     }  
 
+    .icon-lg{
+        font-size: 9rem;
+    }
+
     </style>
 
     <!-- Scripts -->
@@ -157,15 +159,6 @@
                         @else
                         <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold">{{ Auth::user()->name }}</span> san!!</li>
 
-                        {{-- Cart --}}
-                        <li class="nav-item  me-2">
-                            <a class="nav-link mx-auto text-center" href="#" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa-solid fa-cart-shopping fs-3 nav-item nav-icon"></i><br>
-                                <span class="nav-text">Cart</span>
-                            </a>
-                        </li>
-                        
-                        
                         {{-- Hamburger --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link mx-auto text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -177,7 +170,7 @@
                                 <div class="dropdown-menu dropdown-menu-end py-3 px-4" aria-labelledby="navbarDropdown">
                                     <!-- User Icon and Name (Centered Horizontally) -->
                                     <a href="{{ route('admin.index') }}" class="dropdown-item d-flex align-items-center justify-content-center py-1" style="gap: 10px;">
-                                        <svg width="86" height="85" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg width="80" height="80" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M43 81.4584C23.319 77.0845 7.58337 58.5155 7.58337 38.9584V17.7084L43 3.54175L78.4167 17.7084V38.9584C78.4167 58.5226 62.6811 77.0845 43 81.4584ZM14.6667 21.2501V38.9584C14.8691 47.1472 17.7492 55.0441 22.8663 61.4404C27.9834 67.8367 35.0554 72.3801 43 74.3751C50.9447 72.3801 58.0167 67.8367 63.1338 61.4404C68.2508 55.0441 71.131 47.1472 71.3334 38.9584V21.2501L43 10.6251L14.6667 21.2501Z" fill="#B93030"/>
                                             <path d="M43 38.9583C47.8901 38.9583 51.8542 34.9942 51.8542 30.1042C51.8542 25.2141 47.8901 21.25 43 21.25C38.11 21.25 34.1459 25.2141 34.1459 30.1042C34.1459 34.9942 38.11 38.9583 43 38.9583Z" fill="#B93030"/>
                                             <path d="M25.2916 53.125C27.0367 56.3066 29.5961 58.9672 32.7078 60.8342C35.8194 62.7012 39.3714 63.7075 43 63.75C46.6285 63.7075 50.1805 62.7012 53.2921 60.8342C56.4038 58.9672 58.9632 56.3066 60.7083 53.125C60.6198 46.41 48.872 42.5 43 42.5C37.096 42.5 25.3802 46.41 25.2916 53.125Z" fill="#B93030"/>
@@ -263,14 +256,14 @@
                                         {{-- Item Management --}}
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a href="{{ route('admin.item.management') }}" class="dropdown-item p-0">
-                                                <i class="fa-regular fa-lemon icon-sm text-warning"></i>
+                                                <i class="fa-regular fa-lemon fs-2 text-warning"></i>
                                                 <p class="text-secondary mt-1 mb-0">Item <br> Management</p>
                                             </a>
                                         </div>
                                         {{-- Analysis --}}
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a href="{{ route('admin.analysis') }}" class="dropdown-item p-0">
-                                                <i class="fa-solid fa-chart-line icon-sm text-danger"></i>
+                                                <i class="fa-solid fa-chart-line fs-2 text-danger"></i>
                                                 <p class="text-secondary mt-1 mb-0">Analysis</p>
                                             </a>
                                         </div>
