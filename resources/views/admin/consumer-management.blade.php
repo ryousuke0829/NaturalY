@@ -38,7 +38,7 @@
                                     <h5 class="fw-bold fs-4">{{ $consumer->name }}</h5>
                                 </div>
                                 <div class="col text-end">
-                                    <p class="fs-5">Total purchase: $831</p>
+                                    <p class="fs-5"></p>
                                 </div>
                             </div>
                             <div class="text-start text-secondary fw-bold">

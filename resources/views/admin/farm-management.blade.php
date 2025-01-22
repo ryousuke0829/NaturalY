@@ -48,7 +48,7 @@
                                     <span class="badge rounded-pill bg-success">{{ $farm->second_product }}</span>
                                 </div>
                                 <div class="col text-end">
-                                    <p class="fs-5">831 Followers</p>
+                                    <p class="fs-5">{{ $farm->followers->count() }} Followers</p>
                                 </div>
                             </div>
                             <div class="text-start text-secondary fw-bold">

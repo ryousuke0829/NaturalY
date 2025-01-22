@@ -22,7 +22,7 @@
                         </div>
         
                         <div class="col fw-bold">
-                            800 Followers
+                            {{ $farm->followers->count() }} Followers
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="row g-3">
                         @forelse ($farm->items as $item)
                              <div class="col-4">
-                                <a href="{{ route('farm.showItem', $item->id) }}">
+                                <a href="{{ route('admin.item.show', $item->id) }}">
                                     <div class="card h-100 shadow-lg border-1">
                                         <div class="position-relative">
                                             <img src="{{ $item->picture_1 }}" 
