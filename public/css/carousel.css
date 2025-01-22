@@ -7,3 +7,4 @@
     height: 600px;
     object-fit: cover; 
 }
+.carousel-item { background-color: rgba(254, 253, 251, 0.867); }

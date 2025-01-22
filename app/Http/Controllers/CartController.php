@@ -23,7 +23,6 @@ class CartController extends Controller
             ->first();
 
         if (!$cartItem) {
-            // 新しい商品を追加（初期数量は1点）
             CartItem::create([
                 'cart_id' => $cart->id,
                 'item_id' => $request->item_id,
@@ -57,7 +56,8 @@ class CartController extends Controller
         $request->validate([
             'item_id' => 'required|exists:cart_items,item_id',
             'quantity' => 'required|integer|min:0',
-            'redirect_to' => 'required|string|in:cart,order', // リダイレクト先を指定
+            'redirect_to' => 'required|string|in:cart,order', 
+
         ]);
     
         $cartItem = CartItem::where('item_id', $request->item_id)->first();

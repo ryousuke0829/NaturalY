@@ -42,7 +42,7 @@
         <input type="hidden" name="order_item_id" value="{{ $orderItem->id }}">
 
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary py-1 w-75 text-center mx-auto mt-3 fs-4">Submit</button>
+            <button type="submit" class="btn btn-secondary py-1 w-100 text-center mx-auto mt-3 fs-4">Submit</button>
         </div>
     </form>
 </div>

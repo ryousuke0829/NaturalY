@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\CartItem;
 use App\Models\OrderItem;
 
 class OrderController extends Controller
@@ -63,25 +64,39 @@ class OrderController extends Controller
     
     public function saveShippingInfoToSession(Request $request)
     {
-    $request->validate([
-        'shipping_name' => 'required|string|max:255',
-        'shipping_zipcode' => 'required|string|max:20',
-        'shipping_prefecture' => 'required|string|max:100',
-        'shipping_address' => 'required|string|max:255',
-        'shipping_phone' => 'required|string|max:20',
-    ]);
-
-    session([
-        'shipping_name' => $request->input('shipping_name'),
-        'shipping_zipcode' => $request->input('shipping_zipcode'),
-        'shipping_prefecture' => $request->input('shipping_prefecture'),
-        'shipping_address' => $request->input('shipping_address'),
-        'shipping_phone' => $request->input('shipping_phone'),
-    ]);
-
-    return redirect()->route('consumer.showOrderConfirmation');
+        $request->validate([
+            'shipping_name' => 'required|string|max:255',
+            'shipping_zipcode' => 'required|string|max:20',
+            'shipping_prefecture' => 'required|string|max:100',
+            'shipping_address' => 'required|string|max:255',
+            'shipping_phone' => 'required|string|max:20',
+            'quantities' => 'required|array',
+            'quantities.*' => 'required|integer|min:0'
+        ]);
+    
+        session([
+            'shipping_name' => $request->input('shipping_name'),
+            'shipping_zipcode' => $request->input('shipping_zipcode'),
+            'shipping_prefecture' => $request->input('shipping_prefecture'),
+            'shipping_address' => $request->input('shipping_address'),
+            'shipping_phone' => $request->input('shipping_phone'),
+        ]);
+    
+        foreach ($request->quantities as $itemId => $quantity) {
+            $cartItem = CartItem::where('item_id', $itemId)->first();
+            if ($cartItem) {
+                if ($quantity == 0) {
+                    $cartItem->delete();
+                } else {
+                    $cartItem->quantity = $quantity;
+                    $cartItem->save();
+                }
+            }
+        }
+    
+        return redirect()->route('consumer.showOrderConfirmation')->with('success', 'Order details updated successfully.');
     }
-
+    
     public function purchaseHistory()
     {
         $user = Auth::user();
@@ -95,7 +110,7 @@ class OrderController extends Controller
         ])
         ->where('user_id', $user->id)
         ->orderBy('created_at', 'desc')
-        ->get();
+        ->paginate(4);
     
         return view('consumer.purchase-history', compact('orders'));
     }

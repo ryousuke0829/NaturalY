@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container d-flex flex-column">
-    <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center my-auto">
         <div class="card shadow-sm px-5 pb-4 w-100 mx-auto" style="max-width: 600px;">
             <div class="mt-4 d-flex align-items-center justify-content-center">
                 @if ($user->avatar)
@@ -17,7 +17,7 @@
                 <div class="col">
                     <h5 class="mt-4">Address</h5>
                     <p class="my-0">〒{{$user->zip_code}}</p>
-                    <p class="card-text">{{$user->prefecture}}, {{$user->address}}, JAPAN</p>
+                    <p class="card-text">{{$user->address}}, {{$user->prefecture}}, JAPAN</p>
                     <h5 class="mt-4">Phone Number</h5>
                     <p class="card-text">{{$user->phone_number}}</p>
                 </div>
