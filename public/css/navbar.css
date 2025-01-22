@@ -3,7 +3,7 @@
     backdrop-filter: blur(10px);
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1050;
+    z-index: 2;
     width: 100%;
 }
 .farm-nav-bg {

@@ -74,6 +74,9 @@
     @empty
         <p class="text-center text-muted">You have no purchase history yet.</p>
     @endforelse
+    <div class="d-flex justify-content-center mt-4">
+        {{ $orders->links('pagination::bootstrap-4') }} 
+    </div>
 
 </div>
 @endsection

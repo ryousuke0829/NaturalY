@@ -32,3 +32,15 @@ display: inline-block; white-space: nowrap; max-width: fit-content;
   filter: grayscale(80%);
   opacity: 0.5;
 }
+
+.min-vh-20 {
+  min-height: calc(30vh);
+}
+
+.navbar {
+  z-index: 1050;
+}
+
+.modal {
+  z-index: 1060;
+}

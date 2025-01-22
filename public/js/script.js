@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         obj.style.top = `${randomY}%`;
     });
 
-    // スクロール時のアニメーション処理
     let lastScrollY = window.scrollY;
     let ticking = false;
 

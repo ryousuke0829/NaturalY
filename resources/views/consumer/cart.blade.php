@@ -3,8 +3,9 @@
 @section('content')
 <div class="container">
     <div class="text-center mb-5">
-        <i class="fa-regular fa-thumbs-up fs-1"></i>
+        <i class="fa-solid fa-cart-shopping fs-1"></i>
         <h1 class="text-center title">Your Cart</h1>
+        <i class="fa-solid fa-cart-shopping fs-1"></i>
     </div>
     
     @if ($cartItems->isEmpty())
