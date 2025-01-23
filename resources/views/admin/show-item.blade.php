@@ -14,7 +14,7 @@
                     <h5 class="card-title mb-0 title">{{ $item->name }}</h5>
                 </div>
                 <div class="col-auto d-flex flex-column justify-content-center ms-4">
-                    <p class="fs-2 mb-0">☆4.5</p>
+                    {{-- <p class="fs-2 mb-0">☆4.5</p> --}}
                 </div>
             </div>
             

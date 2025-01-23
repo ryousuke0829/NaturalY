@@ -37,8 +37,8 @@
                                     <span class="badge rounded-pill bg-success">{{ $item->category }}</span>
                                 </div>
                                 <div class="col text-end">
-                                    <h5 class="fs-4"><i class="fa-regular fa-star"></i> 4.9</h5>
-                                    <span>Total Sales Quantity: 831 units</span>
+                                    {{-- <h5 class="fs-4"><i class="fa-regular fa-star"></i> 4.9</h5>
+                                    <span>Total Sales Quantity: 831 units</span> --}}
                                 </div>
                             </div>
                             <div class="text-start text-secondary fw-bold scrollable">

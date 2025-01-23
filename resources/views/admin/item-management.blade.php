@@ -46,7 +46,7 @@
                                     <span class="badge rounded-pill bg-success">{{ $item->category }}</span>
                                 </div>
                                 <div class="col text-end">
-                                    <h5 class="fs-4"><i class="fa-regular fa-star"></i> 4.9</h5>
+                                    {{-- <h5 class="fs-4"><i class="fa-regular fa-star"></i> 4.9</h5> --}}
                                     <span>Total Sales Quantity: {{ $item->orderItems->sum('quantity') }} units</span>
                                 </div>
                             </div>
