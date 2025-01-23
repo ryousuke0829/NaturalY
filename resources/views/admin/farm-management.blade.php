@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="text-start text-secondary fw-bold">
-                                <p>{{ $farm->farm_description }}</p>
+                                <p class="scrollable">{{ $farm->farm_description }}</p>
                             </div>
                         </div>
                         @if ($farm->trashed())

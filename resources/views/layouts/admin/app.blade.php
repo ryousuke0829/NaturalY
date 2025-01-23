@@ -29,7 +29,6 @@
         margin: 0; /* デフォルトの余白を削除 */
     }
     
-
     #app {
         display: flex;
         flex-direction: column;
@@ -107,6 +106,11 @@
     .icon-lg{
         font-size: 9rem;
     }
+    .scrollable {
+    display: block !important;
+    height: 100px;
+    overflow-y: auto !important;
+    }
 
     </style>
 
@@ -170,7 +174,7 @@
                                 <div class="dropdown-menu dropdown-menu-end py-3 px-4" aria-labelledby="navbarDropdown">
                                     <!-- User Icon and Name (Centered Horizontally) -->
                                     <a href="{{ route('admin.index') }}" class="dropdown-item d-flex align-items-center justify-content-center py-1" style="gap: 10px;">
-                                        <svg width="80" height="80" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg width="50" height="50" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M43 81.4584C23.319 77.0845 7.58337 58.5155 7.58337 38.9584V17.7084L43 3.54175L78.4167 17.7084V38.9584C78.4167 58.5226 62.6811 77.0845 43 81.4584ZM14.6667 21.2501V38.9584C14.8691 47.1472 17.7492 55.0441 22.8663 61.4404C27.9834 67.8367 35.0554 72.3801 43 74.3751C50.9447 72.3801 58.0167 67.8367 63.1338 61.4404C68.2508 55.0441 71.131 47.1472 71.3334 38.9584V21.2501L43 10.6251L14.6667 21.2501Z" fill="#B93030"/>
                                             <path d="M43 38.9583C47.8901 38.9583 51.8542 34.9942 51.8542 30.1042C51.8542 25.2141 47.8901 21.25 43 21.25C38.11 21.25 34.1459 25.2141 34.1459 30.1042C34.1459 34.9942 38.11 38.9583 43 38.9583Z" fill="#B93030"/>
                                             <path d="M25.2916 53.125C27.0367 56.3066 29.5961 58.9672 32.7078 60.8342C35.8194 62.7012 39.3714 63.7075 43 63.75C46.6285 63.7075 50.1805 62.7012 53.2921 60.8342C56.4038 58.9672 58.9632 56.3066 60.7083 53.125C60.6198 46.41 48.872 42.5 43 42.5C37.096 42.5 25.3802 46.41 25.2916 53.125Z" fill="#B93030"/>
@@ -184,7 +188,7 @@
                                         {{-- Consumer Management --}}
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a href="{{ route('admin.consumer.management') }}" class="dropdown-item p-0">
-                                                <svg width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="30" height="30" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_374_3574)">
                                                     <g filter="url(#filter0_d_374_3574)">
                                                     <path d="M51.8914 36.6867C51.7302 36.5007 51.5309 36.3515 51.307 36.2492C51.0831 36.1469 50.8399 36.0939 50.5938 36.0938H47.1562V32.6562C47.1562 30.7622 45.6145 29.2188 43.7188 29.2188H36.8438C34.948 29.2188 33.4062 30.7622 33.4062 32.6562V36.0938H29.9688C29.7224 36.0937 29.4789 36.1466 29.2548 36.2489C29.0307 36.3512 28.8312 36.5005 28.6698 36.6867C28.5085 36.8728 28.389 37.0915 28.3195 37.3278C28.2501 37.5642 28.2322 37.8127 28.2672 38.0566L29.9859 50.0878C30.0447 50.4972 30.2491 50.8717 30.5616 51.1426C30.8742 51.4135 31.2739 51.5626 31.6875 51.5625H48.875C49.2886 51.5626 49.6883 51.4135 50.0009 51.1426C50.3134 50.8717 50.5178 50.4972 50.5766 50.0878L52.2953 38.0566C52.3301 37.8126 52.3121 37.5641 52.2424 37.3277C52.1727 37.0914 52.053 36.8728 51.8914 36.6867ZM36.8438 32.6562H43.7188V36.0938H36.8438V32.6562ZM47.3848 48.125H33.1777L31.9505 39.5312H48.612L47.3848 48.125ZM17.9375 34.375H21.375V51.5625H17.9375V34.375Z" fill="#0D7BCC"/>
@@ -219,13 +223,13 @@
                                                     </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <p class="text-secondary mt-1 mb-0">Consumer <br> Management</p>
+                                                <p class="text-secondary mt-1 mb-0">Consumer <br> Mng</p>
                                             </a>
                                         </div>
                                         {{-- Farm Management --}}
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a href="{{ route('admin.farm.management') }}" class="dropdown-item p-0">
-                                                <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="30" height="30" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(#clip0_374_3578)">
                                                     <g filter="url(#filter0_d_374_3578)">
                                                     <path d="M19.4166 33.25V10.6875C19.4166 9.11278 18.802 7.60255 17.7081 6.48905C16.6141 5.37556 15.1304 4.75 13.5833 4.75C12.0362 4.75 10.5525 5.37556 9.4585 6.48905C8.36454 7.60255 7.74996 9.11278 7.74996 10.6875V33.25M19.4166 19L33.4166 7.125L52.0833 21.375M47.4166 9.5V33.25M28.75 33.25H38.0833V23.75H28.75V33.25ZM28.75 33.25L17.0833 52.25M5.41663 33.25H52.0833M5.41663 52.25L17.0833 33.25M52.0833 52.25H28.75L40.4166 33.25M35.75 42.75H52.0833" stroke="#70B563" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges"/>
@@ -247,7 +251,7 @@
                                                     </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <p class="text-secondary mt-1 mb-0">Farm <br> Management</p>
+                                                <p class="text-secondary mt-1 mb-0">Farm <br> Mng</p>
                                             </a>
                                         </div>
                                     </div>
@@ -257,7 +261,7 @@
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a href="{{ route('admin.item.management') }}" class="dropdown-item p-0">
                                                 <i class="fa-regular fa-lemon fs-2 text-warning"></i>
-                                                <p class="text-secondary mt-1 mb-0">Item <br> Management</p>
+                                                <p class="text-secondary mt-1 mb-0">Item <br> Mng</p>
                                             </a>
                                         </div>
                                         {{-- Analysis --}}

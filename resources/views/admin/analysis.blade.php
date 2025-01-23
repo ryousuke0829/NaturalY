@@ -61,7 +61,7 @@
                                         <p class="fs-5">{{ $farm_follower->count }} Followers</p>
                                     </div>
                                 </div>
-                                <div class="text-start text-secondary fw-bold">
+                                <div class="text-start text-secondary fw-bold scrollable">
                                     <p>{{ $farm_follower->farm->farm_description }}</p>
                                 </div>
                             </div>
@@ -85,11 +85,11 @@
                     <div class="card rounded-5 text-center p-3 border-dark mb-3 shadow bg-body rounded">
                         <div class="row">
                             <div class="col-3">
-                                @if ($farm_sales->user->avatar)
+                                {{-- @if ($farm_sales->user->avatar)
                                     <img src="{{ $farm_sales->user->avatar }}" alt="{{ $farm_sales->user->name }}" class="img-thumbnail">
-                                @else
+                                @else --}}
                                     <i class="fa-solid fa-image fa-10x d-block text-center"></i>
-                                @endif
+                                {{-- @endif --}}
                             </div>
                             <div class="col">
                                 <div class="row">

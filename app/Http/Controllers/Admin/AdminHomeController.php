@@ -216,7 +216,7 @@ class AdminHomeController extends Controller
             ->groupBy('user_id')
             ->orderByDesc('total_sales')
             ->get();
-                
+            
         return view('admin.analysis', compact(
                 'numCustomersAndFarmers', 
                 'farmFollowersCount',
