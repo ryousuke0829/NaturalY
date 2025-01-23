@@ -37,7 +37,7 @@
                                     <span class="badge rounded-pill bg-success">Cucumber</span>
                                 </div>
                                 <div class="col text-end">
-                                    <p class="fs-5">831 Followers</p>
+                                    {{-- <p class="fs-5">831 Followers</p> --}}
                                 </div>
                             </div>
                             <div class="text-start text-secondary fw-bold">
