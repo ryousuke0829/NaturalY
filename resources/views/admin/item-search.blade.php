@@ -41,8 +41,8 @@
                                     <span>Total Sales Quantity: 831 units</span>
                                 </div>
                             </div>
-                            <div class="text-start text-secondary fw-bold">
-                                <p>{{ $item->description }}</p>
+                            <div class="text-start text-secondary fw-bold scrollable">
+                                <p class="scrollable">{{ $item->description }}</p>
                             </div>
                         </div>
                         @if ($item->trashed())

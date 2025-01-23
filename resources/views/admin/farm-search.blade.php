@@ -40,8 +40,8 @@
                                     <p class="fs-5">831 Followers</p>
                                 </div>
                             </div>
-                            <div class="text-start text-secondary fw-bold">
-                                <p>{{ $farm->farm_description }}</p>
+                            <div class="text-start text-secondary fw-bold scrollable" style="max-height: 100px;">
+                                <p class="scrollable">{{ $farm->farm_description }}</p>
                             </div>
                         </div>
                         @if ($farm->trashed())

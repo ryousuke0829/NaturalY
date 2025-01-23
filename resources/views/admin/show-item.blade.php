@@ -19,7 +19,9 @@
             </div>
             
             {{-- Category Tag --}}
-            <a href="#" class="badge rounded-pill text-bg-success text-decoration-none">{{ $item->category }}</a>
+            <div class="flex-column">
+                <a href="#" class="badge rounded-pill text-bg-success text-decoration-none">{{ $item->category }}</a>
+            </div>
 
             {{-- Item Carousel --}}
             <div id="carouselExampleIndicators" class="carousel slide mt-3">

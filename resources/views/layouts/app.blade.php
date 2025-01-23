@@ -83,8 +83,7 @@
                         </li>
                         @endif
                         @else
-                        <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold fs-5">{{ Auth::user()->name
-                                }}</span> san!!</li>
+                        <li class="my-auto me-5 nav-text">Hello, <span class="fw-bold fs-5">{{ Auth::user()->name}}</span> san!!</li>
 
                         {{-- Cart --}}
                         <li class="nav-item me-2 position-relative">

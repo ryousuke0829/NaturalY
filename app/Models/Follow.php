@@ -17,7 +17,7 @@ class Follow extends Model
     }
     public function farm()
     {
-        return $this->belongsTo(User::class, 'farm_id')->where('role_id', 3);
+        return $this->belongsTo(User::class, 'farm_id')->where('role_id', 3)->withTrashed();
     }
 
 }

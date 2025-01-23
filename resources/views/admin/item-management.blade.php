@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="text-start text-secondary fw-bold">
-                                <p>{{ $item->description }}</p>
+                                <p class="scrollable">{{ $item->description }}</p>
                             </div>
                         </div>
                         @if ($item->trashed())
