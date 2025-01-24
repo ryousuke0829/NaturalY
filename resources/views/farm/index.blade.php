@@ -22,7 +22,7 @@
         <div class="col">
             <a href="#" class="w-100 btn btn-primary py-5 fs-2 rounded-pill">
                 <i class="fa-solid fa-chart-line"></i>
-                Product Analysis
+                Product Analysis（Pending）
             </a>
         </div>
     </div>
