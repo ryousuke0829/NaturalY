@@ -7,11 +7,11 @@
     {{-- Title --}}
     <div class="text-center mb-5">
         <div class="d-flex justify-content-center align-items-center flex-wrap">
-            @foreach ($order->orderItems as $orderItem)
-            <a href="{{ route('showfarmProfile', ['farm_id' => $orderItem->item->user->id]) }}"
+            @foreach ($order->orderItems->pluck('item.user')->unique('id') as $user)
+            <a href="{{ route('showfarmProfile', ['farm_id' => $user->id]) }}"
                 class="text-decoration-none text-dark">
                 <div class="d-flex align-items-center m-2">
-                    <img src="{{ $orderItem->item->user->avatar }}" alt="{{ $orderItem->item->user->name }}"
+                    <img src="{{ $user->avatar }}" alt="{{ $user->name }}"
                         class="rounded-circle avatar-lg shake-on-hover">
                 </div>
             </a>
@@ -23,7 +23,7 @@
             <i class="fa-brands fa-pagelines"></i>
         </h1>
         <p class="text-secondary">Your order has been successfully placed.</p>
-    </div>
+    </div>    
 
     {{-- Order Summary --}}
     <div class="card shadow p-4 w-50 mx-auto">

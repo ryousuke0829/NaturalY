@@ -223,7 +223,7 @@
                                                     </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <p class="text-secondary mt-1 mb-0">Consumer <br> Mng</p>
+                                                <p class="text-secondary mt-1 mb-0">Consumer</p>
                                             </a>
                                         </div>
                                         {{-- Farm Management --}}
@@ -251,7 +251,7 @@
                                                     </clipPath>
                                                     </defs>
                                                 </svg>
-                                                <p class="text-secondary mt-1 mb-0">Farm <br> Mng</p>
+                                                <p class="text-secondary mt-1 mb-0">Farm</p>
                                             </a>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <a href="{{ route('admin.item.management') }}" class="dropdown-item p-0">
                                                 <i class="fa-regular fa-lemon fs-2 text-warning"></i>
-                                                <p class="text-secondary mt-1 mb-0">Item <br> Mng</p>
+                                                <p class="text-secondary mt-1 mb-0">Item</p>
                                             </a>
                                         </div>
                                         {{-- Analysis --}}
